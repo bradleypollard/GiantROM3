@@ -5,7 +5,7 @@ public class DeleteThis : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	  // Test comment: Hello!
+	  // Test comment: Good morning!
 	}
 	
 	// Update is called once per frame
