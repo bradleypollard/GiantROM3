@@ -1,32 +1,15 @@
 fileFormatVersion: 2
-guid: 77e60278315dfc444bff598937cddd6b
-timeCreated: 1470670584
+guid: 787f55718c160d249b0bdd9beb1307f7
+timeCreated: 1470676283
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Box001
-    100002: Box002
-    100004: //RootNode
-    100006: _door
-    100008: _frame
-    400000: Box001
-    400002: Box002
-    400004: //RootNode
-    400006: _door
-    400008: _frame
-    2300000: Box001
-    2300002: Box002
-    2300004: _door
-    2300006: _frame
-    3300000: Box001
-    3300002: Box002
-    3300004: _door
-    3300006: _frame
-    4300000: Box001
-    4300002: Box002
-    4300004: _frame
-    4300006: _door
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: up
     9500000: //RootNode
   materials:
     importMaterials: 1
