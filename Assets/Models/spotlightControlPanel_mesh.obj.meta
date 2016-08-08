@@ -1,0 +1,138 @@
+fileFormatVersion: 2
+guid: 56a169c2932a95848bc0699b6ee238f1
+timeCreated: 1470685259
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: pCube3_spotlight_control_GRP
+    100002: spotlight_control_GRP_lever_group1_pCylinder11
+    100004: spotlight_control_GRP_lever_group1_pCylinder12
+    100006: spotlight_control_GRP_lever_group1_pCylinder14
+    100008: spotlight_control_GRP_lever_group1_pCylinder15
+    100010: spotlight_control_GRP_lever_group1_pCylinder16
+    100012: spotlight_control_GRP_lever_pCylinder10
+    100014: spotlight_control_GRP_lever_pCylinder13_group1
+    100016: spotlight_control_GRP_pCube4_lever
+    100018: spotlight_control_GRP_pCylinder17
+    100020: spotlight_control_GRP_pCylinder18
+    100022: spotlight_control_GRP_pCylinder19
+    100024: spotlight_control_GRP_pCylinder7
+    100026: //RootNode
+    400000: pCube3_spotlight_control_GRP
+    400002: spotlight_control_GRP_lever_group1_pCylinder11
+    400004: spotlight_control_GRP_lever_group1_pCylinder12
+    400006: spotlight_control_GRP_lever_group1_pCylinder14
+    400008: spotlight_control_GRP_lever_group1_pCylinder15
+    400010: spotlight_control_GRP_lever_group1_pCylinder16
+    400012: spotlight_control_GRP_lever_pCylinder10
+    400014: spotlight_control_GRP_lever_pCylinder13_group1
+    400016: spotlight_control_GRP_pCube4_lever
+    400018: spotlight_control_GRP_pCylinder17
+    400020: spotlight_control_GRP_pCylinder18
+    400022: spotlight_control_GRP_pCylinder19
+    400024: spotlight_control_GRP_pCylinder7
+    400026: //RootNode
+    2300000: pCube3_spotlight_control_GRP
+    2300002: spotlight_control_GRP_lever_group1_pCylinder11
+    2300004: spotlight_control_GRP_lever_group1_pCylinder12
+    2300006: spotlight_control_GRP_lever_group1_pCylinder14
+    2300008: spotlight_control_GRP_lever_group1_pCylinder15
+    2300010: spotlight_control_GRP_lever_group1_pCylinder16
+    2300012: spotlight_control_GRP_lever_pCylinder10
+    2300014: spotlight_control_GRP_lever_pCylinder13_group1
+    2300016: spotlight_control_GRP_pCube4_lever
+    2300018: spotlight_control_GRP_pCylinder17
+    2300020: spotlight_control_GRP_pCylinder18
+    2300022: spotlight_control_GRP_pCylinder19
+    2300024: spotlight_control_GRP_pCylinder7
+    3300000: pCube3_spotlight_control_GRP
+    3300002: spotlight_control_GRP_lever_group1_pCylinder11
+    3300004: spotlight_control_GRP_lever_group1_pCylinder12
+    3300006: spotlight_control_GRP_lever_group1_pCylinder14
+    3300008: spotlight_control_GRP_lever_group1_pCylinder15
+    3300010: spotlight_control_GRP_lever_group1_pCylinder16
+    3300012: spotlight_control_GRP_lever_pCylinder10
+    3300014: spotlight_control_GRP_lever_pCylinder13_group1
+    3300016: spotlight_control_GRP_pCube4_lever
+    3300018: spotlight_control_GRP_pCylinder17
+    3300020: spotlight_control_GRP_pCylinder18
+    3300022: spotlight_control_GRP_pCylinder19
+    3300024: spotlight_control_GRP_pCylinder7
+    4300000: pCube3_spotlight_control_GRP
+    4300002: spotlight_control_GRP_lever_group1_pCylinder11
+    4300004: spotlight_control_GRP_lever_group1_pCylinder12
+    4300006: spotlight_control_GRP_lever_group1_pCylinder14
+    4300008: spotlight_control_GRP_lever_group1_pCylinder15
+    4300010: spotlight_control_GRP_lever_group1_pCylinder16
+    4300012: spotlight_control_GRP_lever_pCylinder10
+    4300014: spotlight_control_GRP_lever_pCylinder13_group1
+    4300016: spotlight_control_GRP_pCube4_lever
+    4300018: spotlight_control_GRP_pCylinder17
+    4300020: spotlight_control_GRP_pCylinder18
+    4300022: spotlight_control_GRP_pCylinder19
+    4300024: spotlight_control_GRP_pCylinder7
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.02
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
