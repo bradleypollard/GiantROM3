@@ -11,7 +11,7 @@ public class Interaction : MonoBehaviour
 	void FixedUpdate ()
 	{
 		if (objectInHands) {
-			if (Input.GetKeyDown (KeyCode.LeftAlt)) {
+			if (Input.GetKeyDown ("B_P1")) {
 				print ("Dropping " + objectInHands.transform.name);
 
 				Vector3 fwd = characterMesh.TransformDirection (Vector3.forward);
@@ -31,7 +31,7 @@ public class Interaction : MonoBehaviour
 			if (Physics.Raycast (characterMesh.position, fwd, out hit, 1)) {
 				if (hit.transform.tag == "Interactable") {
 					print ("You can interact " + hit.transform.name);
-					if (Input.GetKeyDown (KeyCode.Space)) {
+					if (Input.GetKeyDown ("A_P1")) {
 						objectInHands = hit.transform.gameObject;
 						objectInHands.transform.parent = characterMesh;
 						objectInHands.GetComponent<Rigidbody> ().isKinematic = true;
