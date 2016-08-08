@@ -1,20 +1,41 @@
 fileFormatVersion: 2
-guid: 41331e8a936103642997932ad212b478
-timeCreated: 1470683762
+guid: 0b7ffcae641525e43b56e934fa294604
+timeCreated: 1470684378
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Box005
-    9500000: //RootNode
+    100000: _event_floor
+    100002: _floors
+    100004: _stage
+    100006: _walls
+    100008: //RootNode
+    100010: size_reference
+    400000: _event_floor
+    400002: _floors
+    400004: _stage
+    400006: _walls
+    400008: //RootNode
+    400010: size_reference
+    2300000: _event_floor
+    2300002: _floors
+    2300004: _stage
+    2300006: _walls
+    2300008: size_reference
+    3300000: _event_floor
+    3300002: _floors
+    3300004: _stage
+    3300006: _walls
+    3300008: size_reference
+    4300000: size_reference
+    4300002: _stage
+    4300004: _floors
+    4300006: _walls
+    4300008: _event_floor
   materials:
     importMaterials: 1
-    materialName: 1
-    materialSearch: 2
+    materialName: 0
+    materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -69,7 +90,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

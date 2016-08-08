@@ -1,17 +1,22 @@
 fileFormatVersion: 2
-guid: c29ed8af85823524f99fd830253c063b
-timeCreated: 1470682133
+guid: e1620c752e837e7418d3e16b8ef9e378
+timeCreated: 1470684531
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Box001
-    4300002: _playstation
-    9500000: //RootNode
+    100000: _door
+    100002: _frame
+    100004: //RootNode
+    400000: _door
+    400002: _frame
+    400004: //RootNode
+    2300000: _door
+    2300002: _frame
+    3300000: _door
+    3300002: _frame
+    4300000: _frame
+    4300002: _door
   materials:
     importMaterials: 1
     materialName: 0
@@ -70,7 +75,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
