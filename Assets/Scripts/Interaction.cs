@@ -5,6 +5,7 @@ public class Interaction : MonoBehaviour
 {
 
 	public Transform characterMesh;
+	public Transform characterHands;
 
 	public GameObject objectInHands;
 
@@ -14,6 +15,7 @@ public class Interaction : MonoBehaviour
 			if (Input.GetKeyDown (KeyCode.LeftAlt)) {
 				print ("Dropping " + objectInHands.transform.name);
 				objectInHands.transform.parent = null;
+				objectInHands.GetComponent<Rigidbody> ().isKinematic = false;
 				objectInHands = null;
 			}
 		} else {
@@ -29,6 +31,7 @@ public class Interaction : MonoBehaviour
 					if (Input.GetKeyDown (KeyCode.Space)) {
 						objectInHands = hit.transform.gameObject;
 						objectInHands.transform.parent = this.transform;
+						objectInHands.GetComponent<Rigidbody> ().isKinematic = true;
 						print ("Picking up object");
 					}
 				} else {
