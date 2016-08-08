@@ -14,22 +14,16 @@ public class PlayerMovement : MonoBehaviour
 	void
 	Update()
 	{
-		Vector3 moveDirection = movementOrientation.TransformDirection(new Vector3 (Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")));
-	
-		if (moveDirection != Vector3.zero)
-		{
-			moveDirection = new Vector3 (moveDirection.x, 0, moveDirection.z);
-			transform.Translate (moveDirection * speed);
-
-			Vector3 rotationDirection = moveDirection;
-			//rotationDirection = new Vector3 (rotationDirection.x, -0.2f, rotationDirection.z);
-			characterMesh.rotation = Quaternion.LookRotation (rotationDirection);
-		}
-	}
-
-	void
-	FixedUpdate()
-	{
-
+//		Vector3 moveDirection = movementOrientation.TransformDirection (new Vector3 (Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical")));
+//	
+//		if (moveDirection != Vector3.zero)
+//		{
+//			moveDirection = new Vector3 (moveDirection.x, 0, moveDirection.z);
+//			transform.Translate (moveDirection * speed);
+//
+//			Vector3 rotationDirection = moveDirection;
+//			//rotationDirection = new Vector3 (rotationDirection.x, -0.2f, rotationDirection.z);
+//			characterMesh.rotation = Quaternion.LookRotation (rotationDirection);
+//		}
 	}
 }
