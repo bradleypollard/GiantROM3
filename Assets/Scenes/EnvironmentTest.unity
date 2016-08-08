@@ -194,6 +194,7 @@ MonoBehaviour:
   movementOrientation: {fileID: 1627880061}
   characterMesh: {fileID: 1358185032}
   speed: 0.18
+  playerIndex: 1
 --- !u!4 &102563308
 Transform:
   m_ObjectHideFlags: 0
