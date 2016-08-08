@@ -5,7 +5,6 @@ public class Interaction : MonoBehaviour
 {
 
 	public Transform characterMesh;
-	public Transform characterHands;
 
 	public GameObject objectInHands;
 
@@ -14,6 +13,10 @@ public class Interaction : MonoBehaviour
 		if (objectInHands) {
 			if (Input.GetKeyDown (KeyCode.LeftAlt)) {
 				print ("Dropping " + objectInHands.transform.name);
+
+				Vector3 fwd = characterMesh.TransformDirection (Vector3.forward);
+
+				objectInHands.transform.position = characterMesh.position + fwd + new Vector3 (0, 2, 0);
 				objectInHands.transform.parent = null;
 				objectInHands.GetComponent<Rigidbody> ().isKinematic = false;
 				objectInHands = null;
@@ -30,8 +33,9 @@ public class Interaction : MonoBehaviour
 					print ("You can interact " + hit.transform.name);
 					if (Input.GetKeyDown (KeyCode.Space)) {
 						objectInHands = hit.transform.gameObject;
-						objectInHands.transform.parent = this.transform;
+						objectInHands.transform.parent = characterMesh;
 						objectInHands.GetComponent<Rigidbody> ().isKinematic = true;
+						objectInHands.transform.position = characterMesh.position + new Vector3 (0, 2.3f, 0);
 						print ("Picking up object");
 					}
 				} else {
