@@ -11,7 +11,7 @@ public class Interaction : MonoBehaviour
 	void FixedUpdate ()
 	{
 		if (objectInHands) {
-			if (Input.GetButtonDown("B_P1")) {
+			if (Input.GetButtonDown ("B_P1")) {
 				print ("Dropping " + objectInHands.transform.name);
 
 				Vector3 fwd = characterMesh.TransformDirection (Vector3.forward);
@@ -36,6 +36,7 @@ public class Interaction : MonoBehaviour
 						objectInHands.transform.parent = characterMesh;
 						objectInHands.GetComponent<Rigidbody> ().isKinematic = true;
 						objectInHands.transform.position = characterMesh.position + new Vector3 (0, 2.3f, 0);
+						objectInHands.transform.rotation = Quaternion.Euler (new Vector3 (90, 0, 0));
 						print ("Picking up object");
 					}
 				} else {
