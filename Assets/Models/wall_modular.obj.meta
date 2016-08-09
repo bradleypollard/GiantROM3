@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: fdb0d9679ccb5c346903aed9f7301ff6
-timeCreated: 1470726026
+guid: 071f100b819bc79428a3a10095d8d47a
+timeCreated: 1470730212
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: CD_CD_GRP
+    100000: pCube14
     100002: //RootNode
-    400000: CD_CD_GRP
+    400000: pCube14
     400002: //RootNode
-    2300000: CD_CD_GRP
-    3300000: CD_CD_GRP
-    4300000: CD_CD_GRP
+    2300000: pCube14
+    3300000: pCube14
+    4300000: pCube14
   materials:
     importMaterials: 1
     materialName: 0

@@ -1,27 +1,27 @@
 fileFormatVersion: 2
-guid: 5996b18abc27a494daf59d0070e7373d
-timeCreated: 1470685259
+guid: 49752c5798f08784bbb77f09dfe56f57
+timeCreated: 1470726026
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Hard_Drive_pCylinder1
-    100002: Hard_Drive_pCylinder2
+    100000: Hard_Drive_GRP_pCylinder1
+    100002: Hard_Drive_GRP_pCylinder2
     100004: //RootNode
-    100006: pCube2_Hard_Drive
-    400000: Hard_Drive_pCylinder1
-    400002: Hard_Drive_pCylinder2
+    100006: pCube2_Hard_Drive_GRP
+    400000: Hard_Drive_GRP_pCylinder1
+    400002: Hard_Drive_GRP_pCylinder2
     400004: //RootNode
-    400006: pCube2_Hard_Drive
-    2300000: Hard_Drive_pCylinder1
-    2300002: Hard_Drive_pCylinder2
-    2300004: pCube2_Hard_Drive
-    3300000: Hard_Drive_pCylinder1
-    3300002: Hard_Drive_pCylinder2
-    3300004: pCube2_Hard_Drive
-    4300000: Hard_Drive_pCylinder1
-    4300002: Hard_Drive_pCylinder2
-    4300004: pCube2_Hard_Drive
+    400006: pCube2_Hard_Drive_GRP
+    2300000: Hard_Drive_GRP_pCylinder1
+    2300002: Hard_Drive_GRP_pCylinder2
+    2300004: pCube2_Hard_Drive_GRP
+    3300000: Hard_Drive_GRP_pCylinder1
+    3300002: Hard_Drive_GRP_pCylinder2
+    3300004: pCube2_Hard_Drive_GRP
+    4300000: Hard_Drive_GRP_pCylinder1
+    4300002: Hard_Drive_GRP_pCylinder2
+    4300004: pCube2_Hard_Drive_GRP
   materials:
     importMaterials: 1
     materialName: 0
@@ -46,7 +46,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.02
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
