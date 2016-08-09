@@ -4,6 +4,12 @@ using System.Collections.Generic;
 public class Teleprompter : MonoBehaviour
 {
 
+  [Header("References")]
+  [SerializeField]
+  Transform playerTransform;
+  [SerializeField]
+  GameObject buttonPrefab;
+
   [Header("Settings")]
   [Range(0, 4)]
   [SerializeField]
@@ -11,9 +17,15 @@ public class Teleprompter : MonoBehaviour
   [Range(50, 200)]
   [SerializeField]
   int maxQueueSize = 100;
+  [Range(0, 5)]
+  [SerializeField]
+  float promptGenerationDelay = 1;
+  [Range(1, 10)]
+  [SerializeField]
+  float promptTTL = 5;
 
   private string[] buttons = { "A", "B", "X", "Y" };
-  private Queue<string> visiblePrompts;
+  private Queue<ButtonPrompt> visiblePrompts;
   private Queue<string> upcomingPrompts;
   private string telepromter = "";
   private GUIStyle hitStyle = new GUIStyle();
@@ -25,18 +37,19 @@ public class Teleprompter : MonoBehaviour
   // Use this for initialization
   void Start()
   {
-    visiblePrompts = new Queue<string>();
+    visiblePrompts = new Queue<ButtonPrompt>();
     upcomingPrompts = new Queue<string>();
     hitStyle.normal.textColor = Color.green;
     missStyle.normal.textColor = Color.red;
 
-    SetSpeakerID(1);
+    SetSpeakerID(1, playerTransform);
   }
 
   // Called when a new speaker arrives on the stage
-  public void SetSpeakerID(int _id)
+  public void SetSpeakerID(int _id, Transform _player)
   {
     speakerID = _id;
+    playerTransform = _player;
     AddMorePrompts();
   }
 
@@ -44,6 +57,7 @@ public class Teleprompter : MonoBehaviour
   private void ClearSpeakerID()
   {
     speakerID = 0;
+    playerTransform = null;
   }
 
   // Called when the handle is cranked, or a new speaker arrives
@@ -63,9 +77,11 @@ public class Teleprompter : MonoBehaviour
     if (upcomingPrompts.Count > 0 && timeTillNextPrompt <= 0f)
     {
       string button = upcomingPrompts.Dequeue();
-      visiblePrompts.Enqueue(button);
+      ButtonPrompt bp = Instantiate(buttonPrefab).GetComponent<ButtonPrompt>();
+      bp.Init(button, promptTTL, playerTransform, this);
+      visiblePrompts.Enqueue(bp);
       telepromter += button;
-      timeTillNextPrompt = 2 * Mathf.Exp(-5 * upcomingPrompts.Count / maxQueueSize);
+      timeTillNextPrompt = promptGenerationDelay * Mathf.Exp(-upcomingPrompts.Count / (float)maxQueueSize);
     }
 
     timeTillNextPrompt -= Time.deltaTime;
@@ -75,19 +91,36 @@ public class Teleprompter : MonoBehaviour
     {
       if (visiblePrompts.Count > 0 && Input.GetButtonDown(b + "_P" + speakerID))
       {
-        string button = visiblePrompts.Dequeue();
-        telepromter = telepromter.Substring(1);
+        string button = visiblePrompts.Peek().GetButton();
         if (button == b)
         {
-          hit += button;
+          OnHit(button);
         }
         else
         {
-          miss += button;
+          OnMiss(button);
         }
       }
     }
 
+  }
+
+  // Called when a player hits the right button
+  public void OnHit(string _button)
+  {
+    hit += _button;
+    ButtonPrompt bp = visiblePrompts.Dequeue();
+    Destroy(bp.gameObject);
+    telepromter = telepromter.Substring(1);
+  }
+
+  // Called when a player hits the wrong button, or doesn't hit any button in time
+  public void OnMiss(string _button)
+  {
+    miss += _button;
+    ButtonPrompt bp = visiblePrompts.Dequeue();
+    Destroy(bp.gameObject);
+    telepromter = telepromter.Substring(1);
   }
 
   // Debug drawing the input string
