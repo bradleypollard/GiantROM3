@@ -35,7 +35,7 @@ public class TeleprompterCrank : MonoBehaviour
 		while (lerpTime <= 1f)
 		{
 			zRotation = Mathf.Lerp (0, 360, lerpTime);
-			crankHandle.rotation = Quaternion.Euler (0, 0, zRotation);
+			crankHandle.rotation = Quaternion.Euler (crankHandle.rotation.eulerAngles.x, crankHandle.rotation.eulerAngles.y, zRotation);
 
 			animationDuration = Mathf.Clamp (animationDuration, 0.5f, 4f);
 			lerpTime += Time.deltaTime / animationDuration;
