@@ -8,7 +8,15 @@ public class Teleprompter : MonoBehaviour
   [SerializeField]
   Transform playerTransform;
   [SerializeField]
-  GameObject buttonPrefab;
+  Transform buttonPromptSpawnPoint;
+  [SerializeField]
+  GameObject aButtonPrefab;
+  [SerializeField]
+  GameObject bButtonPrefab;
+  [SerializeField]
+  GameObject xButtonPrefab;
+  [SerializeField]
+  GameObject yButtonPrefab;
 
   [Header("Settings")]
   [Range(0, 4)]
@@ -25,6 +33,7 @@ public class Teleprompter : MonoBehaviour
   float promptTTL = 5;
 
   private string[] buttons = { "A", "B", "X", "Y" };
+  private Dictionary<string, GameObject> buttonPrefabs;
   private Queue<ButtonPrompt> visiblePrompts;
   private Queue<string> upcomingPrompts;
   private string telepromter = "";
@@ -42,6 +51,12 @@ public class Teleprompter : MonoBehaviour
     hitStyle.normal.textColor = Color.green;
     missStyle.normal.textColor = Color.red;
 
+    buttonPrefabs = new Dictionary<string, GameObject>();
+    buttonPrefabs["A"] = aButtonPrefab;
+    buttonPrefabs["B"] = bButtonPrefab;
+    buttonPrefabs["X"] = xButtonPrefab;
+    buttonPrefabs["Y"] = yButtonPrefab;
+
     SetSpeakerID(1, playerTransform);
   }
 
@@ -58,6 +73,17 @@ public class Teleprompter : MonoBehaviour
   {
     speakerID = 0;
     playerTransform = null;
+
+    while (visiblePrompts.Count > 0)
+    {
+      ButtonPrompt bp = visiblePrompts.Dequeue();
+      Destroy(bp);
+    }
+    upcomingPrompts.Clear();
+    timeTillNextPrompt = 0f;
+    hit = "";
+    miss = "";
+    telepromter = "";
   }
 
   // Called when the handle is cranked, or a new speaker arrives
@@ -77,7 +103,8 @@ public class Teleprompter : MonoBehaviour
     if (upcomingPrompts.Count > 0 && timeTillNextPrompt <= 0f)
     {
       string button = upcomingPrompts.Dequeue();
-      ButtonPrompt bp = Instantiate(buttonPrefab).GetComponent<ButtonPrompt>();
+      ButtonPrompt bp = Instantiate(buttonPrefabs[button]).GetComponent<ButtonPrompt>();
+      bp.gameObject.transform.position = buttonPromptSpawnPoint.position;
       bp.Init(button, promptTTL, playerTransform, this);
       visiblePrompts.Enqueue(bp);
       telepromter += button;

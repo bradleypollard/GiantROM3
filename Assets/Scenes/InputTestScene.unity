@@ -288,6 +288,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4000011430360178, guid: 6c5066cab5987aa468178f372176c497,
     type: 2}
   m_PrefabInternal: {fileID: 6890437}
+--- !u!1 &647499939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 647499940}
+  m_Layer: 0
+  m_Name: ButtonPromptSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &647499940
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 647499939}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
 --- !u!4 &869786767 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010681035182, guid: 6c5066cab5987aa468178f372176c497,
@@ -588,7 +616,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 424329718}
-  buttonPrefab: {fileID: 1000013336061810, guid: d2a6b6117b5a2394ca82d06a953179e5,
+  buttonPromptSpawnPoint: {fileID: 647499940}
+  aButtonPrefab: {fileID: 1000013481324858, guid: ba1052205edd2924689da7fb035d1276,
+    type: 2}
+  bButtonPrefab: {fileID: 1000013481324858, guid: 94131d99db0ff124cade2934c3517b78,
+    type: 2}
+  xButtonPrefab: {fileID: 1000013481324858, guid: 52583579cf2efce48a831816826f72b1,
+    type: 2}
+  yButtonPrefab: {fileID: 1000013481324858, guid: be786a6450a16f240a932a18b576a385,
     type: 2}
   speakerID: 1
   maxQueueSize: 100

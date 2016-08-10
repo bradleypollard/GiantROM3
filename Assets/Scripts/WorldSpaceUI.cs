@@ -19,7 +19,7 @@ public class WorldSpaceUI : MonoBehaviour
 
 
 	void
-	OnValidate()
+	Start()
 	{
 		if (gameObject.activeInHierarchy)
 		{
