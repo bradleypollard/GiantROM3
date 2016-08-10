@@ -22,6 +22,7 @@ public class Machine : MonoBehaviour {
         if(machineUsable && Input.GetButton("A_P" + playerIndexUsingMachine))
         {
             print("Machine Useable and Button is Held Down");
+            playerUsingMachine.GetComponent<PlayerMovement>().enabled = false;
             if (!machineInUse)
             {
                 acceptedInputItem.SetActive(false);
@@ -40,12 +41,19 @@ public class Machine : MonoBehaviour {
                     print("Machine finished, reseting and giving item to player");
                     GameObject newGb = Instantiate(prefabForOutputItem, Vector3.zero, Quaternion.identity) as GameObject;
                     playerUsingMachine.GetComponent<Interaction>().GrabObject(newGb.transform.GetChild(0).gameObject);
+                    playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
                     ResetMachine();
                 }
             }
         }
-        
 
+
+        if(Input.GetButtonUp("A_P" + playerIndexUsingMachine) && machineUsable && counter < machineUseTimer)
+        {
+            ResetProgress();
+            playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+            acceptedInputItem.SetActive(true);
+        }
 
     }
 
@@ -78,6 +86,7 @@ public class Machine : MonoBehaviour {
     {
         print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left with " + collider.transform.parent.name);
         machineUsable = false;
+        ResetMachine();
     }
 
     private void ResetMachine()
@@ -89,5 +98,12 @@ public class Machine : MonoBehaviour {
         machineInUse = false;
         playerUsingMachine = null;
         progressSlider.gameObject.SetActive(false);
+    }
+
+    private void ResetProgress()
+    {
+        counter = 0;
+        progressSlider.gameObject.SetActive(false);
+        machineInUse = false;
     }
 }
