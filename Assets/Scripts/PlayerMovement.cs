@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
   [Range(1, 4)][SerializeField] public int playerIndex;
   [SerializeField] public bool lockMovement = false;
 
-
   void
 	Update()
 	{
