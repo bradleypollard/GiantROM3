@@ -24,7 +24,7 @@ GameObject:
   - 54: {fileID: 54000014052732296}
   - 65: {fileID: 65000012709789968}
   m_Layer: 2
-  m_Name: Playstation
+  m_Name: playstation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
