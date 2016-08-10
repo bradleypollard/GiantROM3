@@ -5,7 +5,9 @@ public class TeleprompterCrank : MonoBehaviour
 {
 	[SerializeField] Transform crankHandle;
 	[SerializeField] float animationDuration = 0.5f; //in seconds
-	bool isCranking;
+  [SerializeField]
+  Teleprompter teleprompter;
+  bool isCranking;
 
 
 	void
@@ -16,6 +18,10 @@ public class TeleprompterCrank : MonoBehaviour
 			isCranking = true;
 			StartCoroutine (LerpHandle ());
 			GetComponent<AudioSource> ().Play ();
+      if (teleprompter != null)
+      {
+        teleprompter.AddMorePrompts();
+      }
 		}
 	}
 
