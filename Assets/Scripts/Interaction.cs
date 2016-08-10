@@ -8,10 +8,17 @@ public class Interaction : MonoBehaviour
 
 	public GameObject objectInHands;
 
+    public PlayerMovement playerMovement;
+
+    void Start()
+    {
+        playerMovement = gameObject.GetComponent<PlayerMovement>();
+    }
+
 	void FixedUpdate ()
 	{
 		if (objectInHands) {
-			if (Input.GetButtonDown ("B_P1")) {
+			if (Input.GetButtonDown ("B_P" + playerMovement.playerIndex)) {
                 ReleaseObject();
             }
 		} else {
@@ -24,7 +31,7 @@ public class Interaction : MonoBehaviour
 			if (Physics.Raycast (characterMesh.position, fwd, out hit, 5)) {
 				if (hit.transform.tag == "Interactable") {
 					print ("You can interact " + hit.transform.name);
-					if (Input.GetButtonDown ("A_P1")) {
+					if (Input.GetButtonDown ("A_P" + playerMovement.playerIndex)) {
                         GrabObject(hit.transform.gameObject);
 					}
 				} else {
