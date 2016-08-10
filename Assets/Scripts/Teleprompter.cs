@@ -57,7 +57,7 @@ public class Teleprompter : MonoBehaviour
     buttonPrefabs["X"] = xButtonPrefab;
     buttonPrefabs["Y"] = yButtonPrefab;
 
-    SetSpeakerID(1, playerTransform);
+    //SetSpeakerID(1, playerTransform);
   }
 
   // Called when a new speaker arrives on the stage
@@ -89,10 +89,13 @@ public class Teleprompter : MonoBehaviour
   // Called when the handle is cranked, or a new speaker arrives
   public void AddMorePrompts()
   {
-    for (int i = upcomingPrompts.Count - 1; i < maxQueueSize; ++i)
+    if (speakerID != 0)
     {
-      string button = buttons[Random.Range(0, buttons.Length)];
-      upcomingPrompts.Enqueue(button);
+      for (int i = upcomingPrompts.Count - 1; i < maxQueueSize; ++i)
+      {
+        string button = buttons[Random.Range(0, buttons.Length)];
+        upcomingPrompts.Enqueue(button);
+      }
     }
   }
 
