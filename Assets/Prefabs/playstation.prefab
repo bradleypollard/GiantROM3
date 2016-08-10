@@ -23,9 +23,8 @@ GameObject:
   - 23: {fileID: 23000010257363554}
   - 54: {fileID: 54000014052732296}
   - 65: {fileID: 65000012709789968}
-  - 208: {fileID: 208000011124753934}
   m_Layer: 2
-  m_Name: playstation
+  m_Name: Playstation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,18 +164,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.79086256, y: 0.65960157, z: 0.14338678}
   m_Center: {x: 0.0048972964, y: -0.046540394, z: 0.070527405}
---- !u!208 &208000011124753934
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010168163258}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.395, y: 0.33, z: 0.072000004}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.0050000004, y: -0.047000002, z: 0.071}
-  m_TimeToStationary: 0.5
