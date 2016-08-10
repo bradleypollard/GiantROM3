@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Machine : MonoBehaviour {
@@ -14,6 +15,8 @@ public class Machine : MonoBehaviour {
 
     public float counter;
 
+    public Slider progressSlider;
+
     void Update()
     {
         if(machineUsable && Input.GetButton("A_P" + playerIndexUsingMachine))
@@ -23,12 +26,15 @@ public class Machine : MonoBehaviour {
             {
                 acceptedInputItem.SetActive(false);
                 machineInUse = true;
+                progressSlider.value = 0;
+                progressSlider.gameObject.SetActive(true);
             } else if (machineInUse)
             {
                 print("Counter should start here");
                 if (counter < machineUseTimer)
                 {
                     counter += Time.deltaTime;
+                    progressSlider.value = counter / machineUseTimer;
                 }
                 else {
                     print("Machine finished, reseting and giving item to player");
@@ -39,6 +45,8 @@ public class Machine : MonoBehaviour {
             }
         }
         
+
+
     }
 
     void OnTriggerEnter(Collider collider)
@@ -80,5 +88,6 @@ public class Machine : MonoBehaviour {
         counter = 0;
         machineInUse = false;
         playerUsingMachine = null;
+        progressSlider.gameObject.SetActive(false);
     }
 }
