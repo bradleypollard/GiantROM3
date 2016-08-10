@@ -6,7 +6,7 @@ public class Machine : MonoBehaviour {
 
     public bool machineUsable = false;
     public GameObject acceptedInputItem;
-    public GameObject prefabForOutputItem;
+    public ItemRecipe itemRecipe;
     public GameObject playerUsingMachine;
     public int playerIndexUsingMachine;
     public bool machineInUse;
@@ -39,20 +39,23 @@ public class Machine : MonoBehaviour {
                 }
                 else {
                     print("Machine finished, reseting and giving item to player");
-                    GameObject newGb = Instantiate(prefabForOutputItem, Vector3.zero, Quaternion.identity) as GameObject;
+                    GameObject newGb = Instantiate(itemRecipe.ITurnInto, Vector3.zero, Quaternion.identity) as GameObject;
                     playerUsingMachine.GetComponent<Interaction>().GrabObject(newGb.transform.GetChild(0).gameObject);
                     playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+                    Destroy(acceptedInputItem);
                     ResetMachine();
                 }
             }
         }
 
-
-        if(Input.GetButtonUp("A_P" + playerIndexUsingMachine) && machineUsable && counter < machineUseTimer)
+        if (machineUsable)
         {
-            ResetProgress();
-            playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
-            acceptedInputItem.SetActive(true);
+            if (Input.GetButtonUp("A_P" + playerIndexUsingMachine) && counter < machineUseTimer)
+            {
+                ResetProgress();
+                playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+                acceptedInputItem.SetActive(true);
+            }
         }
 
     }
@@ -62,7 +65,7 @@ public class Machine : MonoBehaviour {
         print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " entered with " + collider.transform.parent.name);
         if (collider.transform.parent.GetComponent<ItemRecipe>())
         {
-            ItemRecipe itemRecipe = collider.transform.parent.GetComponent<ItemRecipe>();
+            itemRecipe = collider.transform.parent.GetComponent<ItemRecipe>();
 
             if (itemRecipe.IWorkWithThisMachine == this.name)
             {
@@ -91,7 +94,6 @@ public class Machine : MonoBehaviour {
 
     private void ResetMachine()
     {
-        Destroy(acceptedInputItem);
         acceptedInputItem = null;
         machineUsable = false;
         counter = 0;

@@ -4,8 +4,7 @@ using System.Collections;
 public class ItemRecipe : MonoBehaviour {
 
 
-    public string ITurnInto;
-
+    public GameObject ITurnInto;
     public string IWorkWithThisMachine;
 
 }
