@@ -10,8 +10,16 @@ public class Machine : MonoBehaviour {
     public GameObject playerUsingMachine;
     public int playerIndexUsingMachine;
     public bool machineInUse;
+
+
     [Range(1, 4)]
     public float machineUseTimer;
+
+    public enum InputType { Hold, Tap };
+    public InputType selectedInputType;
+
+    [Range(5, 20)]
+    public int machineTapCount;
 
     public float counter;
 
@@ -19,42 +27,88 @@ public class Machine : MonoBehaviour {
 
     void Update()
     {
-        if(machineUsable && Input.GetButton("A_P" + playerIndexUsingMachine))
+        if(machineUsable)
         {
-            print("Machine Useable and Button is Held Down");
-            playerUsingMachine.GetComponent<PlayerMovement>().enabled = false;
-            if (!machineInUse)
+            if (selectedInputType == InputType.Hold)
             {
-                acceptedInputItem.SetActive(false);
-                machineInUse = true;
-                progressSlider.value = 0;
-                progressSlider.gameObject.SetActive(true);
-            } else if (machineInUse)
-            {
-                print("Counter should start here");
-                if (counter < machineUseTimer)
+                #region Hold Input Type
+                if (Input.GetButton("A_P" + playerIndexUsingMachine))
                 {
-                    counter += Time.deltaTime;
-                    progressSlider.value = counter / machineUseTimer;
+                    print("Machine Useable and Button is Held Down");
+                    playerUsingMachine.GetComponent<PlayerMovement>().enabled = false;
+                    if (!machineInUse)
+                    {
+                        acceptedInputItem.SetActive(false);
+                        machineInUse = true;
+                        progressSlider.value = 0;
+                        progressSlider.gameObject.SetActive(true);
+                    }
+                    else if (machineInUse)
+                    {
+                        print("Counter should start here");
+                        if (counter < machineUseTimer)
+                        {
+                            counter += Time.deltaTime;
+                            progressSlider.value = counter / machineUseTimer;
+                        }
+                        else
+                        {
+                            print("Machine finished, reseting and giving item to player");
+                            GameObject newGb = Instantiate(itemRecipe.ITurnInto, Vector3.zero, Quaternion.identity) as GameObject;
+                            playerUsingMachine.GetComponent<Interaction>().GrabObject(newGb.transform.GetChild(0).gameObject);
+                            playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+                            Destroy(acceptedInputItem);
+                            ResetMachine();
+                        }
+                    }
                 }
-                else {
-                    print("Machine finished, reseting and giving item to player");
-                    GameObject newGb = Instantiate(itemRecipe.ITurnInto, Vector3.zero, Quaternion.identity) as GameObject;
-                    playerUsingMachine.GetComponent<Interaction>().GrabObject(newGb.transform.GetChild(0).gameObject);
-                    playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
-                    Destroy(acceptedInputItem);
-                    ResetMachine();
-                }
-            }
-        }
 
-        if (machineUsable)
-        {
-            if (Input.GetButtonUp("A_P" + playerIndexUsingMachine) && counter < machineUseTimer)
+                if (Input.GetButtonUp("A_P" + playerIndexUsingMachine) && counter < machineUseTimer)
+                {
+                    ResetProgress();
+                    playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+                    acceptedInputItem.SetActive(true);
+                }
+                #endregion
+            } else
             {
-                ResetProgress();
-                playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
-                acceptedInputItem.SetActive(true);
+                #region Hold Input Type
+                if (Input.GetButtonDown("A_P" + playerIndexUsingMachine))
+                {
+                    print("Machine Useable and Button is Held Down");
+                    playerUsingMachine.GetComponent<PlayerMovement>().enabled = false;
+                    if (!machineInUse)
+                    {
+                        acceptedInputItem.SetActive(false);
+                        machineInUse = true;
+                        progressSlider.value = 0;
+                        progressSlider.gameObject.SetActive(true);
+                    }
+                    else if (machineInUse)
+                    {
+                        print("Counter should start here");
+                        if (counter < machineTapCount-1)
+                        {
+                            counter += 1;
+                            progressSlider.value = counter / machineTapCount;
+                        }
+                        else
+                        {
+                            print("Machine finished, reseting and giving item to player");
+                            GameObject newGb = Instantiate(itemRecipe.ITurnInto, Vector3.zero, Quaternion.identity) as GameObject;
+                            playerUsingMachine.GetComponent<Interaction>().GrabObject(newGb.transform.GetChild(0).gameObject);
+                            playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+                            Destroy(acceptedInputItem);
+                            ResetMachine();
+                        }
+                    }
+                }
+
+                if (Input.GetButtonUp("A_P" + playerIndexUsingMachine) && counter < machineUseTimer)
+                {
+                    playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+                }
+                #endregion
             }
         }
 

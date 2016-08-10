@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44711846, g: 0.4973929, b: 0.5761543, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692528, g: 0.4967872, b: 0.5750856, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6708d79abd84fe4e86f4e61c5c619c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ITurnInto: CD
+  ITurnInto: {fileID: 1000010168163258, guid: 1c4ca3d75d5ac4ea5842dc8018ed613e, type: 2}
   IWorkWithThisMachine: CD Burner
 --- !u!1001 &1132522880
 Prefab:
@@ -857,12 +857,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   machineUsable: 0
   acceptedInputItem: {fileID: 0}
-  prefabForOutputItem: {fileID: 1000010168163258, guid: 1c4ca3d75d5ac4ea5842dc8018ed613e,
-    type: 2}
+  itemRecipe: {fileID: 0}
   playerUsingMachine: {fileID: 0}
   playerIndexUsingMachine: 0
   machineInUse: 0
   machineUseTimer: 4
+  selectedInputType: 1
+  machineTapCount: 10
   counter: 0
   progressSlider: {fileID: 801162937}
 --- !u!33 &1136795659
