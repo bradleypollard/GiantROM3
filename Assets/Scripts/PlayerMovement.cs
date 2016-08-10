@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
 	[Header("Settings")]
 	[Range(0.18f, 0.05f)][SerializeField] float speed;
-  	[Range(1, 4)][SerializeField] int playerIndex;
+  	[Range(1, 4)]public int playerIndex;
 
   void
 	Update()

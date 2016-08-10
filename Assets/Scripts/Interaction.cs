@@ -35,7 +35,7 @@ public class Interaction : MonoBehaviour
 		}
 	}
 
-    private void GrabObject(GameObject gb)
+    public void GrabObject(GameObject gb)
     {
         objectInHands = gb.transform.parent.gameObject;
         objectInHands.transform.parent = characterMesh;
