@@ -54,8 +54,7 @@ public class InputOutputMachine : MonoBehaviour {
                         else
                         {
                             print("Machine finished, reseting and giving item to player");
-                            GameObject newGb = Instantiate(itemRecipe.ITurnInto, Vector3.zero, Quaternion.identity) as GameObject;
-                            playerUsingMachine.GetComponent<Interaction>().GrabObject(newGb.transform.GetChild(0).gameObject);
+                            SpawnObjectAndColourIfRequired();
                             playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
                             Destroy(acceptedInputItem);
                             ResetMachine();
@@ -95,8 +94,7 @@ public class InputOutputMachine : MonoBehaviour {
                         else
                         {
                             print("Machine finished, reseting and giving item to player");
-                            GameObject newGb = Instantiate(itemRecipe.ITurnInto, Vector3.zero, Quaternion.identity) as GameObject;
-                            playerUsingMachine.GetComponent<Interaction>().GrabObject(newGb.transform.GetChild(0).gameObject);
+                            SpawnObjectAndColourIfRequired();
                             playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
                             Destroy(acceptedInputItem);
                             ResetMachine();
@@ -116,7 +114,7 @@ public class InputOutputMachine : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.transform.parent.GetComponent<ItemRecipe>())
+        if (collider.transform.parent.GetComponent<ItemRecipe>() && !machineUsable)
         {
             print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " entered with " + collider.transform.parent.name);
             itemRecipe = collider.transform.parent.GetComponent<ItemRecipe>();
@@ -146,6 +144,18 @@ public class InputOutputMachine : MonoBehaviour {
             print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left with " + collider.transform.parent.name);
             machineUsable = false;
             ResetMachine();
+        }
+    }
+
+
+    private void SpawnObjectAndColourIfRequired()
+    {
+        GameObject newGb = Instantiate(itemRecipe.ITurnInto, Vector3.zero, Quaternion.identity) as GameObject;
+        playerUsingMachine.GetComponent<Interaction>().GrabObject(newGb.transform.GetChild(0).gameObject);
+
+        if (itemRecipe.CopyColourFromHere)
+        {
+            newGb.GetComponentInChildren<Renderer>().material.color = itemRecipe.CopyColourFromHere.material.color;
         }
     }
 
