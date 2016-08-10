@@ -206,4 +206,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ITurnInto: {fileID: 0}
-  IWorkWithThisMachine: 
+  IWorkWithThisMachine: Console

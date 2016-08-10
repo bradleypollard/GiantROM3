@@ -368,5 +368,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6708d79abd84fe4e86f4e61c5c619c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ITurnInto: {fileID: 1000010168163258, guid: 1c4ca3d75d5ac4ea5842dc8018ed613e, type: 2}
+  ITurnInto: {fileID: 1000012391200508, guid: ef69317ae465ede4b972c80a45096cde, type: 2}
   IWorkWithThisMachine: Disk Burner

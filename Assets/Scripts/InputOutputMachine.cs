@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Machine : MonoBehaviour {
+public class InputOutputMachine : MonoBehaviour {
 
     public bool machineUsable = false;
     public GameObject acceptedInputItem;
@@ -141,9 +141,12 @@ public class Machine : MonoBehaviour {
 
     void OnTriggerExit(Collider collider)
     {
-        print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left with " + collider.transform.parent.name);
-        machineUsable = false;
-        ResetMachine();
+        if (collider.transform.parent.GetComponent<ItemRecipe>())
+        {
+            print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left with " + collider.transform.parent.name);
+            machineUsable = false;
+            ResetMachine();
+        }
     }
 
     private void ResetMachine()
