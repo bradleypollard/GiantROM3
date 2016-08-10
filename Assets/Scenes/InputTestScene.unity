@@ -857,7 +857,7 @@ MonoBehaviour:
   yButtonPrefab: {fileID: 1000013481324858, guid: be786a6450a16f240a932a18b576a385,
     type: 2}
   speakerID: 0
-  maxQueueSize: 50
+  maxQueueSize: 20
   promptGenerationDelay: 1.2
 --- !u!4 &1994458978
 Transform:
