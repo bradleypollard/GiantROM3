@@ -116,9 +116,9 @@ public class Machine : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " entered with " + collider.transform.parent.name);
         if (collider.transform.parent.GetComponent<ItemRecipe>())
         {
+            print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " entered with " + collider.transform.parent.name);
             itemRecipe = collider.transform.parent.GetComponent<ItemRecipe>();
 
             if (itemRecipe.IWorkWithThisMachine == this.name)

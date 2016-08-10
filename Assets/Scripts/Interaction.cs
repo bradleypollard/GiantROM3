@@ -41,7 +41,7 @@ public class Interaction : MonoBehaviour
         objectInHands.transform.parent = characterMesh;
         objectInHands.GetComponent<Rigidbody>().isKinematic = true;
         objectInHands.transform.position = characterMesh.position + new Vector3(0, 2.3f, 0);
-        objectInHands.transform.rotation = Quaternion.Euler(new Vector3(90,0,0));
+        objectInHands.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
         print("Picking up object");
     }
 
