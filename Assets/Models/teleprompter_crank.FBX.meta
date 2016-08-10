@@ -1,19 +1,26 @@
 fileFormatVersion: 2
-guid: 128d7686c33031242be7df15323993c3
-timeCreated: 1470759173
+guid: 8a3b423b73784ef4cae1741d79f11ca9
+timeCreated: 1470792929
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: _headset
+    100000: _box
+    100002: _crank
+    100004: //RootNode
+    400000: _box
+    400002: _crank
+    400004: //RootNode
+    2300000: _box
+    2300002: _crank
+    3300000: _box
+    3300002: _crank
+    4300000: _box
+    4300002: _crank
   materials:
     importMaterials: 1
-    materialName: 1
-    materialSearch: 2
+    materialName: 0
+    materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
