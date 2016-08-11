@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class ButtonPrompt : MonoBehaviour {
-  
+public class ButtonPrompt : MonoBehaviour
+{
+  [SerializeField]
+  public Shader greyscaleShader;
+  private Shader defaultShader;
+
   private GamePlayDemo gameplayDemo;
   private Transform playerTransform;
   private string button = "";
@@ -20,6 +24,9 @@ public class ButtonPrompt : MonoBehaviour {
     gameplayDemo = _demo;
     startPos = transform.position;
     initialised = ttl > 0f;
+
+    defaultShader = GetComponent<Renderer>().material.shader;
+
   }
 
   public string GetButton()
@@ -27,14 +34,10 @@ public class ButtonPrompt : MonoBehaviour {
     return button;
   }
 
-	// Use this for initialization
-	void Start () {
-    
-	}
-	
-	// Update is called once per frame
-	void Update () {
-    if (initialised)
+  // Update is called once per frame
+  void Update()
+  {
+    if (initialised && gameplayDemo.isRunning)
     {
       ttl -= Time.deltaTime;
       transform.position = Vector3.Lerp(startPos, playerTransform.position, Mathf.Pow(1 - (ttl / life), 3)); // Lerp proportional to the amount of life left
@@ -43,5 +46,5 @@ public class ButtonPrompt : MonoBehaviour {
         gameplayDemo.OnMiss(button); // Prompt has reached the player, it's now a miss
       }
     }
-	}
+  }
 }

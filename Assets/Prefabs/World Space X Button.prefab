@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013481324858}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcd3ad567b824c47b061915aebea0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  greyscaleShader: {fileID: 0}
 --- !u!114 &114000012620554178
 MonoBehaviour:
   m_ObjectHideFlags: 1

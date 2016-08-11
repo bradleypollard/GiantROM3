@@ -15,6 +15,10 @@ public class Teleprompter : MonoBehaviour
   GameObject xButtonPrefab;
   [SerializeField]
   GameObject yButtonPrefab;
+  [SerializeField]
+  Shader defaultButtonShader;
+  [SerializeField]
+  Shader greyscaleButtonShader;
 
   [Header("Settings")]
   [Range(0, 4)]
@@ -26,12 +30,15 @@ public class Teleprompter : MonoBehaviour
   [Range(0, 5)]
   [SerializeField]
   float promptGenerationDelay = 1;
+  [SerializeField]
+  public bool isLit = true;
 
   private string[] buttons = { "A", "B", "X", "Y" };
   private Dictionary<string, GameObject> buttonPrefabs;
   private ButtonPrompt visiblePrompt;
   private Queue<string> upcomingPrompts;
   private float timeTillNextPrompt = 0f;
+  private bool prevIsLit = true;
 
   // Use this for initialization
   void Start()
@@ -90,29 +97,46 @@ public class Teleprompter : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    // Reveal new button to player
-    if (upcomingPrompts.Count > 0 && timeTillNextPrompt <= 0f)
+    if (isLit != prevIsLit)
     {
-      string button = upcomingPrompts.Dequeue();
-      ButtonPrompt bp = Instantiate(buttonPrefabs[button]).GetComponent<ButtonPrompt>();
-      bp.gameObject.transform.position = playerTransform.position + new Vector3(0, 4f, 0);
-      bp.Init(button, -1f, playerTransform, null); // Negative TTL means prompt won't move at all
-      visiblePrompt = bp;
-      timeTillNextPrompt = promptGenerationDelay * Mathf.Exp(-upcomingPrompts.Count / (float)maxQueueSize);
+      // If lit state has changed, shader must switch
+      if (isLit)
+      {
+        visiblePrompt.gameObject.GetComponent<Renderer>().material.shader = defaultButtonShader;
+      }
+      else
+      {
+        visiblePrompt.gameObject.GetComponent<Renderer>().material.shader = greyscaleButtonShader;
+      }
+
+      prevIsLit = isLit;
     }
 
-    if (visiblePrompt == null)
+    if (isLit)
     {
-      timeTillNextPrompt -= Time.deltaTime;
-    }
+      // Reveal new button to player
+      if (upcomingPrompts.Count > 0 && timeTillNextPrompt <= 0f)
+      {
+        string button = upcomingPrompts.Dequeue();
+        ButtonPrompt bp = Instantiate(buttonPrefabs[button]).GetComponent<ButtonPrompt>();
+        bp.gameObject.transform.position = playerTransform.position + new Vector3(0, 4f, 0);
+        bp.Init(button, -1f, playerTransform, null); // Negative TTL means prompt won't move at all
+        visiblePrompt = bp;
+        timeTillNextPrompt = promptGenerationDelay * Mathf.Exp(-upcomingPrompts.Count / (float)maxQueueSize);
+      }
 
-    // Check if player hit a prompt
-    if (visiblePrompt != null && Input.GetButtonDown(visiblePrompt.GetButton() + "_P" + speakerID))
-    {
-      Debug.Log("Speaker " + speakerID + " hit prompt " + visiblePrompt.GetButton());
-      Destroy(visiblePrompt.gameObject);
-      visiblePrompt = null;
-    }
+      if (visiblePrompt == null)
+      {
+        timeTillNextPrompt -= Time.deltaTime;
+      }
 
+      // Check if player hit a prompt
+      if (visiblePrompt != null && Input.GetButtonDown(visiblePrompt.GetButton() + "_P" + speakerID))
+      {
+        Debug.Log("Speaker " + speakerID + " hit prompt " + visiblePrompt.GetButton());
+        Destroy(visiblePrompt.gameObject);
+        visiblePrompt = null;
+      }
+    }
   }
 }

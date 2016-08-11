@@ -17,6 +17,10 @@ public class GamePlayDemo : MonoBehaviour
   GameObject xButtonPrefab;
   [SerializeField]
   GameObject yButtonPrefab;
+  [SerializeField]
+  Shader defaultButtonShader;
+  [SerializeField]
+  Shader greyscaleButtonShader;
 
   [Header("Settings")]
   [Range(0, 4)]
@@ -31,6 +35,12 @@ public class GamePlayDemo : MonoBehaviour
   [Range(1, 10)]
   [SerializeField]
   float promptTTL = 5;
+  [SerializeField]
+  public bool isLit = true;
+  [SerializeField]
+  public bool isWorking = true;
+  [SerializeField]
+  public bool isRunning = true;
 
   private string[] buttons = { "A", "B", "X", "Y" };
   private Dictionary<string, GameObject> buttonPrefabs;
@@ -42,6 +52,7 @@ public class GamePlayDemo : MonoBehaviour
   private GUIStyle missStyle = new GUIStyle();
   private string miss = "";
   private float timeTillNextPrompt = 0f;
+  private bool prevRunning = true;
 
   // Use this for initialization
   void Start()
@@ -103,42 +114,66 @@ public class GamePlayDemo : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (playerTransform != null && upcomingPrompts.Count == 0 && visiblePrompts.Count == 0 )
+    isRunning = isLit && isWorking;
+    if (isRunning != prevRunning)
     {
-      ClearPlayerID();
-    }
-
-    // Reveal new button to player
-    if (upcomingPrompts.Count > 0 && timeTillNextPrompt <= 0f)
-    {
-      string button = upcomingPrompts.Dequeue();
-      ButtonPrompt bp = Instantiate(buttonPrefabs[button]).GetComponent<ButtonPrompt>();
-      bp.gameObject.transform.position = buttonPromptSpawnPoint.position;
-      bp.Init(button, promptTTL, playerTransform, this);
-      visiblePrompts.Enqueue(bp);
-      gameInputs += button;
-      timeTillNextPrompt = promptGenerationTime;
-    }
-
-    timeTillNextPrompt -= Time.deltaTime;
-
-    // Check if player hit a prompt
-    foreach (string b in buttons)
-    {
-      if (visiblePrompts.Count > 0 && Input.GetButtonDown(b + "_P" + playerID))
+      // If running state has changed, shader must switch
+      if (isRunning)
       {
-        string button = visiblePrompts.Peek().GetButton();
-        if (button == b)
+        foreach (ButtonPrompt bp in visiblePrompts)
         {
-          OnHit(button);
+          bp.gameObject.GetComponent<Renderer>().material.shader = defaultButtonShader;
         }
-        else
+      }
+      else
+      {
+        foreach (ButtonPrompt bp in visiblePrompts)
         {
-          OnMiss(button);
+          bp.gameObject.GetComponent<Renderer>().material.shader = greyscaleButtonShader;
+        }
+      }
+
+      prevRunning = isRunning;
+    }
+
+    if (isRunning)
+    {
+      if (playerTransform != null && upcomingPrompts.Count == 0 && visiblePrompts.Count == 0)
+      {
+        ClearPlayerID();
+      }
+
+      // Reveal new button to player
+      if (upcomingPrompts.Count > 0 && timeTillNextPrompt <= 0f)
+      {
+        string button = upcomingPrompts.Dequeue();
+        ButtonPrompt bp = Instantiate(buttonPrefabs[button]).GetComponent<ButtonPrompt>();
+        bp.gameObject.transform.position = buttonPromptSpawnPoint.position;
+        bp.Init(button, promptTTL, playerTransform, this);
+        visiblePrompts.Enqueue(bp);
+        gameInputs += button;
+        timeTillNextPrompt = promptGenerationTime;
+      }
+
+      timeTillNextPrompt -= Time.deltaTime;
+
+      // Check if player hit a prompt
+      foreach (string b in buttons)
+      {
+        if (visiblePrompts.Count > 0 && Input.GetButtonDown(b + "_P" + playerID))
+        {
+          string button = visiblePrompts.Peek().GetButton();
+          if (button == b)
+          {
+            OnHit(button);
+          }
+          else
+          {
+            OnMiss(button);
+          }
         }
       }
     }
-
   }
 
   // Called when a player hits the right button
