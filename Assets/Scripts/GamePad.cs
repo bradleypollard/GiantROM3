@@ -28,7 +28,7 @@ public class GamePad : MonoBehaviour
   {
     int playerIndex = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
     playerTransform = collider.transform.root;
-    print("Player " + playerIndex + " entered");
+    print("Player " + playerIndex + " entered the gamepad");
     if (playerIndex == speakerID)
     {
       print("This player is the demoer for this console!");
@@ -43,7 +43,7 @@ public class GamePad : MonoBehaviour
 
   void OnTriggerExit(Collider collider)
   {
-    print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left");
+    print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left the gamepad");
     playerCanUseConsole = false;
     playerTransform = null;
   }

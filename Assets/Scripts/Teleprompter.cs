@@ -26,7 +26,10 @@ public class Teleprompter : MonoBehaviour
   int speakerID = 0;
   [Range(10, 100)]
   [SerializeField]
-  int maxQueueSize = 100;
+  int maxQueueSize = 20;
+  [Range(10, 100)]
+  [SerializeField]
+  int duration = 100;
   [Range(0, 5)]
   [SerializeField]
   float promptGenerationDelay = 1;
@@ -39,6 +42,7 @@ public class Teleprompter : MonoBehaviour
   private Queue<string> upcomingPrompts;
   private float timeTillNextPrompt = 0f;
   private bool prevIsLit = true;
+  private int currentDuration = 0;
 
   // Use this for initialization
   void Start()
@@ -77,6 +81,7 @@ public class Teleprompter : MonoBehaviour
 
     upcomingPrompts.Clear();
     timeTillNextPrompt = 0f;
+    currentDuration = 0;
   }
 
   // Called when the handle is cranked, or a new speaker arrives
@@ -95,6 +100,11 @@ public class Teleprompter : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    if (playerTransform != null && currentDuration == duration)
+    {
+      ClearSpeakerID();
+    }
+
     // Reveal new button to player
     if (upcomingPrompts.Count > 0 && timeTillNextPrompt <= 0f)
     {
@@ -138,6 +148,7 @@ public class Teleprompter : MonoBehaviour
         Debug.Log("Speaker " + speakerID + " hit prompt " + visiblePrompt.GetButton());
         Destroy(visiblePrompt.gameObject);
         visiblePrompt = null;
+        currentDuration++;
       }
     }
   }

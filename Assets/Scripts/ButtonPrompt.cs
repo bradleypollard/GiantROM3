@@ -3,10 +3,6 @@ using System.Collections.Generic;
 
 public class ButtonPrompt : MonoBehaviour
 {
-  [SerializeField]
-  public Shader greyscaleShader;
-  private Shader defaultShader;
-
   private GamePlayDemo gameplayDemo;
   private Transform playerTransform;
   private string button = "";
@@ -24,8 +20,6 @@ public class ButtonPrompt : MonoBehaviour
     gameplayDemo = _demo;
     startPos = transform.position;
     initialised = ttl > 0f;
-
-    defaultShader = GetComponent<Renderer>().material.shader;
 
   }
 
