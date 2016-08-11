@@ -37,8 +37,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014150893850}
   - 54: {fileID: 54000013412875616}
-  - 64: {fileID: 64000011850927344}
-  m_Layer: 0
+  - 65: {fileID: 65000012164452276}
+  - 114: {fileID: 114000011799584872}
+  m_Layer: 2
   m_Name: Disk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012391200508}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.27, y: 0, z: 0}
+  m_LocalPosition: {x: -1.4607292, y: 1.56, z: -1.7680221}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -138,7 +139,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010824677658}
-  m_Mesh: {fileID: 4300000, guid: fdb0d9679ccb5c346903aed9f7301ff6, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 0e640aec06994f74484742d6065200c2, type: 3}
 --- !u!54 &54000010825737250
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -169,8 +170,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &64000011850927344
-MeshCollider:
+--- !u!65 &65000012164452276
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -179,8 +180,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 0}
+  m_Size: {x: 1, y: 0.3, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000012376682450
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -192,4 +193,17 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 2.03, z: 0.9}
-  m_Center: {x: -0.55, y: 0, z: 0.45}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000011799584872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012391200508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6708d79abd84fe4e86f4e61c5c619c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ITurnInto: {fileID: 0}
+  IWorkWithThisMachine: Console
