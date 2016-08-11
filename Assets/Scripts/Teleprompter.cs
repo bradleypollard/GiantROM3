@@ -113,7 +113,7 @@ public class Teleprompter : MonoBehaviour
     }
 
     // If the light has turned on or off this frame we need to change the shader now
-    if (isLit != prevIsLit)
+    if (isLit != prevIsLit && visiblePrompt != null)
     {
       if (isLit)
       {
@@ -124,10 +124,10 @@ public class Teleprompter : MonoBehaviour
         visiblePrompt.gameObject.GetComponent<Renderer>().material.shader = greyscaleButtonShader;
       }
 
+      // Update prevLit state for next frame
+      prevIsLit = isLit;
     }
 
-    // Update prevLit state for next frame
-    prevIsLit = isLit;
 
     // Finally, if the light is on we should take input from the player
     if (isLit)
