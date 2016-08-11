@@ -11,6 +11,9 @@ public class TeleprompterCrank : MonoBehaviour
   Teleprompter teleprompter;
   bool isCranking;
 
+  private int playerID = 0;
+  private bool canUseCrank = false;
+
   void RotateHandle()
   {
     if (!isCranking)
@@ -44,11 +47,24 @@ public class TeleprompterCrank : MonoBehaviour
     isCranking = false;
   }
 
-  void OnGUI()
+  void Update()
   {
-    if (GUI.Button(new Rect(2, 22, 300, 20), "Test Teleprompter Crank Animation"))
+    if (canUseCrank && playerID != 0 && Input.GetButton("A_P" + playerID))
     {
       RotateHandle();
     }
+  }
+
+  void OnTriggerEnter(Collider collider)
+  {
+    canUseCrank = true;
+    playerID = collider.gameObject.GetComponent<PlayerMovement>().playerIndex;
+
+  }
+
+  void OnTriggerExit(Collider collider)
+  {
+    canUseCrank = false;
+    playerID = 0;
   }
 }
