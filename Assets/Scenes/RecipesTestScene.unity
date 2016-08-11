@@ -699,6 +699,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!1 &1399989126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1399989127}
+  m_Layer: 0
+  m_Name: Truck Delivery Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1399989127
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1399989126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.21, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
 --- !u!4 &1750597308 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: b095cc4095c17994f8cc8c3eea00a7c8, type: 3}
@@ -712,7 +740,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010874250788, guid: ded750b059c744ee5a6c16047adbf7ce, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.31
+      value: -18.86
       objectReference: {fileID: 0}
     - target: {fileID: 4000010874250788, guid: ded750b059c744ee5a6c16047adbf7ce, type: 2}
       propertyPath: m_LocalPosition.y
@@ -742,7 +770,23 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 95000014133745448, guid: ded750b059c744ee5a6c16047adbf7ce,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9f4fc99eb44d34fbaa2971edbe4d7c96, type: 2}
+    - target: {fileID: 95000014133745448, guid: ded750b059c744ee5a6c16047adbf7ce,
+        type: 2}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95000014133745448, guid: ded750b059c744ee5a6c16047adbf7ce,
+        type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 95000014133745448, guid: ded750b059c744ee5a6c16047adbf7ce, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ded750b059c744ee5a6c16047adbf7ce, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1972937270 stripped
@@ -765,6 +809,8 @@ MonoBehaviour:
     type: 2}
   childNameForColour: hardDrive_mesh/pCube2_Hard_Drive_GRP
   spawnPoint: {fileID: 278435800}
+  deliveryPointForTruck: {fileID: 1399989127}
+  truckAnimationTime: 2.14
   forceToApply: {x: 200, y: 200, z: 0}
 --- !u!4 &1972937273 stripped
 Transform:

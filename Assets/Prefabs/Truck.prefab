@@ -92,6 +92,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000010543873126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013680388240}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000010930898582
 GameObject:
   m_ObjectHideFlags: 1
@@ -253,7 +268,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010874250788}
-  - 95: {fileID: 95000014133745448}
+  - 114: {fileID: 114000010739947990}
   m_Layer: 0
   m_Name: Truck
   m_TagString: Untagged
@@ -550,7 +565,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012176557312}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -11.73, y: -0.061, z: 11.84}
+  m_LocalPosition: {x: -18.86, y: 0, z: 0}
   m_LocalScale: {x: 1.4318806, y: 1.4318813, z: 1.4318813}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_Children:
@@ -559,6 +574,7 @@ Transform:
   - {fileID: 4000011758201124}
   - {fileID: 4000013835144480}
   - {fileID: 4000010525403316}
+  - {fileID: 4000013680388240}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000010987858362
@@ -760,6 +776,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010136182054}
   m_RootOrder: 1
+--- !u!4 &4000013680388240
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010543873126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.34, y: 1.8, z: 0.54}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000010874250788}
+  m_RootOrder: 5
 --- !u!4 &4000013776246022
 Transform:
   m_ObjectHideFlags: 1
@@ -1637,20 +1666,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011537644612}
   m_Mesh: {fileID: 4300016, guid: 6c36ccb8884235144a3f2c108ce3ff7c, type: 3}
---- !u!95 &95000014133745448
-Animator:
-  serializedVersion: 3
+--- !u!114 &114000010739947990
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012176557312}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 6c36ccb8884235144a3f2c108ce3ff7c, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878f0ee1d56e44115b0de5ffeb148011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hardDrivePrefab: {fileID: 1000010504441080, guid: dfaab051307784f4e98e26cdef3987d2,
+    type: 2}
+  childNameForColour: hardDrive_mesh/pCube2_Hard_Drive_GRP
+  spawnPoint: {fileID: 4000013680388240}
+  deliveryPointForTruck: {fileID: 0}
+  truckAnimationTime: 2.14
+  forceToApply: {x: 200, y: 200, z: 0}
