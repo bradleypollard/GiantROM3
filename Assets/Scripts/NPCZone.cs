@@ -16,6 +16,10 @@ public class NPCZone : MonoBehaviour
 	public Color inUseColour;
 	public Color finishedColour;
 
+	public bool requireWater;
+	public float timeTilWater;
+	public bool waitingWater;
+
 	private float counter;
 
 	void Update ()
@@ -23,10 +27,12 @@ public class NPCZone : MonoBehaviour
 		if (npcAccepted && npcAccepted.transform.parent == null) {
 			if (npcSpeaking) {
 				progressBar.gameObject.SetActive (true);
-				if (counter < npcSpeakingTime) {
+				if (requireWater && !waitingWater && counter > timeTilWater) {
+					waitingWater = true;
+				} else if (counter < npcSpeakingTime && !waitingWater) {
 					counter += Time.deltaTime;
 					progressBar.value = counter / npcSpeakingTime;
-				} else {
+				} else if (counter > npcSpeakingTime) {
 					GetComponent<Renderer> ().material.SetColor ("_Color", finishedColour);
 				}
 			} else {
@@ -38,9 +44,23 @@ public class NPCZone : MonoBehaviour
 
 	void OnTriggerEnter (Collider collider)
 	{
-		if (collider.transform.name.Contains ("NPC")) {
+		print (collider.name + " Entered");
+
+		if (collider.transform.name.Contains ("NPC") && !npcAccepted) {
 			npcAccepted = collider.gameObject;
+			if (Random.Range (0, 10) > 5) {
+				requireWater = true;
+				timeTilWater = Random.Range (1, npcSpeakingTime);
+			} else {
+				requireWater = false;
+				timeTilWater = 0;
+			}
 		} 
+
+		if (waitingWater && collider.name.Contains ("Water")) {
+			waitingWater = false;
+			requireWater = false;
+		}
 	}
 
 	void OnTriggerExit (Collider collider)
