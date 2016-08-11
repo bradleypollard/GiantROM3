@@ -1392,7 +1392,7 @@ Prefab:
         type: 2}
     - target: {fileID: 1000012358409332, guid: afc4905dc26694aa1a1bb9ddff4726fd, type: 2}
       propertyPath: m_Name
-      value: NPC
+      value: Johnny V
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afc4905dc26694aa1a1bb9ddff4726fd, type: 2}

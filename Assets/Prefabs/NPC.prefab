@@ -427,7 +427,7 @@ GameObject:
   - 136: {fileID: 136000012424843112}
   - 114: {fileID: 114000010971797140}
   m_Layer: 0
-  m_Name: JohnnyVSmart+MakeUp
+  m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

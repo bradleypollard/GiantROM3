@@ -22,7 +22,7 @@ public class NPCZone : MonoBehaviour
 	{
 		if (npcAccepted && npcAccepted.transform.parent == null) {
 			if (npcSpeaking) {
-				progressBar.enabled = true;
+				progressBar.gameObject.SetActive (true);
 				if (counter < npcSpeakingTime) {
 					counter += Time.deltaTime;
 					progressBar.value = counter / npcSpeakingTime;
@@ -47,8 +47,8 @@ public class NPCZone : MonoBehaviour
 	{
 		if (collider.transform.name.Contains ("NPC")) {
 			npcAccepted = null;
-			GetComponent<Renderer> ().material.SetColor ("_Color", finishedColour);
-			progressBar.enabled = false;
+			GetComponent<Renderer> ().material.SetColor ("_Color", notInUseColour);
+			progressBar.gameObject.SetActive (false);
 			counter = 0;
 		}
 	}
