@@ -26,8 +26,10 @@ public class GamePad : MonoBehaviour
 
   void OnTriggerEnter(Collider collider)
   {
-    int playerIndex = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
-    playerTransform = collider.transform.root;
+	int playerIndex = collider.GetComponent<PlayerMovement>().playerIndex;
+	playerTransform = collider.transform;
+    //int playerIndex = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
+    //playerTransform = collider.transform.root;
     print("Player " + playerIndex + " entered the gamepad");
     if (playerIndex == speakerID)
     {

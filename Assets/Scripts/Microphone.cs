@@ -26,8 +26,13 @@ public class Microphone : MonoBehaviour
 
   void OnTriggerEnter(Collider collider)
   {
-    int playerIndex = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
-    playerTransform = collider.transform.root;
+		int playerIndex;
+		playerIndex = collider.GetComponent<PlayerMovement> ().playerIndex;
+		playerTransform = collider.transform;
+
+		//int playerIndex = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
+		//playerTransform = collider.transform.root;
+
     print("Player " + playerIndex + " entered the microphone");
     if (playerIndex == speakerID)
     {
@@ -43,7 +48,8 @@ public class Microphone : MonoBehaviour
 
   void OnTriggerExit(Collider collider)
   {
-    print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
+	print("Player " + collider.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
+    //print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
     playerCanUseMicrophone = false;
     playerTransform = null;
   }

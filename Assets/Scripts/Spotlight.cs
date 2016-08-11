@@ -67,6 +67,7 @@ public class Spotlight : MonoBehaviour
     {
       ttl -= Time.deltaTime;
     }
+
   }
 
   void OnTriggerEnter(Collider collider)
