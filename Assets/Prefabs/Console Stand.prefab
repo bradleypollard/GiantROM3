@@ -42,7 +42,7 @@ GameObject:
   - 114: {fileID: 114000012975711592}
   - 208: {fileID: 208000011269929392}
   m_Layer: 0
-  m_Name: Console
+  m_Name: Console Stand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
