@@ -21,6 +21,7 @@ public class Microphone : MonoBehaviour
     {
       teleprompter.SetSpeakerID(speakerID, playerTransform);
       playerTransform.gameObject.GetComponent<PlayerMovement>().lockMovement = true;
+      playerCanUseMicrophone = false;
     }
   }
 

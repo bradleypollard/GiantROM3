@@ -8,8 +8,6 @@ public class Teleprompter : MonoBehaviour
   [SerializeField]
   Transform playerTransform;
   [SerializeField]
-  Transform buttonPromptSpawnPoint;
-  [SerializeField]
   GameObject aButtonPrefab;
   [SerializeField]
   GameObject bButtonPrefab;
@@ -22,34 +20,23 @@ public class Teleprompter : MonoBehaviour
   [Range(0, 4)]
   [SerializeField]
   int speakerID = 0;
-  [Range(50, 200)]
+  [Range(10, 100)]
   [SerializeField]
   int maxQueueSize = 100;
   [Range(0, 5)]
   [SerializeField]
   float promptGenerationDelay = 1;
-  [Range(1, 10)]
-  [SerializeField]
-  float promptTTL = 5;
 
   private string[] buttons = { "A", "B", "X", "Y" };
   private Dictionary<string, GameObject> buttonPrefabs;
-  private Queue<ButtonPrompt> visiblePrompts;
+  private ButtonPrompt visiblePrompt;
   private Queue<string> upcomingPrompts;
-  private string telepromter = "";
-  private GUIStyle hitStyle = new GUIStyle();
-  private string hit = "";
-  private GUIStyle missStyle = new GUIStyle();
-  private string miss = "";
   private float timeTillNextPrompt = 0f;
 
   // Use this for initialization
   void Start()
   {
-    visiblePrompts = new Queue<ButtonPrompt>();
     upcomingPrompts = new Queue<string>();
-    hitStyle.normal.textColor = Color.green;
-    missStyle.normal.textColor = Color.red;
 
     buttonPrefabs = new Dictionary<string, GameObject>();
     buttonPrefabs["A"] = aButtonPrefab;
@@ -74,16 +61,14 @@ public class Teleprompter : MonoBehaviour
     speakerID = 0;
     playerTransform = null;
 
-    while (visiblePrompts.Count > 0)
+    if (visiblePrompt)
     {
-      ButtonPrompt bp = visiblePrompts.Dequeue();
-      Destroy(bp);
+      Destroy(visiblePrompt.gameObject);
+      visiblePrompt = null;
     }
+
     upcomingPrompts.Clear();
     timeTillNextPrompt = 0f;
-    hit = "";
-    miss = "";
-    telepromter = "";
   }
 
   // Called when the handle is cranked, or a new speaker arrives
@@ -107,57 +92,24 @@ public class Teleprompter : MonoBehaviour
     {
       string button = upcomingPrompts.Dequeue();
       ButtonPrompt bp = Instantiate(buttonPrefabs[button]).GetComponent<ButtonPrompt>();
-      bp.gameObject.transform.position = buttonPromptSpawnPoint.position;
-      bp.Init(button, promptTTL, playerTransform, this);
-      visiblePrompts.Enqueue(bp);
-      telepromter += button;
+      bp.gameObject.transform.position = playerTransform.position + new Vector3(0, 4f, 0);
+      bp.Init(button, -1f, playerTransform, null); // Negative TTL means prompt won't move at all
+      visiblePrompt = bp;
       timeTillNextPrompt = promptGenerationDelay * Mathf.Exp(-upcomingPrompts.Count / (float)maxQueueSize);
     }
 
-    timeTillNextPrompt -= Time.deltaTime;
-
-    // Check if player hit a prompt
-    foreach (string b in buttons)
+    if (visiblePrompt == null)
     {
-      if (visiblePrompts.Count > 0 && Input.GetButtonDown(b + "_P" + speakerID))
-      {
-        string button = visiblePrompts.Peek().GetButton();
-        if (button == b)
-        {
-          OnHit(button);
-        }
-        else
-        {
-          OnMiss(button);
-        }
-      }
+      timeTillNextPrompt -= Time.deltaTime;
     }
 
-  }
+    // Check if player hit a prompt
+    if (visiblePrompt != null && Input.GetButtonDown(visiblePrompt.GetButton() + "_P" + speakerID))
+    {
+      Debug.Log("Speaker " + speakerID + " hit prompt " + visiblePrompt.GetButton());
+      Destroy(visiblePrompt.gameObject);
+      visiblePrompt = null;
+    }
 
-  // Called when a player hits the right button
-  public void OnHit(string _button)
-  {
-    hit += _button;
-    ButtonPrompt bp = visiblePrompts.Dequeue();
-    Destroy(bp.gameObject);
-    telepromter = telepromter.Substring(1);
-  }
-
-  // Called when a player hits the wrong button, or doesn't hit any button in time
-  public void OnMiss(string _button)
-  {
-    miss += _button;
-    ButtonPrompt bp = visiblePrompts.Dequeue();
-    Destroy(bp.gameObject);
-    telepromter = telepromter.Substring(1);
-  }
-
-  // Debug drawing the input string
-  void OnGUI()
-  {
-    GUI.Label(new Rect(0, 0, 500, 20), telepromter);
-    GUI.Label(new Rect(0, 30, 500, 20), hit, hitStyle);
-    GUI.Label(new Rect(0, 60, 500, 20), miss, missStyle);
   }
 }
