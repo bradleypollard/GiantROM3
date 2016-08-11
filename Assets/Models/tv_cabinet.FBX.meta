@@ -1,58 +1,19 @@
 fileFormatVersion: 2
-guid: 0b7ffcae641525e43b56e934fa294604
-timeCreated: 1470684378
+guid: 09cadeb8f44bc6946982d672a241e8aa
+timeCreated: 1470924374
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: _event_floor
-    100002: _floors
-    100004: _stage
-    100006: _walls
-    100008: //RootNode
-    100010: size_reference
-    100012: Plane001
-    100014: Plane002
-    100016: Plane003
-    400000: _event_floor
-    400002: _floors
-    400004: _stage
-    400006: _walls
-    400008: //RootNode
-    400010: size_reference
-    400012: Plane001
-    400014: Plane002
-    400016: Plane003
-    2300000: _event_floor
-    2300002: _floors
-    2300004: _stage
-    2300006: _walls
-    2300008: size_reference
-    2300010: //RootNode
-    2300012: Plane001
-    2300014: Plane002
-    2300016: Plane003
-    3300000: _event_floor
-    3300002: _floors
-    3300004: _stage
-    3300006: _walls
-    3300008: size_reference
-    3300010: //RootNode
-    3300012: Plane001
-    3300014: Plane002
-    3300016: Plane003
-    4300000: size_reference
-    4300002: _stage
-    4300004: _floors
-    4300006: _walls
-    4300008: _event_floor
-    4300010: Plane001
-    4300012: Plane002
-    4300014: Plane003
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: _cabinet
   materials:
     importMaterials: 1
-    materialName: 1
-    materialSearch: 2
+    materialName: 0
+    materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

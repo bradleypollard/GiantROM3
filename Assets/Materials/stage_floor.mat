@@ -87,7 +87,7 @@ Material:
       second: 0
     - first:
         name: _Glossiness
-      second: 0.231
+      second: 0.349
     - first:
         name: _GlossyReflections
       second: 1
