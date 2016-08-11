@@ -338,34 +338,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!1 &278435799
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 278435800}
-  m_Layer: 0
-  m_Name: SpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &278435800
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 278435799}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.34, y: 1.8, z: 0.54}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 1972937273}
-  m_RootOrder: 5
 --- !u!1001 &438602164
 Prefab:
   m_ObjectHideFlags: 0
@@ -770,53 +742,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 95000014133745448, guid: ded750b059c744ee5a6c16047adbf7ce,
+    - target: {fileID: 114000010739947990, guid: ded750b059c744ee5a6c16047adbf7ce,
         type: 2}
-      propertyPath: m_Controller
+      propertyPath: deliveryPointForTruck
       value: 
-      objectReference: {fileID: 9100000, guid: 9f4fc99eb44d34fbaa2971edbe4d7c96, type: 2}
-    - target: {fileID: 95000014133745448, guid: ded750b059c744ee5a6c16047adbf7ce,
-        type: 2}
-      propertyPath: m_UpdateMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 95000014133745448, guid: ded750b059c744ee5a6c16047adbf7ce,
-        type: 2}
-      propertyPath: m_ApplyRootMotion
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 95000014133745448, guid: ded750b059c744ee5a6c16047adbf7ce, type: 2}
+      objectReference: {fileID: 1399989127}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ded750b059c744ee5a6c16047adbf7ce, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1972937270 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000012176557312, guid: ded750b059c744ee5a6c16047adbf7ce,
-    type: 2}
-  m_PrefabInternal: {fileID: 1836444288}
---- !u!114 &1972937271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1972937270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 878f0ee1d56e44115b0de5ffeb148011, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hardDrivePrefab: {fileID: 1000010504441080, guid: dfaab051307784f4e98e26cdef3987d2,
-    type: 2}
-  childNameForColour: hardDrive_mesh/pCube2_Hard_Drive_GRP
-  spawnPoint: {fileID: 278435800}
-  deliveryPointForTruck: {fileID: 1399989127}
-  truckAnimationTime: 2.14
-  forceToApply: {x: 200, y: 200, z: 0}
---- !u!4 &1972937273 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000010874250788, guid: ded750b059c744ee5a6c16047adbf7ce,
-    type: 2}
-  m_PrefabInternal: {fileID: 1836444288}
 --- !u!1001 &2061406228
 Prefab:
   m_ObjectHideFlags: 0
