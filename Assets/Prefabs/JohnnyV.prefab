@@ -308,7 +308,7 @@ GameObject:
   - 4: {fileID: 4000013295545316}
   - 54: {fileID: 54000010676415368}
   - 135: {fileID: 135000012561189046}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: InteractObject
   m_TagString: Interactable
   m_Icon: {fileID: 0}

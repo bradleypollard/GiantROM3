@@ -56,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000013346469040}
   - 54: {fileID: 54000010825737250}
   - 65: {fileID: 65000012376682450}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: InteractObject
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -207,3 +207,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ITurnInto: {fileID: 0}
   IWorkWithThisMachine: Console
+  CopyColourFromHere: {fileID: 0}

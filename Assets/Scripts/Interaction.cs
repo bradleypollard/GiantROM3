@@ -10,6 +10,9 @@ public class Interaction : MonoBehaviour
 
 	public PlayerMovement playerMovement;
 
+  public float rayLength = 5f;
+  public float grabDistance = 1.5f;
+
 	void Start ()
 	{
 		playerMovement = gameObject.GetComponent<PlayerMovement> ();
@@ -24,18 +27,30 @@ public class Interaction : MonoBehaviour
 		} else {
 
 			Vector3 fwd = characterMesh.TransformDirection (Vector3.forward);
-			Debug.DrawRay (characterMesh.position, fwd * 1, Color.green);
+      Ray ray = new Ray(characterMesh.position, fwd);
+      Ray backRay = new Ray(characterMesh.position + rayLength * fwd, -fwd);
+      Debug.DrawRay(ray.origin, ray.direction * rayLength, Color.green);
 
 			RaycastHit hit;
+      bool foundItem = false;
+      int layer = 1 << 9;
+      if (!Physics.Raycast(ray, out hit, rayLength, layer))
+      {
+        foundItem = Physics.Raycast(backRay, out hit, rayLength, layer);
+      }
+      else
+      {
+        foundItem = true;
+      }
 
-			if (Physics.Raycast (characterMesh.position, fwd, out hit, 5)) {
-				if (hit.transform.tag == "Interactable") {
-					print ("You can interact " + hit.transform.name);
-					if (Input.GetButtonDown ("A_P" + playerMovement.playerIndex)) {
-						GrabObject (hit.transform.gameObject);
-					}
-				} else {
-					print ("You can't interact " + hit.transform.name);
+      if (foundItem) {
+        Vector3 hitpos = hit.transform.position;
+        hitpos.y = 0;
+        Vector3 charpos = characterMesh.position;
+        charpos.y = 0;
+        float distance = (hitpos - charpos).magnitude;
+				if (distance <= grabDistance && Input.GetButtonDown ("A_P" + playerMovement.playerIndex)) {
+					GrabObject (hit.transform.gameObject);
 				}
 			}
 

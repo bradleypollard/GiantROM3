@@ -54,7 +54,7 @@ GameObject:
   - 4: {fileID: 4000012790857840}
   - 54: {fileID: 54000012931923226}
   - 65: {fileID: 65000013456015174}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: InteractObject
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010504441080}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.33, y: 0.65041184, z: 0.26}
+  m_LocalPosition: {x: -6.8, y: 0.65041184, z: 0.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:

@@ -107,7 +107,7 @@ GameObject:
   - 4: {fileID: 4000013428332656}
   - 54: {fileID: 54000013919471186}
   - 65: {fileID: 65000011733270748}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: InteractObject
   m_TagString: Interactable
   m_Icon: {fileID: 0}
