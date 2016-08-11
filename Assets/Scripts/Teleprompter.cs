@@ -50,8 +50,6 @@ public class Teleprompter : MonoBehaviour
     buttonPrefabs["B"] = bButtonPrefab;
     buttonPrefabs["X"] = xButtonPrefab;
     buttonPrefabs["Y"] = yButtonPrefab;
-
-    //SetSpeakerID(1, playerTransform);
   }
 
   // Called when a new speaker arrives on the stage
@@ -97,9 +95,26 @@ public class Teleprompter : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    // Reveal new button to player
+    if (upcomingPrompts.Count > 0 && timeTillNextPrompt <= 0f)
+    {
+      string button = upcomingPrompts.Dequeue();
+      ButtonPrompt bp = Instantiate(buttonPrefabs[button]).GetComponent<ButtonPrompt>();
+      bp.gameObject.transform.position = playerTransform.position + new Vector3(0, 4f, 0);
+      bp.Init(button, -1f, playerTransform, null); // Negative TTL means prompt won't move at all
+      visiblePrompt = bp;
+      timeTillNextPrompt = promptGenerationDelay * Mathf.Exp(-upcomingPrompts.Count / (float)maxQueueSize);
+    }
+    
+    // If there is no prompt on screen we need to count down to the next one!
+    if (visiblePrompt == null)
+    {
+      timeTillNextPrompt -= Time.deltaTime;
+    }
+
+    // If the light has turned on or off this frame we need to change the shader now
     if (isLit != prevIsLit)
     {
-      // If lit state has changed, shader must switch
       if (isLit)
       {
         visiblePrompt.gameObject.GetComponent<Renderer>().material.shader = defaultButtonShader;
@@ -109,27 +124,14 @@ public class Teleprompter : MonoBehaviour
         visiblePrompt.gameObject.GetComponent<Renderer>().material.shader = greyscaleButtonShader;
       }
 
-      prevIsLit = isLit;
     }
 
+    // Update prevLit state for next frame
+    prevIsLit = isLit;
+
+    // Finally, if the light is on we should take input from the player
     if (isLit)
     {
-      // Reveal new button to player
-      if (upcomingPrompts.Count > 0 && timeTillNextPrompt <= 0f)
-      {
-        string button = upcomingPrompts.Dequeue();
-        ButtonPrompt bp = Instantiate(buttonPrefabs[button]).GetComponent<ButtonPrompt>();
-        bp.gameObject.transform.position = playerTransform.position + new Vector3(0, 4f, 0);
-        bp.Init(button, -1f, playerTransform, null); // Negative TTL means prompt won't move at all
-        visiblePrompt = bp;
-        timeTillNextPrompt = promptGenerationDelay * Mathf.Exp(-upcomingPrompts.Count / (float)maxQueueSize);
-      }
-
-      if (visiblePrompt == null)
-      {
-        timeTillNextPrompt -= Time.deltaTime;
-      }
-
       // Check if player hit a prompt
       if (visiblePrompt != null && Input.GetButtonDown(visiblePrompt.GetButton() + "_P" + speakerID))
       {
