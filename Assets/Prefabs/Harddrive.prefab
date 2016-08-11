@@ -145,7 +145,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010504441080}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.715, y: 1.349, z: 0.7110207}
+  m_LocalPosition: {x: -4.33, y: 0.65041184, z: 0.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -370,3 +370,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ITurnInto: {fileID: 1000012391200508, guid: ef69317ae465ede4b972c80a45096cde, type: 2}
   IWorkWithThisMachine: Disk Burner
+  CopyColourFromHere: {fileID: 23000013208523162}
