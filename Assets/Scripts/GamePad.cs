@@ -1,26 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Microphone : MonoBehaviour
+public class GamePad : MonoBehaviour
 {
   [Header("References")]
   [SerializeField]
-  Teleprompter teleprompter;
+  GamePlayDemo gameplayDemo;
   [Header("Settings")]
   [Range(0, 4)]
   [SerializeField]
   int speakerID = 0;
 
-  private bool playerCanUseMicrophone = false;
+  private bool playerCanUseConsole = false;
   private Transform playerTransform;
 
   // Update is called once per frame
   void Update()
   {
-    if (playerCanUseMicrophone && Input.GetButton("A_P" + speakerID))
+    if (playerCanUseConsole && Input.GetButton("A_P" + speakerID))
     {
-      teleprompter.SetSpeakerID(speakerID, playerTransform);
-      playerCanUseMicrophone = false;
+      gameplayDemo.SetPlayerID(speakerID, playerTransform);
+      playerCanUseConsole = false;
     }
   }
 
@@ -31,12 +31,12 @@ public class Microphone : MonoBehaviour
     print("Player " + playerIndex + " entered");
     if (playerIndex == speakerID)
     {
-      print("This player is next on stage!");
-      playerCanUseMicrophone = true;
+      print("This player is the demoer for this console!");
+      playerCanUseConsole = true;
     }
     else
     {
-      print("This player should not be on stage :(");
+      print("This player is not on this demo :(");
     }
 
   }
@@ -44,7 +44,7 @@ public class Microphone : MonoBehaviour
   void OnTriggerExit(Collider collider)
   {
     print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left");
-    playerCanUseMicrophone = false;
+    playerCanUseConsole = false;
     playerTransform = null;
   }
 }

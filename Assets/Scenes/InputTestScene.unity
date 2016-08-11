@@ -298,11 +298,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 293419438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 558b3deec85ad894583510fd12596b27, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e687022b8283dd4b89e42650807ad89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleprompter: {fileID: 1994458977}
-  speakerID: 0
+  gameplayDemo: {fileID: 1994458979}
+  speakerID: 1
 --- !u!1 &601172437
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ GameObject:
   - 114: {fileID: 601172438}
   - 208: {fileID: 601172443}
   m_Layer: 0
-  m_Name: Microphone 2
+  m_Name: Console
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,7 +349,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e961f257430ccd6479809757ead95c1f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -681,7 +681,7 @@ GameObject:
   - 23: {fileID: 1922236388}
   - 208: {fileID: 1922236392}
   m_Layer: 0
-  m_Name: Microphone 1
+  m_Name: Microphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -829,6 +829,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1994458978}
   - 114: {fileID: 1994458977}
+  - 114: {fileID: 1994458979}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -872,6 +873,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &1994458979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1994458976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e809add0edc119d41a865c6fd4989782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  buttonPromptSpawnPoint: {fileID: 647499940}
+  aButtonPrefab: {fileID: 1000013481324858, guid: ba1052205edd2924689da7fb035d1276,
+    type: 2}
+  bButtonPrefab: {fileID: 1000013481324858, guid: 94131d99db0ff124cade2934c3517b78,
+    type: 2}
+  xButtonPrefab: {fileID: 1000013481324858, guid: 52583579cf2efce48a831816826f72b1,
+    type: 2}
+  yButtonPrefab: {fileID: 1000013481324858, guid: be786a6450a16f240a932a18b576a385,
+    type: 2}
+  playerID: 0
+  queueSize: 20
+  promptGenerationTime: 1
+  promptTTL: 5
 --- !u!1001 &1995196791
 Prefab:
   m_ObjectHideFlags: 0

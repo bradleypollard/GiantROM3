@@ -52,12 +52,15 @@ public class Teleprompter : MonoBehaviour
   {
     speakerID = _id;
     playerTransform = _player;
+    playerTransform.gameObject.GetComponent<PlayerMovement>().lockMovement = true;
     AddMorePrompts();
   }
 
   // Called once the current speaker has finished
   private void ClearSpeakerID()
   {
+    playerTransform.gameObject.GetComponent<PlayerMovement>().lockMovement = false;
+
     speakerID = 0;
     playerTransform = null;
 

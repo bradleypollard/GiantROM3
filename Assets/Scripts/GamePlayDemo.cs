@@ -22,9 +22,9 @@ public class GamePlayDemo : MonoBehaviour
   [Range(0, 4)]
   [SerializeField]
   int playerID = 0;
-  [Range(50, 200)]
+  [Range(10, 100)]
   [SerializeField]
-  int maxQueueSize = 100;
+  int queueSize = 50;
   [Range(0, 5)]
   [SerializeField]
   float promptGenerationTime = 1;
@@ -56,8 +56,6 @@ public class GamePlayDemo : MonoBehaviour
     buttonPrefabs["B"] = bButtonPrefab;
     buttonPrefabs["X"] = xButtonPrefab;
     buttonPrefabs["Y"] = yButtonPrefab;
-
-    //SetSpeakerID(1, playerTransform);
   }
 
   // Called when a new speaker arrives on the stage
@@ -65,12 +63,15 @@ public class GamePlayDemo : MonoBehaviour
   {
     playerID = _id;
     playerTransform = _player;
+    playerTransform.gameObject.GetComponent<PlayerMovement>().lockMovement = true;
     AddMorePrompts();
   }
 
-  // Called once the current speaker has finished
+  // Called once the current player has finished
   private void ClearPlayerID()
   {
+    playerTransform.gameObject.GetComponent<PlayerMovement>().lockMovement = false;
+
     playerID = 0;
     playerTransform = null;
 
@@ -86,12 +87,12 @@ public class GamePlayDemo : MonoBehaviour
     gameInputs = "";
   }
 
-  // Called when the handle is cranked, or a new speaker arrives
+  // Called when the player arrives
   private void AddMorePrompts()
   {
     if (playerID != 0)
     {
-      for (int i = upcomingPrompts.Count - 1; i < maxQueueSize; ++i)
+      for (int i = upcomingPrompts.Count - 1; i < queueSize; ++i)
       {
         string button = buttons[Random.Range(0, buttons.Length)];
         upcomingPrompts.Enqueue(button);
@@ -102,6 +103,11 @@ public class GamePlayDemo : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    if (playerTransform != null && upcomingPrompts.Count == 0 && visiblePrompts.Count == 0 )
+    {
+      ClearPlayerID();
+    }
+
     // Reveal new button to player
     if (upcomingPrompts.Count > 0 && timeTillNextPrompt <= 0f)
     {
