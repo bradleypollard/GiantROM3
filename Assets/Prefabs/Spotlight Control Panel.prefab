@@ -138,8 +138,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010470710558}
-  - 114: {fileID: 114000013441364660}
   - 82: {fileID: 82000011341808832}
+  - 114: {fileID: 114000013290512928}
   m_Layer: 0
   m_Name: Spotlight Control Panel
   m_TagString: Untagged
@@ -1207,7 +1207,7 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114000013441364660
+--- !u!114 &114000013290512928
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

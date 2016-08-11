@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000013709564902}
+  m_IsPrefabParent: 1
+--- !u!1 &1000013709564902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013285762958}
+  - 114: {fileID: 114000012003239512}
+  - 114: {fileID: 114000012406751628}
+  m_Layer: 0
+  m_Name: Presentation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000013285762958
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013709564902}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &114000012003239512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013709564902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63c8ab78556f4464288a6d7eccae5ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  aButtonPrefab: {fileID: 1000013481324858, guid: ba1052205edd2924689da7fb035d1276,
+    type: 2}
+  bButtonPrefab: {fileID: 1000013481324858, guid: 94131d99db0ff124cade2934c3517b78,
+    type: 2}
+  xButtonPrefab: {fileID: 1000013481324858, guid: 52583579cf2efce48a831816826f72b1,
+    type: 2}
+  yButtonPrefab: {fileID: 1000013481324858, guid: be786a6450a16f240a932a18b576a385,
+    type: 2}
+  defaultButtonShader: {fileID: 10751, guid: 0000000000000000f000000000000000, type: 0}
+  greyscaleButtonShader: {fileID: 4800000, guid: fc8647e29bdf2f34ab74517a3e43fc9c,
+    type: 3}
+  speakerID: 0
+  maxQueueSize: 20
+  duration: 100
+  promptGenerationDelay: 1.2
+  isLit: 1
+--- !u!114 &114000012406751628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013709564902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e809add0edc119d41a865c6fd4989782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  buttonPromptSpawnPoint: {fileID: 0}
+  aButtonPrefab: {fileID: 1000013481324858, guid: ba1052205edd2924689da7fb035d1276,
+    type: 2}
+  bButtonPrefab: {fileID: 1000013481324858, guid: 94131d99db0ff124cade2934c3517b78,
+    type: 2}
+  xButtonPrefab: {fileID: 1000013481324858, guid: 52583579cf2efce48a831816826f72b1,
+    type: 2}
+  yButtonPrefab: {fileID: 1000013481324858, guid: be786a6450a16f240a932a18b576a385,
+    type: 2}
+  defaultButtonShader: {fileID: 10751, guid: 0000000000000000f000000000000000, type: 0}
+  greyscaleButtonShader: {fileID: 4800000, guid: fc8647e29bdf2f34ab74517a3e43fc9c,
+    type: 3}
+  playerID: 0
+  queueSize: 30
+  promptGenerationTime: 1
+  promptTTL: 5
+  isLit: 1
+  isWorking: 1
+  isRunning: 1
