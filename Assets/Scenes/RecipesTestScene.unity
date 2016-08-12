@@ -428,6 +428,7 @@ MonoBehaviour:
   objectInHands: {fileID: 0}
   playerMovement: {fileID: 0}
   rayLength: 5
+  grabDistance: 1.5
 --- !u!1001 &843241516
 Prefab:
   m_ObjectHideFlags: 0
@@ -621,12 +622,17 @@ Prefab:
     - target: {fileID: 65000013456015174, guid: dfaab051307784f4e98e26cdef3987d2,
         type: 2}
       propertyPath: m_Size.y
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 65000013456015174, guid: dfaab051307784f4e98e26cdef3987d2,
         type: 2}
       propertyPath: m_Size.z
-      value: 1
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000013456015174, guid: dfaab051307784f4e98e26cdef3987d2,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dfaab051307784f4e98e26cdef3987d2, type: 2}
@@ -686,6 +692,11 @@ Prefab:
       propertyPath: playerIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013637033096, guid: a5687f346800449aa89323b99f10f45a,
+        type: 2}
+      propertyPath: speed
+      value: 0.12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5687f346800449aa89323b99f10f45a, type: 2}
   m_IsPrefabParent: 0
@@ -735,12 +746,17 @@ Prefab:
     - target: {fileID: 65000012059492122, guid: 0a804d618a0324f3594b03d9d58d4c04,
         type: 2}
       propertyPath: m_Size.y
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 65000012059492122, guid: 0a804d618a0324f3594b03d9d58d4c04,
         type: 2}
       propertyPath: m_Size.z
-      value: 1
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000012059492122, guid: 0a804d618a0324f3594b03d9d58d4c04,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a804d618a0324f3594b03d9d58d4c04, type: 2}
@@ -1066,6 +1082,11 @@ Prefab:
     - target: {fileID: 1000012358409332, guid: afc4905dc26694aa1a1bb9ddff4726fd, type: 2}
       propertyPath: m_Name
       value: Johnny V
+      objectReference: {fileID: 0}
+    - target: {fileID: 135000012561189046, guid: afc4905dc26694aa1a1bb9ddff4726fd,
+        type: 2}
+      propertyPath: m_Radius
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afc4905dc26694aa1a1bb9ddff4726fd, type: 2}

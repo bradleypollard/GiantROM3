@@ -3815,7 +3815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementOrientation: {fileID: 1627880061}
   characterMesh: {fileID: 668105983}
-  speed: 0.18
+  speed: 0.12
   playerIndex: 3
   lockMovement: 0
 --- !u!4 &507508476 stripped
@@ -5754,6 +5754,21 @@ Prefab:
     - target: {fileID: 1000012391200508, guid: ef69317ae465ede4b972c80a45096cde, type: 2}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000012376682450, guid: ef69317ae465ede4b972c80a45096cde,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000012376682450, guid: ef69317ae465ede4b972c80a45096cde,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000012376682450, guid: ef69317ae465ede4b972c80a45096cde,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 64000011850927344, guid: ef69317ae465ede4b972c80a45096cde, type: 2}
@@ -7810,7 +7825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementOrientation: {fileID: 1627880061}
   characterMesh: {fileID: 893248849}
-  speed: 0.18
+  speed: 0.12
   playerIndex: 4
   lockMovement: 0
 --- !u!1001 &985315562
@@ -9460,7 +9475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementOrientation: {fileID: 1627880061}
   characterMesh: {fileID: 2075430703}
-  speed: 0.18
+  speed: 0.12
   playerIndex: 2
   lockMovement: 0
 --- !u!4 &1168493187
@@ -16777,6 +16792,7 @@ GameObject:
   - 143: {fileID: 1997480341}
   - 136: {fileID: 1997480340}
   - 195: {fileID: 1997480339}
+  - 114: {fileID: 1997480343}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -16866,9 +16882,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementOrientation: {fileID: 1627880061}
   characterMesh: {fileID: 413001201}
-  speed: 0.18
+  speed: 0.12
   playerIndex: 1
   lockMovement: 0
+--- !u!114 &1997480343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1997480337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6f01e4816f84919adf98d029dfd0ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterMesh: {fileID: 413001201}
+  objectInHands: {fileID: 0}
+  playerMovement: {fileID: 0}
+  rayLength: 5
+  grabDistance: 1.5
 --- !u!1001 &2024887343
 Prefab:
   m_ObjectHideFlags: 0
