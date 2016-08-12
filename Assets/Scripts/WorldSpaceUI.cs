@@ -13,20 +13,20 @@ public class WorldSpaceUI : MonoBehaviour
 	[SerializeField] float size;
 	[SerializeField] bool keepPixelSize; //makes sure object does not change size if camera gets further or nearer to it
 
-	float distanceFromCamera;
+	[SerializeField] float distanceFromCamera;
 	float percievedSize;
 	float axisScale;
-
 
 	void
 	Start()
 	{
+		distanceFromCamera = 20;
 		if (gameObject.activeInHierarchy)
 		{
 			if (camera == null && GameObject.Find ("Main Camera") != null)
 				camera = GameObject.Find ("Main Camera").transform;
 
-			distanceFromCamera = CalculateLocalDistanceTo (camera, transform, "z");
+			//distanceFromCamera = CalculateLocalDistanceTo (camera, transform, "z");
 			percievedSize = distanceFromCamera / size;
 		}
 	}
