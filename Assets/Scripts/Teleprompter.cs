@@ -21,6 +21,8 @@ public class Teleprompter : MonoBehaviour
   Shader greyscaleButtonShader;
   [SerializeField]
   ProgramFeed programFeed;
+  [SerializeField]
+  GameObject litIcon;
 
   [Header("Settings")]
   [Range(0, 4)]
@@ -103,6 +105,11 @@ public class Teleprompter : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    if (speakerID == 0)
+    {
+      litIcon.SetActive(false);
+    }
+
     if (playerTransform != null && currentDuration >= duration)
     {
       ClearSpeakerID();
@@ -118,7 +125,7 @@ public class Teleprompter : MonoBehaviour
       visiblePrompt = bp;
       timeTillNextPrompt = promptGenerationDelay * Mathf.Exp(-upcomingPrompts.Count / (float)maxQueueSize);
     }
-    
+
     // If there is no prompt on screen we need to count down to the next one!
     if (visiblePrompt == null)
     {
@@ -136,6 +143,9 @@ public class Teleprompter : MonoBehaviour
       {
         visiblePrompt.gameObject.GetComponent<Renderer>().material.shader = greyscaleButtonShader;
       }
+
+      // Display icon
+      litIcon.SetActive(!isLit);
 
       // Update prevLit state for next frame
       prevIsLit = isLit;

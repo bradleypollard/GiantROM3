@@ -17545,6 +17545,16 @@ Prefab:
       propertyPath: programFeed
       value: 
       objectReference: {fileID: 329942516}
+    - target: {fileID: 114000012003239512, guid: 3659b66e6fb2ad347bd532fc2e861cda,
+        type: 2}
+      propertyPath: litIcon
+      value: 
+      objectReference: {fileID: 709247746}
+    - target: {fileID: 114000012406751628, guid: 3659b66e6fb2ad347bd532fc2e861cda,
+        type: 2}
+      propertyPath: litIcon
+      value: 
+      objectReference: {fileID: 1599449798}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3659b66e6fb2ad347bd532fc2e861cda, type: 2}
   m_IsPrefabParent: 0
