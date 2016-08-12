@@ -23,6 +23,8 @@ public class GamePlayDemo : MonoBehaviour
   Shader greyscaleButtonShader;
   [SerializeField]
   ProgramFeed programFeed;
+  [SerializeField]
+  GameObject litIcon;
 
   [Header("Settings")]
   [Range(0, 4)]
@@ -118,6 +120,17 @@ public class GamePlayDemo : MonoBehaviour
   void Update()
   {
     isRunning = isLit && isWorking;
+
+    // Display icon
+    if (playerID == 0)
+    {
+      litIcon.SetActive(false);
+    }
+    else
+    {
+      litIcon.SetActive(!isLit);
+    }
+
     if (isRunning != prevRunning)
     {
       // If running state has changed, shader must switch
