@@ -35,23 +35,23 @@ public class Microphone : MonoBehaviour
     //int playerIndex = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
     //playerTransform = collider.transform.root;
 
-    print("Player " + playerIndex + " entered the microphone");
+    Debug.Log("Player " + playerIndex + " entered the microphone");
     if (playerIndex == speakerID)
     {
-      print("This player is next on stage!");
+      Debug.Log("This player is next on stage!");
       playerCanUseMicrophone = true;
     }
     else
     {
-      print("This player should not be on stage :(");
+      Debug.Log("This player should not be on stage :(");
     }
 
   }
 
   void OnTriggerExit(Collider collider)
   {
-    print("Player " + collider.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
-    //print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
+    Debug.Log("Player " + collider.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
+    //Debug.Log("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
     playerCanUseMicrophone = false;
     playerTransform = null;
   }

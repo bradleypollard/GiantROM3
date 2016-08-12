@@ -13,7 +13,6 @@ public class TeleprompterCrank : MonoBehaviour
   bool isCranking;
 
 	private List<int> playerID = new List<int>();
-  private bool canUseCrank = false;
 
   void RotateHandle()
   {

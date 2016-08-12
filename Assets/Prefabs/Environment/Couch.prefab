@@ -36,12 +36,13 @@ GameObject:
   - 4: {fileID: 4000012944987914}
   - 33: {fileID: 33000010412894330}
   - 23: {fileID: 23000013891701312}
+  - 64: {fileID: 64000010817966064}
   m_Layer: 0
   m_Name: polySurface5_couch_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000013581211650
 GameObject:
@@ -58,7 +59,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4000012140566110
 Transform:
@@ -66,10 +67,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012322675626}
-  m_LocalRotation: {x: -0, y: -0.6217052, z: -0, w: 0.78325135}
-  m_LocalPosition: {x: -0.422, y: 0, z: -3.516}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -16.92, y: 0, z: 3.41}
   m_LocalScale: {x: 1.4976518, y: 1.4976513, z: 1.4976516}
-  m_LocalEulerAnglesHint: {x: 0, y: -77.178, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
   - {fileID: 4000013825445896}
   - {fileID: 4000012944987914}
@@ -173,3 +174,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013581211650}
   m_Mesh: {fileID: 4300000, guid: 6275139a795f59d4b850990df7b88ae6, type: 3}
+--- !u!64 &64000010817966064
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012812783656}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300002, guid: 6275139a795f59d4b850990df7b88ae6, type: 3}

@@ -45,8 +45,8 @@ public class ProgramFeed : MonoBehaviour {
   [Range(2, 4)]
   int numberOfPlayers = 4;
 
-  private string[] consoleNames = {"Playstation", "Nintendo", "Xbox"};
-  private string[] gamePadNames = {"Playstation GamePad", "Nintendo GamePad", "Xbox GamePad", "VR GamePad"};
+  private string[] consoleNames = {"Playstation", "WiiU", "Xbox"};
+  private string[] gamePadNames = {"Playstation GamePad", "WiiU GamePad", "Xbox GamePad", "VR GamePad"};
   private GameObject[] consolePrefabs;
   private GameObject[] gamePadPrefabs;
 
@@ -69,16 +69,18 @@ public class ProgramFeed : MonoBehaviour {
 
   private struct DemoData
   {
-    public DemoData(int _playerID, ConsoleType _console, GamePadType _gamePad)
+    public DemoData(int _playerID, ConsoleType _console, GamePadType _gamePad, int _discColour)
     {
       playerID = _playerID;
       console = _console;
       gamePad = _gamePad;
+      discColour = _discColour;
     }
 
     public int playerID;
     public ConsoleType console;
     public GamePadType gamePad;
+    public int discColour;
   }
 
   private struct SpeechData
@@ -158,13 +160,16 @@ public class ProgramFeed : MonoBehaviour {
     ConsoleType upcomingConsole = (ConsoleType)Random.Range(0, 3);
     GamePadType upcomingGamePad = (GamePadType)upcomingConsole;
 
+    // Randomly select disc colour
+    int colour = Random.Range(1, 4);
+
     if (Random.Range(0f,1f) < VRProbability)
     {
       upcomingGamePad = GamePadType.VR;
     }
 
     // Assign upcoming demo
-    upcomingDemo = new DemoData(upcomingPlayer, upcomingConsole, upcomingGamePad);
+    upcomingDemo = new DemoData(upcomingPlayer, upcomingConsole, upcomingGamePad, colour);
 
   }
 
@@ -187,13 +192,17 @@ public class ProgramFeed : MonoBehaviour {
 
   public void OnDemoFinished()
   {
+    demoStation.EjectAll();
     SetUpcomingDemoToCurrent();
   }
 
   private void SetUpcomingDemoToCurrent()
   {
     currentDemo = upcomingDemo;
-    // TODO: Set demo station variables
+    demoStation.playerID = currentDemo.playerID;
+    demoStation.expectedConsoleName = consoleNames[(int)currentDemo.console];
+    demoStation.expectedGamePadName = gamePadNames[(int)currentDemo.gamePad];
+    demoStation.expectedDiscColour = currentDemo.discColour;
     GenerateDemo();
   }
 
@@ -224,8 +233,10 @@ public class ProgramFeed : MonoBehaviour {
     GUI.Label(new Rect(0, 0, 200, 20), "Current speaker: " + currentSpeech.playerID);
     GUI.Label(new Rect(0, 30, 200, 20), "Upcoming speaker: " + upcomingSpeech.playerID);
 
-    GUI.Label(new Rect(200, 0, 400, 20), "Current demoer: " + currentDemo.playerID + " on " + consoleNames[(int)currentDemo.console] + " with " + gamePadNames[(int)currentDemo.gamePad]);
-    GUI.Label(new Rect(200, 30, 400, 20), "Upcoming demoer: " + upcomingDemo.playerID + " on " + consoleNames[(int)upcomingDemo.console] + " with " + gamePadNames[(int)upcomingDemo.gamePad]);
+    GUI.Label(new Rect(200, 0, 400, 20), "Current demoer: " + currentDemo.playerID 
+      + ". Game " + currentDemo.discColour + " on " + consoleNames[(int)currentDemo.console] + " with " + gamePadNames[(int)currentDemo.gamePad]);
+    GUI.Label(new Rect(200, 30, 400, 20), "Upcoming demoer: " + upcomingDemo.playerID 
+      + ". Game " + currentDemo.discColour + " on " + consoleNames[(int)upcomingDemo.console] + " with " + gamePadNames[(int)upcomingDemo.gamePad]);
 
     GUI.Label(new Rect(600, 0, 200, 20), "Current NPC: " + (currentNPC.isMale ? "Male" : "Female"));
     GUI.Label(new Rect(600, 30, 200, 20), "Upcoming NPC: " + (upcomingNPC.isMale ? "Male" : "Female"));

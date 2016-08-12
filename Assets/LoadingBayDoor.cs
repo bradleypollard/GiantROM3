@@ -44,7 +44,7 @@ public class LoadingBayDoor : MonoBehaviour
 
 				if (myTicket != currentTicket)
 				{
-					return false;
+					break;
 				}
 
 				yield return null;

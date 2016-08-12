@@ -21,6 +21,8 @@ public class GamePlayDemo : MonoBehaviour
   Shader defaultButtonShader;
   [SerializeField]
   Shader greyscaleButtonShader;
+  [SerializeField]
+  ProgramFeed programFeed;
 
   [Header("Settings")]
   [Range(0, 4)]
@@ -82,6 +84,7 @@ public class GamePlayDemo : MonoBehaviour
   private void ClearPlayerID()
   {
     playerTransform.gameObject.GetComponent<PlayerMovement>().lockMovement = false;
+    programFeed.OnDemoFinished();
 
     playerID = 0;
     playerTransform = null;

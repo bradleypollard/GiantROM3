@@ -34,7 +34,7 @@ public class InputOutputMachine : MonoBehaviour {
                 #region Hold Input Type
                 if (Input.GetButton("A_P" + playerIndexUsingMachine))
                 {
-                    print("Machine Useable and Button is Held Down");
+                    Debug.Log("Machine Useable and Button is Held Down");
                     playerUsingMachine.GetComponent<PlayerMovement>().enabled = false;
                     if (!machineInUse)
                     {
@@ -45,7 +45,7 @@ public class InputOutputMachine : MonoBehaviour {
                     }
                     else if (machineInUse)
                     {
-                        print("Counter should start here");
+                        Debug.Log("Counter should start here");
                         if (counter < machineUseTimer)
                         {
                             counter += Time.deltaTime;
@@ -53,7 +53,7 @@ public class InputOutputMachine : MonoBehaviour {
                         }
                         else
                         {
-                            print("Machine finished, reseting and giving item to player");
+                            Debug.Log("Machine finished, reseting and giving item to player");
                             SpawnObjectAndColourIfRequired();
                             playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
                             Destroy(acceptedInputItem);
@@ -74,7 +74,7 @@ public class InputOutputMachine : MonoBehaviour {
                 #region Hold Input Type
                 if (Input.GetButtonDown("A_P" + playerIndexUsingMachine))
                 {
-                    print("Machine Useable and Button is Held Down");
+                    Debug.Log("Machine Useable and Button is Held Down");
                     playerUsingMachine.GetComponent<PlayerMovement>().enabled = false;
                     if (!machineInUse)
                     {
@@ -85,7 +85,7 @@ public class InputOutputMachine : MonoBehaviour {
                     }
                     else if (machineInUse)
                     {
-                        print("Counter should start here");
+                        Debug.Log("Counter should start here");
                         if (counter < machineTapCount-1)
                         {
                             counter += 1;
@@ -93,7 +93,7 @@ public class InputOutputMachine : MonoBehaviour {
                         }
                         else
                         {
-                            print("Machine finished, reseting and giving item to player");
+                            Debug.Log("Machine finished, reseting and giving item to player");
                             SpawnObjectAndColourIfRequired();
                             playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
                             Destroy(acceptedInputItem);
@@ -116,23 +116,23 @@ public class InputOutputMachine : MonoBehaviour {
     {
         if (collider.transform.parent.GetComponent<ItemRecipe>() && !machineUsable)
         {
-            print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " entered with " + collider.transform.parent.name);
+            Debug.Log("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " entered with " + collider.transform.parent.name);
             itemRecipe = collider.transform.parent.GetComponent<ItemRecipe>();
 
             if (itemRecipe.IWorkWithThisMachine == this.name)
             {
-                print("Compatible with me! I covert item into " + itemRecipe.ITurnInto);
+                Debug.Log("Compatible with me! I covert item into " + itemRecipe.ITurnInto);
                 machineUsable = true;
                 acceptedInputItem = collider.transform.parent.gameObject;
                 playerIndexUsingMachine = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
                 playerUsingMachine = collider.transform.root.gameObject;
             } else
             {
-                print("Not Compatible with me, only works with " + itemRecipe.IWorkWithThisMachine);
+                Debug.Log("Not Compatible with me, only works with " + itemRecipe.IWorkWithThisMachine);
             }
         } else
         {
-            print("Not Compatible with machines, no iterm recipe");
+            Debug.Log("Not Compatible with machines, no iterm recipe");
         }
 
     }
@@ -141,7 +141,7 @@ public class InputOutputMachine : MonoBehaviour {
     {
         if (collider.transform.parent.GetComponent<ItemRecipe>())
         {
-            print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left with " + collider.transform.parent.name);
+            Debug.Log("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left with " + collider.transform.parent.name);
             machineUsable = false;
             ResetMachine();
         }

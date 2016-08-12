@@ -25,8 +25,8 @@ GameObject:
   m_Name: spotlight_control_GRP_pCylinder19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000010082626040
 GameObject:
@@ -42,8 +42,8 @@ GameObject:
   m_Name: spotlight_control_GRP_lever_group1_pCylinder15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000010086277628
 GameObject:
@@ -59,8 +59,8 @@ GameObject:
   m_Name: spotlight_control_GRP_lever_pCylinder13_group1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000010314682398
 GameObject:
@@ -76,8 +76,8 @@ GameObject:
   m_Name: spotlight_control_GRP_pCylinder17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000010598890000
 GameObject:
@@ -93,8 +93,8 @@ GameObject:
   m_Name: spotlight_control_GRP_lever_group1_pCylinder14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000010841006860
 GameObject:
@@ -158,8 +158,8 @@ GameObject:
   m_Name: spotlight_control_GRP_pCube4_lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000011964605196
 GameObject:
@@ -175,8 +175,8 @@ GameObject:
   m_Name: spotlight_control_GRP_lever_group1_pCylinder12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000012118762246
 GameObject:
@@ -192,8 +192,8 @@ GameObject:
   m_Name: spotlight_control_GRP_lever_group1_pCylinder16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000012511158736
 GameObject:
@@ -205,12 +205,13 @@ GameObject:
   - 4: {fileID: 4000010589688526}
   - 33: {fileID: 33000010495882276}
   - 23: {fileID: 23000013407128648}
+  - 64: {fileID: 64000012405793510}
   m_Layer: 0
   m_Name: pCube3_spotlight_control_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000012641496606
 GameObject:
@@ -244,8 +245,8 @@ GameObject:
   m_Name: spotlight_control_GRP_pCylinder18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000012886381378
 GameObject:
@@ -261,8 +262,8 @@ GameObject:
   m_Name: spotlight_control_GRP_pCylinder7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000012950598580
 GameObject:
@@ -278,8 +279,8 @@ GameObject:
   m_Name: spotlight_control_GRP_lever_group1_pCylinder11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000013976743510
 GameObject:
@@ -295,8 +296,8 @@ GameObject:
   m_Name: spotlight_control_GRP_lever_pCylinder10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4000010483833902
 Transform:
@@ -1051,6 +1052,18 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!64 &64000012405793510
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012511158736}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 3424cac26588d7742a38e661a6df55e9, type: 3}
 --- !u!65 &65000013915994566
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1151,4 +1164,4 @@ MonoBehaviour:
   spot: {fileID: 0}
   gameplayDemo: {fileID: 0}
   teleprompter: {fileID: 0}
-  spotlightDuration: 5
+  spotlightDuration: 30

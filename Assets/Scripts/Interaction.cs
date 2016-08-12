@@ -24,7 +24,7 @@ public class Interaction : MonoBehaviour
     {
       if (Input.GetButtonDown("B_P" + playerMovement.playerIndex))
       {
-        ReleaseObject();
+        ThrowObject();
       }
     }
     else if (Input.GetButtonDown("A_P" + playerMovement.playerIndex))
@@ -87,16 +87,23 @@ public class Interaction : MonoBehaviour
     objectInHands.GetComponent<Rigidbody>().isKinematic = true;
     objectInHands.transform.position = characterMesh.position + new Vector3(0, 2.3f, 0);
     objectInHands.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-    print("Picking up object");
+    Debug.Log("Picking up object");
   }
 
-  private void ReleaseObject()
+  private void ThrowObject()
   {
-    print("Dropping " + objectInHands.transform.name);
+    GameObject thrownItem = objectInHands;
+    ReleaseObject();
+    Debug.Log("Dropping " + thrownItem.transform.name);
     Vector3 fwd = characterMesh.TransformDirection(Vector3.forward);
+    thrownItem.transform.position = thrownItem.transform.position + fwd;
+    thrownItem.GetComponent<Rigidbody>().AddForce(characterMesh.transform.parent.GetComponent<PlayerMovement>().currSpeed * (fwd * 200 + new Vector3(0, 200, 0)));
+  }
+
+  public void ReleaseObject()
+  {
     objectInHands.transform.parent = null;
     objectInHands.GetComponent<Rigidbody>().isKinematic = false;
-    objectInHands.GetComponent<Rigidbody>().AddForce(fwd * 200 + new Vector3(0, 200, 0));
     objectInHands = null;
   }
 }

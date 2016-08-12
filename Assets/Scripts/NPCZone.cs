@@ -44,7 +44,7 @@ public class NPCZone : MonoBehaviour
 
 	void OnTriggerEnter (Collider collider)
 	{
-		print (collider.name + " Entered");
+		Debug.Log (collider.name + " Entered");
 
 		if (collider.transform.name.Contains ("NPC") && !npcAccepted) {
 			npcAccepted = collider.gameObject;

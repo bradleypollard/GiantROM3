@@ -50,7 +50,7 @@ public class TruckDelivery : MonoBehaviour
 
 		switch (randomNumber) {
 		case 1:
-			harddriveRenderer.material.SetColor ("_Color", Color.red);
+			harddriveRenderer.material.SetColor ("_Color", Color.cyan);
 			break;
 		case 2:
 			harddriveRenderer.material.SetColor ("_Color", Color.yellow);

@@ -6,13 +6,21 @@ public class DemoStation : MonoBehaviour
   [Header("References")]
   [SerializeField]
   GamePlayDemo gameplayDemo;
+  [SerializeField]
+  ConsoleStand consoleStand;
+  [SerializeField]
+  GameObject noGamePadIcon;
+  [SerializeField]
+  GameObject noConsoleIcon;
   [Header("Settings")]
   [Range(0, 4)]
   [SerializeField]
-  int speakerID = 0;
+  public int playerID = 0;
 
-  public string expectedConsoleName = "";
-  public string expectedGamePadName = "";
+  public int expectedDiscColour = 0;
+
+  public string expectedConsoleName = "Console Playstation";
+  public string expectedGamePadName = "Controller (Playstation)";
 
   public bool hasCorrectConsole = false;
   public bool hasCorrectGamePad = false;
@@ -23,35 +31,62 @@ public class DemoStation : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (playerCanUseConsole && Input.GetButton("A_P" + speakerID))
+    // Update console status
+    if (consoleStand.currentHeldConsole != null)
     {
-      gameplayDemo.SetPlayerID(speakerID, playerTransform);
+      hasCorrectConsole = consoleStand.currentHeldConsole.name == expectedConsoleName;
+    }
+    else
+    {
+      hasCorrectConsole = false;
+    }
+    // Update controller status
+    if (consoleStand.currentHeldGamePad != null)
+    {
+      hasCorrectGamePad = consoleStand.currentHeldGamePad.name == expectedGamePadName;
+    }
+    else
+    {
+      hasCorrectGamePad = false;
+    }
+
+    noConsoleIcon.SetActive(!hasCorrectConsole);
+    noGamePadIcon.SetActive(!hasCorrectGamePad);
+
+    // Handle input
+    if (playerCanUseConsole && hasCorrectConsole && hasCorrectGamePad && Input.GetButton("A_P" + playerID))
+    {
+      gameplayDemo.SetPlayerID(playerID, playerTransform);
       playerCanUseConsole = false;
     }
   }
 
+  public void EjectAll()
+  {
+    consoleStand.EjectConsole();
+    consoleStand.EjectGamePad();
+  }
+
   void OnTriggerEnter(Collider collider)
   {
-	int playerIndex = collider.GetComponent<PlayerMovement>().playerIndex;
-	playerTransform = collider.transform;
-    //int playerIndex = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
-    //playerTransform = collider.transform.root;
-    print("Player " + playerIndex + " entered the gamepad");
-    if (playerIndex == speakerID)
+    int playerIndex = collider.GetComponent<PlayerMovement>().playerIndex;
+    playerTransform = collider.transform;
+    Debug.Log("Player " + playerIndex + " entered the gamepad");
+    if (playerIndex == playerID)
     {
-      print("This player is the demoer for this console!");
+      Debug.Log("This player is the demoer for this console!");
       playerCanUseConsole = true;
     }
     else
     {
-      print("This player is not on this demo :(");
+      Debug.Log("This player is not on this demo :(");
     }
 
   }
 
   void OnTriggerExit(Collider collider)
   {
-    print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left the gamepad");
+    Debug.Log("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left the gamepad");
     playerCanUseConsole = false;
     playerTransform = null;
   }
