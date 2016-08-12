@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GamePad : MonoBehaviour
+public class DemoStation : MonoBehaviour
 {
   [Header("References")]
   [SerializeField]
@@ -10,6 +10,12 @@ public class GamePad : MonoBehaviour
   [Range(0, 4)]
   [SerializeField]
   int speakerID = 0;
+
+  public string expectedConsoleName = "";
+  public string expectedGamePadName = "";
+
+  public bool hasCorrectConsole = false;
+  public bool hasCorrectGamePad = false;
 
   private bool playerCanUseConsole = false;
   private Transform playerTransform;

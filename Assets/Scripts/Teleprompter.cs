@@ -19,6 +19,8 @@ public class Teleprompter : MonoBehaviour
   Shader defaultButtonShader;
   [SerializeField]
   Shader greyscaleButtonShader;
+  [SerializeField]
+  ProgramFeed programFeed;
 
   [Header("Settings")]
   [Range(0, 4)]
@@ -69,6 +71,7 @@ public class Teleprompter : MonoBehaviour
   private void ClearSpeakerID()
   {
     playerTransform.gameObject.GetComponent<PlayerMovement>().lockMovement = false;
+    programFeed.OnSpeechFinished();
 
     speakerID = 0;
     playerTransform = null;
@@ -100,7 +103,7 @@ public class Teleprompter : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (playerTransform != null && currentDuration == duration)
+    if (playerTransform != null && currentDuration >= duration)
     {
       ClearSpeakerID();
     }

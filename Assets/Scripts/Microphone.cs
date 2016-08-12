@@ -6,10 +6,12 @@ public class Microphone : MonoBehaviour
   [Header("References")]
   [SerializeField]
   Teleprompter teleprompter;
+  [SerializeField]
+  ProgramFeed programFeed;
   [Header("Settings")]
   [Range(0, 4)]
   [SerializeField]
-  int speakerID = 0;
+  public int speakerID = 0;
 
   private bool playerCanUseMicrophone = false;
   private Transform playerTransform;
@@ -26,12 +28,12 @@ public class Microphone : MonoBehaviour
 
   void OnTriggerEnter(Collider collider)
   {
-		int playerIndex;
-		playerIndex = collider.GetComponent<PlayerMovement> ().playerIndex;
-		playerTransform = collider.transform;
+    int playerIndex;
+    playerIndex = collider.GetComponent<PlayerMovement>().playerIndex;
+    playerTransform = collider.transform;
 
-		//int playerIndex = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
-		//playerTransform = collider.transform.root;
+    //int playerIndex = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
+    //playerTransform = collider.transform.root;
 
     print("Player " + playerIndex + " entered the microphone");
     if (playerIndex == speakerID)
@@ -48,7 +50,7 @@ public class Microphone : MonoBehaviour
 
   void OnTriggerExit(Collider collider)
   {
-	print("Player " + collider.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
+    print("Player " + collider.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
     //print("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
     playerCanUseMicrophone = false;
     playerTransform = null;
