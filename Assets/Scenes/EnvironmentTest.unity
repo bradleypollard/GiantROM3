@@ -1107,17 +1107,17 @@ Prefab:
     - target: {fileID: 224000012041088086, guid: 3752b4011da40f043a10b6d74e5860e8,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000012041088086, guid: 3752b4011da40f043a10b6d74e5860e8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000012041088086, guid: 3752b4011da40f043a10b6d74e5860e8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3752b4011da40f043a10b6d74e5860e8, type: 2}
@@ -2527,6 +2527,21 @@ Prefab:
     - target: {fileID: 1000012180867626, guid: af9750665c365c64c9c0b1a1bd361f51, type: 2}
       propertyPath: m_NavMeshLayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012347798300, guid: af9750665c365c64c9c0b1a1bd361f51,
+        type: 2}
+      propertyPath: selectedInputType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012347798300, guid: af9750665c365c64c9c0b1a1bd361f51,
+        type: 2}
+      propertyPath: machineHoldTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012347798300, guid: af9750665c365c64c9c0b1a1bd361f51,
+        type: 2}
+      propertyPath: machineTapCount
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af9750665c365c64c9c0b1a1bd361f51, type: 2}

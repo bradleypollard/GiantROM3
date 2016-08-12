@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class InputOutputMachine : MonoBehaviour {
 
-    public bool machineUsable = false;
     public GameObject acceptedInputItem;
-    public ItemRecipe itemRecipe;
     public GameObject playerUsingMachine;
     public int playerIndexUsingMachine;
     public bool machineInUse;
 
+    public List<GameObject> playersInRange;
 
     [Range(1, 4)]
-    public float machineUseTimer;
+    public float machineHoldTime;
 
     public enum InputType { Hold, Tap };
     public InputType selectedInputType;
@@ -25,88 +25,72 @@ public class InputOutputMachine : MonoBehaviour {
 
     public Slider progressSlider;
 
+    void Start()
+    {
+        playersInRange = new List<GameObject>();
+    }
+
     void Update()
     {
-        if(machineUsable)
+
+        if(machineInUse)
         {
             if (selectedInputType == InputType.Hold)
             {
-                #region Hold Input Type
-                if (Input.GetButton("A_P" + playerIndexUsingMachine))
+                if (Input.GetButtonUp("A_P" + playerUsingMachine.GetComponent<PlayerMovement>().playerIndex))
                 {
-                    Debug.Log("Machine Useable and Button is Held Down");
-                    playerUsingMachine.GetComponent<PlayerMovement>().enabled = false;
-                    if (!machineInUse)
-                    {
-                        acceptedInputItem.SetActive(false);
-                        machineInUse = true;
-                        progressSlider.value = 0;
-                        progressSlider.gameObject.SetActive(true);
-                    }
-                    else if (machineInUse)
-                    {
-                        Debug.Log("Counter should start here");
-                        if (counter < machineUseTimer)
-                        {
-                            counter += Time.deltaTime;
-                            progressSlider.value = counter / machineUseTimer;
-                        }
-                        else
-                        {
-                            Debug.Log("Machine finished, reseting and giving item to player");
-                            SpawnObjectAndColourIfRequired();
-                            playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
-                            Destroy(acceptedInputItem);
-                            ResetMachine();
-                        }
-                    }
-                }
-
-                if (Input.GetButtonUp("A_P" + playerIndexUsingMachine) && counter < machineUseTimer)
-                {
-                    ResetProgress();
                     playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
                     acceptedInputItem.SetActive(true);
-                }
-                #endregion
-            } else
-            {
-                #region Hold Input Type
-                if (Input.GetButtonDown("A_P" + playerIndexUsingMachine))
-                {
-                    Debug.Log("Machine Useable and Button is Held Down");
-                    playerUsingMachine.GetComponent<PlayerMovement>().enabled = false;
-                    if (!machineInUse)
-                    {
-                        acceptedInputItem.SetActive(false);
-                        machineInUse = true;
-                        progressSlider.value = 0;
-                        progressSlider.gameObject.SetActive(true);
-                    }
-                    else if (machineInUse)
-                    {
-                        Debug.Log("Counter should start here");
-                        if (counter < machineTapCount-1)
-                        {
-                            counter += 1;
-                            progressSlider.value = counter / machineTapCount;
-                        }
-                        else
-                        {
-                            Debug.Log("Machine finished, reseting and giving item to player");
-                            SpawnObjectAndColourIfRequired();
-                            playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
-                            Destroy(acceptedInputItem);
-                            ResetMachine();
-                        }
-                    }
+                    acceptedInputItem = null;
+                    counter = 0;
+                    machineInUse = false;
+                    playerUsingMachine = null;
+                    progressSlider.gameObject.SetActive(false);
                 }
 
-                if (Input.GetButtonUp("A_P" + playerIndexUsingMachine) && counter < machineUseTimer)
+                if (counter < machineHoldTime)
                 {
-                    playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+                    counter += Time.deltaTime;
+                    progressSlider.value = counter / machineHoldTime;
                 }
-                #endregion
+                else
+                {
+                    Debug.Log("Machine finished, reseting and giving item to player");
+                    SwapObject(acceptedInputItem);
+                    playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+                    MachineFinished(playerUsingMachine);
+                }
+            } else if (selectedInputType == InputType.Tap)
+            {
+                if (Input.GetButtonDown("A_P" + playerUsingMachine.GetComponent<PlayerMovement>().playerIndex))
+                {
+                    if(counter < machineTapCount-1)
+                    {
+                        counter += 1;
+                        progressSlider.value = counter / machineTapCount;
+                    } else
+                    {
+                        Debug.Log("Machine finished, reseting and giving item to player");
+                        SwapObject(acceptedInputItem);
+                        playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+                        MachineFinished(playerUsingMachine);
+                    }
+                }
+            }
+        } else
+        {
+            foreach(GameObject gb in playersInRange)
+            {
+                if(Input.GetButtonDown("A_P" + gb.GetComponent<PlayerMovement>().playerIndex))
+                {
+                    playerUsingMachine = gb;
+                    acceptedInputItem = gb.GetComponent<Interaction>().objectInHands;
+                    machineInUse = true;
+                    acceptedInputItem.SetActive(false);
+                    progressSlider.value = 0;
+                    progressSlider.gameObject.SetActive(true);
+                    playerUsingMachine.GetComponent<PlayerMovement>().enabled = false;
+                }
             }
         }
 
@@ -114,65 +98,47 @@ public class InputOutputMachine : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.transform.parent.GetComponent<ItemRecipe>() && !machineUsable)
-        {
-            Debug.Log("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " entered with " + collider.transform.parent.name);
-            itemRecipe = collider.transform.parent.GetComponent<ItemRecipe>();
+        ItemRecipe itemRecipeCheck = collider.GetComponent<ItemRecipe>();
 
-            if (itemRecipe.IWorkWithThisMachine == this.name)
-            {
-                Debug.Log("Compatible with me! I covert item into " + itemRecipe.ITurnInto);
-                machineUsable = true;
-                acceptedInputItem = collider.transform.parent.gameObject;
-                playerIndexUsingMachine = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
-                playerUsingMachine = collider.transform.root.gameObject;
-            } else
-            {
-                Debug.Log("Not Compatible with me, only works with " + itemRecipe.IWorkWithThisMachine);
-            }
-        } else
+        if (itemRecipeCheck != null && itemRecipeCheck.IWorkWithThisMachine == this.name)
         {
-            Debug.Log("Not Compatible with machines, no iterm recipe");
+            playersInRange.Add(collider.transform.parent.parent.gameObject);
         }
-
     }
 
     void OnTriggerExit(Collider collider)
     {
-        if (collider.transform.parent.GetComponent<ItemRecipe>())
+        ItemRecipe itemRecipeCheck = collider.GetComponent<ItemRecipe>();
+
+        if (itemRecipeCheck != null)
         {
-            Debug.Log("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left with " + collider.transform.parent.name);
-            machineUsable = false;
-            ResetMachine();
+            playersInRange.Remove(collider.transform.parent.parent.gameObject);
         }
     }
 
 
-    private void SpawnObjectAndColourIfRequired()
+    private void SwapObject(GameObject oldGB)
     {
-        GameObject newGb = Instantiate(itemRecipe.ITurnInto, Vector3.zero, Quaternion.identity) as GameObject;
+        ItemRecipe gbItemRecipe = oldGB.GetComponent<ItemRecipe>();
+
+        GameObject newGb = Instantiate(gbItemRecipe.ITurnInto, Vector3.zero, Quaternion.identity) as GameObject;
         playerUsingMachine.GetComponent<Interaction>().GrabObject(newGb.transform.GetChild(0).gameObject);
 
-        if (itemRecipe.CopyColourFromHere)
+        if (gbItemRecipe.CopyColourFromHere)
         {
-            newGb.GetComponentInChildren<Renderer>().material.color = itemRecipe.CopyColourFromHere.material.color;
+            newGb.GetComponentInChildren<Renderer>().material.color = gbItemRecipe.CopyColourFromHere.material.color;
         }
+
+        Destroy(oldGB);
     }
 
-    private void ResetMachine()
+    private void MachineFinished(GameObject player)
     {
+        playersInRange.Remove(player);
         acceptedInputItem = null;
-        machineUsable = false;
         counter = 0;
         machineInUse = false;
         playerUsingMachine = null;
         progressSlider.gameObject.SetActive(false);
-    }
-
-    private void ResetProgress()
-    {
-        counter = 0;
-        progressSlider.gameObject.SetActive(false);
-        machineInUse = false;
     }
 }

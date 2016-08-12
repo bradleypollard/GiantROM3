@@ -57,8 +57,8 @@ GameObject:
   m_Name: _desktop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000010975115980
 GameObject:
@@ -107,8 +107,8 @@ GameObject:
   m_Name: _computer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000011821997030
 GameObject:
@@ -139,8 +139,8 @@ GameObject:
   m_Name: _keyboard_wire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000012307886142
 GameObject:
@@ -157,8 +157,8 @@ GameObject:
   m_Name: _keyboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000012322286308
 GameObject:
@@ -174,8 +174,8 @@ GameObject:
   m_Name: Box001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000012387574662
 GameObject:
@@ -260,8 +260,8 @@ GameObject:
   m_Name: _mouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000013213647860
 GameObject:
@@ -277,8 +277,8 @@ GameObject:
   m_Name: _screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000013508001528
 GameObject:
@@ -312,8 +312,8 @@ GameObject:
   m_Name: _mouse_wire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4000010090369208
 Transform:
@@ -966,15 +966,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04bbe7cbeaa74b439e1267063f1c43d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machineUsable: 0
   acceptedInputItem: {fileID: 0}
-  itemRecipe: {fileID: 0}
   playerUsingMachine: {fileID: 0}
   playerIndexUsingMachine: 0
   machineInUse: 0
-  machineUseTimer: 4
+  playersInRange: []
+  machineHoldTime: 4
   selectedInputType: 1
-  machineTapCount: 20
+  machineTapCount: 10
   counter: 0
   progressSlider: {fileID: 114000011521264358}
 --- !u!114 &114000013158158946
