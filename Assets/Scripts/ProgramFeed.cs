@@ -223,6 +223,7 @@ public class ProgramFeed : MonoBehaviour {
 	  if (Input.GetKeyDown(KeyCode.Q))
     {
       // TODO: Remove this debug input
+      SetUpcomingSpeechToCurrent();
       SetUpcomingDemoToCurrent();
       SetUpcomingNPCToCurrent();
     }
