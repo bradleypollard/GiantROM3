@@ -6,5 +6,4 @@ public class ItemRecipe : MonoBehaviour {
     public GameObject ITurnInto;
     public string IWorkWithThisMachine;
     public Renderer CopyColourFromHere;
-
 }

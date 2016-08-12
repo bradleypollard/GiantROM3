@@ -17,7 +17,8 @@ public class NPCZone : MonoBehaviour
 	public Color finishedColour;
 
 	public bool requireWater;
-	public float timeTilWater;
+    public GameObject requireWaterIcon;
+    public float timeTilWater;
 	public bool waitingWater;
 
 	private float counter;
@@ -29,7 +30,8 @@ public class NPCZone : MonoBehaviour
 				progressBar.gameObject.SetActive (true);
 				if (requireWater && !waitingWater && counter > timeTilWater) {
 					waitingWater = true;
-				} else if (counter < npcSpeakingTime && !waitingWater) {
+                    requireWaterIcon.SetActive(true);
+                } else if (counter < npcSpeakingTime && !waitingWater) {
 					counter += Time.deltaTime;
 					progressBar.value = counter / npcSpeakingTime;
 				} else if (counter > npcSpeakingTime) {
@@ -60,7 +62,8 @@ public class NPCZone : MonoBehaviour
 		if (waitingWater && collider.name.Contains ("Water")) {
 			waitingWater = false;
 			requireWater = false;
-		}
+            requireWaterIcon.SetActive(false);
+        }
 	}
 
 	void OnTriggerExit (Collider collider)

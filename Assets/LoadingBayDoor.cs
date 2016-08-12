@@ -12,7 +12,6 @@ public class LoadingBayDoor : MonoBehaviour
 
 	public bool vanPresent;
 	bool doorClosing;
-	List<Collider> players = new List<Collider> ();
 
 	int currentTicket = 0;
 
@@ -56,25 +55,13 @@ public class LoadingBayDoor : MonoBehaviour
 	void
 	OnTriggerEnter(Collider other)
 	{
-		if (other.GetComponent<PlayerMovement> ())
-		{
-			players.Add (other);
-			StartCoroutine (DoorOpen (true));
-		}
+	    StartCoroutine (DoorOpen (true));
 	}
 
 
 	void
 	OnTriggerExit(Collider other)
 	{
-		if(other.GetComponent<PlayerMovement>())
-		{
-			players.Remove (other);
-
-			if(players.Count == 0)
-			{
-				StartCoroutine(DoorOpen(false));
-			}
-		}
+        StartCoroutine(DoorOpen(false));
 	}
 }

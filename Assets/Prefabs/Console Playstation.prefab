@@ -146,7 +146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4000012309760814
 Transform:
   m_ObjectHideFlags: 1
@@ -381,17 +381,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acaeccdb31ba90243b7a9026e80d3e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machineUsable: 0
   acceptedInputItem: {fileID: 0}
-  itemRecipe: {fileID: 0}
   playerUsingMachine: {fileID: 0}
   playerIndexUsingMachine: 0
   machineInUse: 0
-  machineUseTimer: 2
+  playersInRange: []
+  machineHoldTime: 4
   selectedInputType: 0
   machineTapCount: 0
   counter: 0
-  progressSlider: {fileID: 0}
+  progressSlider: {fileID: 114000014130234884}
+  diskColourInserted: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114000014130234884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -430,7 +430,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 224000012041088086}
   m_HandleRect: {fileID: 0}
-  m_Direction: 1
+  m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -536,7 +536,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2.474977, y: 0}
+  m_AnchoredPosition: {x: -2.474977, y: 0}
   m_SizeDelta: {x: 4.95, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000012082175864
@@ -555,7 +555,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -2.5000014, y: 0}
+  m_AnchoredPosition: {x: 2.5000014, y: 0}
   m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000013056598028

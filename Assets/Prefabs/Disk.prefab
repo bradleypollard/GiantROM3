@@ -39,6 +39,8 @@ GameObject:
   - 54: {fileID: 54000013412875616}
   - 65: {fileID: 65000012164452276}
   - 114: {fileID: 114000011799584872}
+  - 65: {fileID: 65000010724009496}
+  - 114: {fileID: 114000010206832770}
   m_Layer: 2
   m_Name: Disk
   m_TagString: Untagged
@@ -95,8 +97,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012391200508}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4607292, y: 1.56, z: -1.7680221}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.77, y: 1.9612255, z: 0.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -170,6 +172,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65000010724009496
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012391200508}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.01, y: 0.13, z: 0.82}
+  m_Center: {x: -0.52, y: 0.02, z: 0.47}
 --- !u!65 &65000012164452276
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -194,6 +208,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000010206832770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012391200508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6708d79abd84fe4e86f4e61c5c619c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ITurnInto: {fileID: 0}
+  IWorkWithThisMachine: Console
+  CopyColourFromHere: {fileID: 23000013635927776}
 --- !u!114 &114000011799584872
 MonoBehaviour:
   m_ObjectHideFlags: 1
