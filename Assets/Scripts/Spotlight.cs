@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Spotlight : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Spotlight : MonoBehaviour
   [SerializeField]
   float spotlightDuration = 5;
 
-  private int playerID = 0;
+	private List<int> playerID = new List<int>();
   private float ttl = 0f;
 
   private bool canUseSpotlightSwitch = false;
@@ -54,10 +55,13 @@ public class Spotlight : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (canUseSpotlightSwitch && playerID != 0 && Input.GetButton("A_P" + playerID))
-    {
-      TurnOn();
-    }
+		foreach (int id in playerID)
+		{
+			if (Input.GetButton ("A_P" + id))
+			{
+				TurnOn ();
+			}
+		}
 
     if (ttl <= 0f)
     {
@@ -69,17 +73,40 @@ public class Spotlight : MonoBehaviour
     }
 
   }
+		
 
-  void OnTriggerEnter(Collider collider)
-  {
-    canUseSpotlightSwitch = true;
-    playerID = collider.gameObject.GetComponent<PlayerMovement>().playerIndex;
+	void OnTriggerEnter(Collider collider)
+	{
+		if (collider.GetComponent<PlayerMovement> ())
+		{
+			playerID.Add(collider.gameObject.GetComponent<PlayerMovement> ().playerIndex);
+		}
+	}
 
-  }
-
-  void OnTriggerExit(Collider collider)
-  {
-    canUseSpotlightSwitch = false;
-    playerID = 0;
-  }
+	void OnTriggerExit(Collider collider)
+	{
+		if (collider.GetComponent<PlayerMovement> ())
+		{	
+			playerID.Remove (collider.gameObject.GetComponent<PlayerMovement> ().playerIndex);
+		}
+	}
 }
+
+//  void OnTriggerEnter(Collider collider)
+//  {
+//	if (collider.GetComponent<PlayerMovement> ())
+//	{
+//		canUseSpotlightSwitch = true;
+//		playerID = collider.gameObject.GetComponent<PlayerMovement> ().playerIndex;
+//	}
+//  }
+//
+//  void OnTriggerExit(Collider collider)
+//  {
+//	if (collider.GetComponent<PlayerMovement> ())
+//	{
+//		canUseSpotlightSwitch = false;
+//		playerID = 0;
+//	}
+//  }
+//}

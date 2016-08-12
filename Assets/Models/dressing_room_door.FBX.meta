@@ -11,27 +11,32 @@ ModelImporter:
     100006: //RootNode
     100008: _door
     100010: _frame
+    100012: Sphere001
     400000: Box001
     400002: Box002
     400004: Cylinder001
     400006: //RootNode
     400008: _door
     400010: _frame
+    400012: Sphere001
     2300000: Box001
     2300002: Box002
     2300004: Cylinder001
     2300006: _door
     2300008: _frame
+    2300010: Sphere001
     3300000: Box001
     3300002: Box002
     3300004: Cylinder001
     3300006: _door
     3300008: _frame
+    3300010: Sphere001
     4300000: Box001
     4300002: Box002
     4300004: Cylinder001
     4300006: _frame
     4300008: _door
+    4300010: Sphere001
   materials:
     importMaterials: 1
     materialName: 0

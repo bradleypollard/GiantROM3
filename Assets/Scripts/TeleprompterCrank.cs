@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TeleprompterCrank : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class TeleprompterCrank : MonoBehaviour
   Teleprompter teleprompter;
   bool isCranking;
 
-  private int playerID = 0;
+	private List<int> playerID = new List<int>();
   private bool canUseCrank = false;
 
   void RotateHandle()
@@ -48,23 +49,29 @@ public class TeleprompterCrank : MonoBehaviour
   }
 
   void Update()
-  {
-    if (canUseCrank && playerID != 0 && Input.GetButton("A_P" + playerID))
-    {
-      RotateHandle();
-    }
+	{
+		foreach (int id in playerID)
+		{
+			if (Input.GetButton ("A_P" + id))
+			{
+				RotateHandle ();
+			}
+		}
   }
 
   void OnTriggerEnter(Collider collider)
   {
-    canUseCrank = true;
-    playerID = collider.gameObject.GetComponent<PlayerMovement>().playerIndex;
-
+		if (collider.GetComponent<PlayerMovement> ())
+		{
+			playerID.Add(collider.gameObject.GetComponent<PlayerMovement> ().playerIndex);
+		}
   }
 
   void OnTriggerExit(Collider collider)
   {
-    canUseCrank = false;
-    playerID = 0;
+		if (collider.GetComponent<PlayerMovement> ())
+		{	
+			playerID.Remove (collider.gameObject.GetComponent<PlayerMovement> ().playerIndex);
+		}
   }
 }
