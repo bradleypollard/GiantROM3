@@ -14,6 +14,9 @@ public class DressingRoomDoor : MonoBehaviour
 	[SerializeField] Gender gender;
 	[SerializeField] float animationDuration;
 
+
+	public bool occupied = false;
+
 	void
 	OnValidate()
 	{
@@ -46,19 +49,6 @@ public class DressingRoomDoor : MonoBehaviour
 			lerpTime += Time.deltaTime / animationDuration;
 
 			yield return null;
-		}
-	}
-
-	void
-	OnGUI()
-	{
-		if (GUI.Button (new Rect (2, 2, 200, 20), "Set door to open"))
-		{
-			StartCoroutine (DoorOpen (true));
-		}
-		if (GUI.Button (new Rect (2, 22, 200, 20), "Set door to closed"))
-		{
-			StartCoroutine (DoorOpen (false));
 		}
 	}
 }

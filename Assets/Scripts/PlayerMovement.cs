@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] public bool lockMovement = false;
 
 
+	public bool isHoldingNPC;
+
+
 
   void
 	Update()
