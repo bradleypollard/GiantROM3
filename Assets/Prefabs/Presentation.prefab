@@ -99,6 +99,9 @@ MonoBehaviour:
   micMeshes:
   - {fileID: 0}
   - {fileID: 0}
+  crankMeshes:
+  - {fileID: 0}
+  - {fileID: 0}
   speakerID: 0
   maxQueueSize: 20
   duration: 50

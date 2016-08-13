@@ -27,6 +27,8 @@ public class Teleprompter : MonoBehaviour
   Renderer lightMesh;
   [SerializeField]
   Renderer[] micMeshes;
+  [SerializeField]
+  Renderer[] crankMeshes;
 
   [Header("Settings")]
   [Range(0, 4)]
@@ -126,6 +128,18 @@ public class Teleprompter : MonoBehaviour
     {
       litIcon.SetActive(false);
       lightMesh.material.SetFloat("_OutlineTransparency", 0);
+      foreach (Renderer r in crankMeshes)
+      {
+        r.material.SetFloat("_OutlineTransparency", 0);
+      }
+    }
+
+    if (currentDuration < duration && upcomingPrompts.Count == 0)
+    {
+      foreach (Renderer r in crankMeshes)
+      {
+        r.material.SetFloat("_OutlineTransparency", 1);
+      }
     }
 
     if (playerTransform != null && currentDuration >= duration)
