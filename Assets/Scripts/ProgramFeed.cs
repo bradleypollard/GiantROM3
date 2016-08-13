@@ -71,18 +71,20 @@ public class ProgramFeed : MonoBehaviour {
 
   private struct DemoData
   {
-    public DemoData(int _playerID, ConsoleType _console, GamePadType _gamePad, int _discColour)
+    public DemoData(int _playerID, ConsoleType _console, GamePadType _gamePad, int _discColour, string _gameTitle)
     {
       playerID = _playerID;
       console = _console;
       gamePad = _gamePad;
       discColour = _discColour;
+		gameTitle = _gameTitle;
     }
 
     public int playerID;
     public ConsoleType console;
     public GamePadType gamePad;
     public int discColour;
+	public string gameTitle;
   }
 
   private struct SpeechData
@@ -97,12 +99,14 @@ public class ProgramFeed : MonoBehaviour {
 
   private struct NPCData
   {
-    public NPCData(bool _isMale)
+    public NPCData(bool _isMale, string _npcName)
     {
       isMale = _isMale;
+	  npcName = _npcName;
     }
     
     public bool isMale;
+	public string npcName;
   }
 
   private NPCData currentNPC;
@@ -171,13 +175,14 @@ public class ProgramFeed : MonoBehaviour {
     }
 
     // Assign upcoming demo
-    upcomingDemo = new DemoData(upcomingPlayer, upcomingConsole, upcomingGamePad, colour);
+	upcomingDemo = new DemoData(upcomingPlayer, upcomingConsole, upcomingGamePad, colour, CreateNewGameTitle());
 
   }
 
   private void GenerateNPC()
   {
-    upcomingNPC = new NPCData(Random.Range(0,2) == 0);
+		int randomNumber = Random.Range (0, 2);
+		upcomingNPC = new NPCData(randomNumber == 0, CreateNewNPCName(randomNumber));
   }
 
   public void OnSpeechFinished()
@@ -190,6 +195,9 @@ public class ProgramFeed : MonoBehaviour {
     currentSpeech = upcomingSpeech;
     microphone.speakerID = currentSpeech.playerID;
     GenerateSpeech();
+
+	RenderCurrentSpeechCard();
+	RenderUpcomingSpeech();
   }
 
   public void OnDemoFinished()
@@ -208,6 +216,9 @@ public class ProgramFeed : MonoBehaviour {
     GameObject.Find(demoStation.expectedConsoleName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 1);
     GameObject.Find(demoStation.expectedGamePadName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 1);
     GenerateDemo();
+
+	RenderCurrentDemoCard ();
+	RenderUpcomingDemoCard ();
   }
 
   public void OnNPCFinished()
@@ -220,6 +231,9 @@ public class ProgramFeed : MonoBehaviour {
     currentNPC = upcomingNPC;
     // TODO: Set NPC dropoff variables
     GenerateNPC();
+
+	RenderUpcomingNPCCard();
+	RenderCurrentNPCCard ();
   }
 
   // Update is called once per frame
@@ -247,14 +261,14 @@ public class ProgramFeed : MonoBehaviour {
     GUI.Label(new Rect(600, 0, 200, 20), "Current NPC: " + (currentNPC.isMale ? "Male" : "Female"));
     GUI.Label(new Rect(600, 30, 200, 20), "Upcoming NPC: " + (upcomingNPC.isMale ? "Male" : "Female"));
   }
+		
 
 
-
-
-
-
-	[Header("GUI References")]
+	[Header("GUI STUFF")]
 	[SerializeField] List<TaskCard> taskCards;
+	List<string> maleDevNames = new List<string>();
+	List<string> femaleDevNames = new List<string>();
+	List<string> gameNames = new List<string>();
 
 	void
 	TestAll()
@@ -275,6 +289,7 @@ public class ProgramFeed : MonoBehaviour {
 		info.playerID = currentDemo.playerID;
 		info.gameID = currentDemo.discColour;
 		info.consoleType = consoleNames [(int)currentDemo.console];
+		info.gameName = currentDemo.gameTitle;
 
 		if (gamePadNames [(int)currentDemo.gamePad] == "VR Gamepad")
 		{
@@ -301,21 +316,7 @@ public class ProgramFeed : MonoBehaviour {
 
 		info.type = CardType.NPC;
 		info.isMale = currentNPC.isMale;
-
-		//		int newIndex;
-		//
-		//		if (upcomingNPC.isMale)
-		//		{	
-		//			newIndex = Random.Range (0, boyNames.Count - 1);
-		//			newInfo.npcName = boyNames [newIndex];
-		//			boyNames.Remove (boyNames [newIndex]);
-		//		}
-		//		else
-		//		{
-		//			newIndex = Random.Range (0, girlNames.Count - 1);
-		//			newInfo.npcName = girlNames [newIndex];
-		//			girlNames.Remove (girlNames [newIndex]);
-		//		}
+		info.npcName = currentNPC.npcName;
 
 		taskCards[2].UpdateGraphics (info);
 	}
@@ -328,6 +329,7 @@ public class ProgramFeed : MonoBehaviour {
 		info.playerID = upcomingDemo.playerID;
 		info.gameID = upcomingDemo.discColour;
 		info.consoleType = consoleNames [(int)upcomingDemo.console];
+		info.gameName = upcomingDemo.gameTitle;
 
 		if (gamePadNames [(int)upcomingDemo.gamePad] == "VR Gamepad")
 		{
@@ -354,22 +356,82 @@ public class ProgramFeed : MonoBehaviour {
 
 		info.type = CardType.NPC;
 		info.isMale = upcomingNPC.isMale;
-
-//		int newIndex;
-//
-//		if (upcomingNPC.isMale)
-//		{	
-//			newIndex = Random.Range (0, boyNames.Count - 1);
-//			newInfo.npcName = boyNames [newIndex];
-//			boyNames.Remove (boyNames [newIndex]);
-//		}
-//		else
-//		{
-//			newIndex = Random.Range (0, girlNames.Count - 1);
-//			newInfo.npcName = girlNames [newIndex];
-//			girlNames.Remove (girlNames [newIndex]);
-//		}
+		info.npcName = upcomingNPC.npcName;
 
 		taskCards[5].UpdateGraphics (info);
+	}
+
+
+
+	string CreateNewGameTitle()
+	{
+		if (gameNames.Count == 0)
+			PushGameNames ();
+		string newName = gameNames [0];
+
+		gameNames.Remove (gameNames[0]);
+
+		return newName;
+	}
+
+	string CreateNewNPCName(int randomNumber)
+	{
+		string newName = "";
+
+		if (randomNumber == 1)
+		{
+			if (femaleDevNames.Count == 0)
+				PushFemaleNames ();
+			newName = femaleDevNames [0];
+			femaleDevNames.Remove (femaleDevNames [0]);
+		}
+		else
+		{
+			if (maleDevNames.Count == 0)
+				PushMaleNames ();
+			newName = maleDevNames [0];
+			maleDevNames.Remove (maleDevNames [0]);
+		}
+
+		return newName;
+	}
+
+	void
+	OnValidate()
+	{
+		PushGameNames ();
+		PushFemaleNames ();
+		PushMaleNames ();
+	}
+
+	void
+	PushGameNames()
+	{
+		gameNames.Add ("dark_souls");
+		gameNames.Add ("doom");
+		gameNames.Add ("fallout");
+		gameNames.Add ("fifa");
+		gameNames.Add ("halflife");
+		gameNames.Add("inside");
+		gameNames.Add("xcom");
+		gameNames.Add("zelda");
+	}
+
+	void
+	PushFemaleNames()
+	{
+		femaleDevNames.Add ("Amy Hennig");
+		femaleDevNames.Add ("Jennifer Hale");
+		femaleDevNames.Add ("Kellee Santiago");
+	}
+
+	void
+	PushMaleNames()
+	{
+		maleDevNames.Add ("John Carmack");
+		maleDevNames.Add ("Sean Murray");
+		maleDevNames.Add ("Hideo Kojima");
+		maleDevNames.Add ("Josh Sawyer");
+
 	}
 }

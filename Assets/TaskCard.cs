@@ -51,6 +51,11 @@ public class TaskCard : MonoBehaviour
 			characterAvatar.sprite = Resources.Load ("task_character_phil", (typeof(Sprite))) as Sprite;
 			characterName.text = "Phil Spencer";
 		}
+
+		if (thisCard.npcName != null)
+		{
+			characterName.text = thisCard.npcName;
+		}
 		
 		if (thisCard.gameID == 1)
 			discIcon.sprite = Resources.Load ("task_disc_cyan", (typeof(Sprite))) as Sprite;
@@ -66,9 +71,7 @@ public class TaskCard : MonoBehaviour
 		if (thisCard.consoleType == "Xbox")
 			consoleName.sprite = Resources.Load ("task_console_xbox", (typeof(Sprite))) as Sprite;
 
-
-		if(thisCard.type == CardType.Demo)
-		gameTitle.sprite = Resources.Load (gameNames [Random.Range (0, 7)], (typeof(Sprite))) as Sprite;
+		gameTitle.sprite = Resources.Load ("task_game_" + thisCard.gameName, (typeof(Sprite))) as Sprite;
 	}
 }
 
