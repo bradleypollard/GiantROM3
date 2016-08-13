@@ -102,6 +102,12 @@ Material:
         name: _OcclusionStrength
       second: 1
     - first:
+        name: _Outline
+      second: 0.005
+    - first:
+        name: _OutlineTransparency
+      second: 0
+    - first:
         name: _Parallax
       second: 0.02
     - first:
@@ -126,3 +132,6 @@ Material:
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _OutlineColor
+      second: {r: 0.875, g: 0.7259128, b: 0.10294117, a: 1}

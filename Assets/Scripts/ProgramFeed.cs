@@ -46,6 +46,9 @@ public class ProgramFeed : MonoBehaviour {
   [SerializeField]
   [Range(2, 4)]
   int numberOfPlayers = 4;
+  [SerializeField]
+  [Range(0, 1)]
+  float outlineWidth = 0.005f;
 
   private string[] consoleNames = {"Playstation", "WiiU", "Xbox"};
   private string[] gamePadNames = {"Playstation GamePad", "WiiU GamePad", "Xbox GamePad", "VR GamePad"};
@@ -205,6 +208,8 @@ public class ProgramFeed : MonoBehaviour {
     demoStation.expectedConsoleName = consoleNames[(int)currentDemo.console];
     demoStation.expectedGamePadName = gamePadNames[(int)currentDemo.gamePad];
     demoStation.expectedDiscColour = currentDemo.discColour;
+    GameObject.Find(demoStation.expectedConsoleName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 1);
+    GameObject.Find(demoStation.expectedGamePadName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 1);
     GenerateDemo();
   }
 
