@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011220708588}
+  - 82: {fileID: 82000011252048570}
   m_Layer: 0
   m_Name: Button Prompt Spawn Point
   m_TagString: Untagged
@@ -70,6 +71,80 @@ Transform:
   - {fileID: 4000011220708588}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &82000011252048570
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014120969054}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 009096d2fbf7a4d4493ce2120acc6089, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114000012003239512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,6 +184,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 605be52a5655e664db63015a4e0c43eb, type: 3}
   - {fileID: 8300000, guid: 7905ef59966512c428e5a5aa5f49a630, type: 3}
   - {fileID: 8300000, guid: 3a4ae4faf34a60d4da5dd30e7ec8a688, type: 3}
+  speakerAudioSource: {fileID: 0}
+  applauseAudioSource: {fileID: 82000011252048570}
   speakerID: 0
   maxQueueSize: 20
   duration: 50

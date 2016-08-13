@@ -4436,85 +4436,6 @@ Transform:
   - {fileID: 884765521}
   m_Father: {fileID: 0}
   m_RootOrder: 4
---- !u!1 &352309015 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013709564902, guid: 3659b66e6fb2ad347bd532fc2e861cda,
-    type: 2}
-  m_PrefabInternal: {fileID: 1725375316}
---- !u!82 &352309016
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 352309015}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.5
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1001 &366602773
 Prefab:
   m_ObjectHideFlags: 0
@@ -20888,9 +20809,9 @@ Prefab:
       objectReference: {fileID: 5900652}
     - target: {fileID: 114000012003239512, guid: 3659b66e6fb2ad347bd532fc2e861cda,
         type: 2}
-      propertyPath: applause
+      propertyPath: speakerAudioSource
       value: 
-      objectReference: {fileID: 8300000, guid: 009096d2fbf7a4d4493ce2120acc6089, type: 3}
+      objectReference: {fileID: 1935145654}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3659b66e6fb2ad347bd532fc2e861cda, type: 2}
   m_IsPrefabParent: 0
@@ -23513,7 +23434,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011464064348, guid: c63dc23ecca86aa4283776b89f3d7bee, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4000011464064348, guid: c63dc23ecca86aa4283776b89f3d7bee, type: 2}
       propertyPath: m_LocalPosition.x
@@ -23838,17 +23759,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011464064348, guid: c63dc23ecca86aa4283776b89f3d7bee, type: 2}
       propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000012775950642, guid: c63dc23ecca86aa4283776b89f3d7bee, type: 2}
-      propertyPath: m_Name
-      value: Microphone (Centre Stage)
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114000011688079910, guid: c63dc23ecca86aa4283776b89f3d7bee,
         type: 2}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1034790242}
+    - target: {fileID: 1000012775950642, guid: c63dc23ecca86aa4283776b89f3d7bee, type: 2}
+      propertyPath: m_Name
+      value: Microphone (Centre Stage)
+      objectReference: {fileID: 0}
     - target: {fileID: 114000014277911546, guid: c63dc23ecca86aa4283776b89f3d7bee,
         type: 2}
       propertyPath: teleprompter
@@ -23862,6 +23783,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c63dc23ecca86aa4283776b89f3d7bee, type: 2}
   m_IsPrefabParent: 0
+--- !u!82 &1935145654 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000013494437556, guid: c63dc23ecca86aa4283776b89f3d7bee,
+    type: 2}
+  m_PrefabInternal: {fileID: 1935145653}
 --- !u!23 &1939216218 stripped
 MeshRenderer:
   m_PrefabParentObject: {fileID: 23000011815777154, guid: c63dc23ecca86aa4283776b89f3d7bee,

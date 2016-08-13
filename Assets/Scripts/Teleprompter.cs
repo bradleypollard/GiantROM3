@@ -32,7 +32,9 @@ public class Teleprompter : MonoBehaviour
   [SerializeField]
   AudioClip[] simlish;
   [SerializeField]
-  AudioClip applause;
+  AudioSource speakerAudioSource;
+  [SerializeField]
+  AudioSource applauseAudioSource;
 
   [Header("Settings")]
   [Range(0, 4)]
@@ -110,9 +112,8 @@ public class Teleprompter : MonoBehaviour
     upcomingPrompts.Clear();
     timeTillNextPrompt = 0f;
     currentDuration = 0;
-
-    GetComponent<AudioSource>().clip = applause;
-    GetComponent<AudioSource>().Play();
+    
+    applauseAudioSource.Play();
   }
 
   // Called when the handle is cranked, or a new speaker arrives
@@ -211,8 +212,8 @@ public class Teleprompter : MonoBehaviour
         Destroy(visiblePrompt.gameObject);
         visiblePrompt = null;
         currentDuration++;
-        GetComponent<AudioSource>().clip = simlish[Random.Range(0, simlish.Length)];
-        GetComponent<AudioSource>().Play();
+        speakerAudioSource.clip = simlish[Random.Range(0, simlish.Length)];
+        speakerAudioSource.Play();
       }
     }
   }
