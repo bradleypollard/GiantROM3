@@ -20,7 +20,7 @@ public class Intercom : MonoBehaviour
 			if (Input.GetButton ("A_P" + id) && isComing == false)
 			{
 				isComing = true;
-				GetComponent<AudioSource> ().Play ();
+				if(GetComponent<AudioSource>())GetComponent<AudioSource> ().Play ();
 				Invoke("CallHardDrive", waitTime);
 			}
 		}
