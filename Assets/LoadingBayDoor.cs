@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class LoadingBayDoor : MonoBehaviour
 {
-	[Header("REFERENCES")]
+	[Header ("REFERENCES")]
 	[SerializeField] Transform door;
 
-	[Header("SETTINGS")]
+	[Header ("SETTINGS")]
 	[SerializeField] float animationDuration;
 
 	public bool vanPresent;
@@ -16,10 +16,9 @@ public class LoadingBayDoor : MonoBehaviour
 	int currentTicket = 0;
 
 	public IEnumerator
-	DoorOpen(bool doorState)
+	DoorOpen (bool doorState)
 	{
-		if (vanPresent)
-		{
+		if (vanPresent) {
 			currentTicket++;
 			int myTicket = currentTicket;
 
@@ -27,22 +26,17 @@ public class LoadingBayDoor : MonoBehaviour
 			float endY = 0;
 			float lerpTime = 0f;
 
-			if (doorState == true)
-			{
+			if (doorState == true) {
 				endY = 2.5f;
-			}
-			else
-			{
+			} else {
 				endY = 0f;
 			}
-			while (lerpTime <= 1f)
-			{
-				door.localPosition = Vector3.Lerp (door.transform.localPosition, new Vector3(door.transform.localPosition.x, endY, door.transform.localPosition.z), lerpTime);
+			while (lerpTime <= 1f) {
+				door.localPosition = Vector3.Lerp (door.transform.localPosition, new Vector3 (door.transform.localPosition.x, endY, door.transform.localPosition.z), lerpTime);
 
 				lerpTime += Time.deltaTime / animationDuration;
 
-				if (myTicket != currentTicket)
-				{
+				if (myTicket != currentTicket) {
 					break;
 				}
 
@@ -53,15 +47,18 @@ public class LoadingBayDoor : MonoBehaviour
 
 
 	void
-	OnTriggerEnter(Collider other)
+	OnTriggerEnter (Collider other)
 	{
-	    StartCoroutine (DoorOpen (true));
+		if (other.name == "Truck") {
+			StartCoroutine (DoorOpen (true));
+		}
 	}
 
-
 	void
-	OnTriggerExit(Collider other)
+	OnTriggerExit (Collider other)
 	{
-        StartCoroutine(DoorOpen(false));
+		if (other.name == "Truck") {
+			StartCoroutine (DoorOpen (false));
+		}
 	}
 }
