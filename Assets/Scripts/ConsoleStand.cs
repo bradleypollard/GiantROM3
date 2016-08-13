@@ -51,6 +51,11 @@ public class ConsoleStand : MonoBehaviour
           {
             b.enabled = false;
           }
+
+          if (currentHeldConsole.name == demoStation.expectedConsoleName)
+          {
+            GameObject.Find(demoStation.expectedConsoleName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 0);
+          }
         }
         else if (heldItem.tag == "GamePad" && currentHeldGamePad == null)
         {
@@ -65,6 +70,11 @@ public class ConsoleStand : MonoBehaviour
           foreach (BoxCollider b in currentHeldGamePad.GetComponentsInChildren<BoxCollider>())
           {
             b.enabled = false;
+          }
+
+          if (currentHeldGamePad.name == demoStation.expectedGamePadName)
+          {
+            GameObject.Find(demoStation.expectedGamePadName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 0);
           }
         }
       }

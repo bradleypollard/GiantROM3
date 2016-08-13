@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: controller_xbox
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 87756ce3ee8b2b04eaedaf3e587602d4, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -114,7 +114,10 @@ Material:
       second: 1
     - first:
         name: _Outline
-      second: 0.0142
+      second: 0.005
+    - first:
+        name: _OutlineTransparency
+      second: 0
     - first:
         name: _Parallax
       second: 0.02
@@ -142,4 +145,4 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _OutlineColor
-      second: {r: 1, g: 0, b: 0, a: 1}
+      second: {r: 0.875, g: 0.7259128, b: 0.10294117, a: 1}

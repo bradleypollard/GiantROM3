@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010078624190}
   - 33: {fileID: 33000011539232262}
-  - 23: {fileID: 23000011447659578}
   - 54: {fileID: 54000011237928240}
   - 65: {fileID: 65000011276931444}
   m_Layer: 2
@@ -105,35 +104,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010078624190}
   m_RootOrder: 0
---- !u!23 &23000011447659578
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011596305238}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 35a84b6a6a5ba0a4ea0a62f0058f733a, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!23 &23000013140455092
 MeshRenderer:
   m_ObjectHideFlags: 1

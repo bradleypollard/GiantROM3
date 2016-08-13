@@ -95,6 +95,10 @@ MonoBehaviour:
     type: 3}
   programFeed: {fileID: 0}
   litIcon: {fileID: 0}
+  lightMesh: {fileID: 0}
+  micMeshes:
+  - {fileID: 0}
+  - {fileID: 0}
   speakerID: 0
   maxQueueSize: 20
   duration: 50
@@ -126,6 +130,7 @@ MonoBehaviour:
     type: 3}
   programFeed: {fileID: 0}
   litIcon: {fileID: 0}
+  lightMesh: {fileID: 0}
   playerID: 0
   queueSize: 30
   promptGenerationTime: 1
