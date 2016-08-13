@@ -46,9 +46,6 @@ public class ProgramFeed : MonoBehaviour {
   [SerializeField]
   [Range(2, 4)]
   int numberOfPlayers = 4;
-  [SerializeField]
-  [Range(0, 1)]
-  float outlineWidth = 0.005f;
 
   private string[] consoleNames = {"Playstation", "WiiU", "Xbox"};
   private string[] gamePadNames = {"Playstation GamePad", "WiiU GamePad", "Xbox GamePad", "VR GamePad"};

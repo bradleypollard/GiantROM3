@@ -126,6 +126,7 @@ public class Teleprompter : MonoBehaviour
   {
     if (speakerID == 0)
     {
+      // No GUI should show if no-one is on the mic
       litIcon.SetActive(false);
       lightMesh.material.SetFloat("_OutlineTransparency", 0);
       foreach (Renderer r in crankMeshes)
@@ -133,12 +134,20 @@ public class Teleprompter : MonoBehaviour
         r.material.SetFloat("_OutlineTransparency", 0);
       }
     }
-
-    if (currentDuration < duration && upcomingPrompts.Count == 0)
+    else if (currentDuration < duration && upcomingPrompts.Count == 0 && visiblePrompt == null)
     {
+      // If the prompts have run out, highlight the crank
       foreach (Renderer r in crankMeshes)
       {
         r.material.SetFloat("_OutlineTransparency", 1);
+      }
+    }
+    else
+    {
+      // Otherwise, make sure crank is not highlighted
+      foreach (Renderer r in crankMeshes)
+      {
+        r.material.SetFloat("_OutlineTransparency", 0);
       }
     }
 

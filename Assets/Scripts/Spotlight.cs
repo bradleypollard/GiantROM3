@@ -21,8 +21,6 @@ public class Spotlight : MonoBehaviour
 	private List<int> playerID = new List<int>();
   private float ttl = 0f;
 
-  private bool canUseSpotlightSwitch = false;
-
   private void TurnOn()
   {
     ttl = spotlightDuration;
