@@ -102,6 +102,13 @@ MonoBehaviour:
   crankMeshes:
   - {fileID: 0}
   - {fileID: 0}
+  simlish:
+  - {fileID: 8300000, guid: 2712f71641f3f504f94bb00f91fa7e4c, type: 3}
+  - {fileID: 8300000, guid: 222e370a78a76cf40835e1acfb4ae643, type: 3}
+  - {fileID: 8300000, guid: e08ef6eaf57b7eb49bc8795cbaf0d23d, type: 3}
+  - {fileID: 8300000, guid: 605be52a5655e664db63015a4e0c43eb, type: 3}
+  - {fileID: 8300000, guid: 7905ef59966512c428e5a5aa5f49a630, type: 3}
+  - {fileID: 8300000, guid: 3a4ae4faf34a60d4da5dd30e7ec8a688, type: 3}
   speakerID: 0
   maxQueueSize: 20
   duration: 50
