@@ -94,6 +94,8 @@ public class ConsoleMachine : MonoBehaviour
 
 	void OnTriggerEnter (Collider collider)
 	{
+        print(collider.name);
+
 		ItemRecipe itemRecipeCheck = collider.GetComponent<ItemRecipe> ();
 
 		if (itemRecipeCheck != null && this.name.Contains (itemRecipeCheck.IWorkWithThisMachine) && !playersInRange.Contains (collider.transform.parent.parent.gameObject)) {
