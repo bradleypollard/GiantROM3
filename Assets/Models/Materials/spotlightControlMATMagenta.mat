@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: spotlightControlMAT
+  m_Name: spotlightControlMATMagenta
   m_Shader: {fileID: 4800000, guid: 87756ce3ee8b2b04eaedaf3e587602d4, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -133,4 +133,4 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _OutlineColor
-      second: {r: 0.875, g: 0.7259128, b: 0.10294117, a: 1}
+      second: {r: 0.9191176, g: 0.047307514, b: 0.8589929, a: 1}

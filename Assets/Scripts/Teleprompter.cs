@@ -23,6 +23,10 @@ public class Teleprompter : MonoBehaviour
   ProgramFeed programFeed;
   [SerializeField]
   GameObject litIcon;
+  [SerializeField]
+  Renderer lightMesh;
+  [SerializeField]
+  Renderer[] micMeshes;
 
   [Header("Settings")]
   [Range(0, 4)]
@@ -58,6 +62,11 @@ public class Teleprompter : MonoBehaviour
     buttonPrefabs["B"] = bButtonPrefab;
     buttonPrefabs["X"] = xButtonPrefab;
     buttonPrefabs["Y"] = yButtonPrefab;
+
+    foreach (Renderer r in micMeshes)
+    {
+      r.material.SetFloat("_OutlineTransparency", 1);
+    }
   }
 
   // Called when a new speaker arrives on the stage
@@ -67,11 +76,19 @@ public class Teleprompter : MonoBehaviour
     playerTransform = _player;
     playerTransform.gameObject.GetComponent<PlayerMovement>().lockMovement = true;
     AddMorePrompts();
+    foreach (Renderer r in micMeshes)
+    {
+      r.material.SetFloat("_OutlineTransparency", 0);
+    }
   }
 
   // Called once the current speaker has finished
   private void ClearSpeakerID()
   {
+    foreach (Renderer r in micMeshes)
+    {
+      r.material.SetFloat("_OutlineTransparency", 1);
+    }
     playerTransform.gameObject.GetComponent<PlayerMovement>().lockMovement = false;
     programFeed.OnSpeechFinished();
 
@@ -108,6 +125,7 @@ public class Teleprompter : MonoBehaviour
     if (speakerID == 0)
     {
       litIcon.SetActive(false);
+      lightMesh.material.SetFloat("_OutlineTransparency", 0);
     }
 
     if (playerTransform != null && currentDuration >= duration)
@@ -146,6 +164,7 @@ public class Teleprompter : MonoBehaviour
 
       // Display icon
       litIcon.SetActive(!isLit);
+      lightMesh.material.SetFloat("_OutlineTransparency", isLit ? 0 : 1);
 
       // Update prevLit state for next frame
       prevIsLit = isLit;
