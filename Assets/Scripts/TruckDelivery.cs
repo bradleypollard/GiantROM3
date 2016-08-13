@@ -25,9 +25,9 @@ public class TruckDelivery : MonoBehaviour
 
 	void Update ()
 	{
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			HardDriveDelivery ();
-		}
+//		if (Input.GetKeyDown (KeyCode.Space)) {
+//			HardDriveDelivery ();
+//		}
 	}
 
 	public void HardDriveDelivery ()
