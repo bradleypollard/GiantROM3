@@ -10,7 +10,7 @@ public class LoadingBayDoor : MonoBehaviour
 	[Header ("SETTINGS")]
 	[SerializeField] float animationDuration;
 
-	public bool vanPresent;
+	//public bool vanPresent;
 	bool doorClosing;
 
 	int currentTicket = 0;
@@ -18,7 +18,8 @@ public class LoadingBayDoor : MonoBehaviour
 	public IEnumerator
 	DoorOpen (bool doorState)
 	{
-		if (vanPresent) {
+		//if (vanPresent)
+		//{
 			currentTicket++;
 			int myTicket = currentTicket;
 
@@ -42,7 +43,7 @@ public class LoadingBayDoor : MonoBehaviour
 
 				yield return null;
 			}
-		}
+		//}
 	}
 
 

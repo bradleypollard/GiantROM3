@@ -8,16 +8,27 @@ public class Intercom : MonoBehaviour
 	[SerializeField] TruckDelivery deliveryScript;
 
 	List<int> playerID = new List<int>();
+	public bool isComing;
+
+	[Header("SETTINGS")]
+	[SerializeField] float waitTime;
 
 	void Update()
 	{
 		foreach (int id in playerID)
 		{
-			if (Input.GetButton ("A_P" + id))
+			if (Input.GetButton ("A_P" + id) && isComing == false)
 			{
-				deliveryScript.HardDriveDelivery ();
+				isComing = true;
+				GetComponent<AudioSource> ().Play ();
+				Invoke("CallHardDrive", waitTime);
 			}
 		}
+	}
+
+	void CallHardDrive()
+	{
+		deliveryScript.HardDriveDelivery ();
 	}
 
 	void OnTriggerEnter(Collider collider)
