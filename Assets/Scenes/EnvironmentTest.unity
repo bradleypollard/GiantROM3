@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.41504604, g: 0.42361873, b: 0.39926854, a: 1}
+  m_IndirectSpecularColor: {r: 0.41504622, g: 0.42361894, b: 0.39926875, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1245,8 +1245,27 @@ Prefab:
       propertyPath: m_Name
       value: Playstation
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 33000012913435572, guid: 3752b4011da40f043a10b6d74e5860e8, type: 2}
+    - target: {fileID: 224000012082175864, guid: 3752b4011da40f043a10b6d74e5860e8,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.5000014
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000014130234884, guid: 3752b4011da40f043a10b6d74e5860e8,
+        type: 2}
+      propertyPath: m_Direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012041088086, guid: 3752b4011da40f043a10b6d74e5860e8,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012041088086, guid: 3752b4011da40f043a10b6d74e5860e8,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.474977
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3752b4011da40f043a10b6d74e5860e8, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &69273083 stripped
@@ -4204,6 +4223,7 @@ MonoBehaviour:
   microphone: {fileID: 1144879449}
   VRProbability: 0.25
   numberOfPlayers: 2
+  outlineWidth: 0.005
   taskCards:
   - {fileID: 644997323}
   - {fileID: 1060763191}
@@ -16206,6 +16226,11 @@ MonoBehaviour:
   playerMovement: {fileID: 1997480342}
   rayLength: 5
   grabDistance: 1.5
+--- !u!23 &1168819374 stripped
+MeshRenderer:
+  m_PrefabParentObject: {fileID: 23000012509328850, guid: c63dc23ecca86aa4283776b89f3d7bee,
+    type: 2}
+  m_PrefabInternal: {fileID: 868598780}
 --- !u!4 &1169132807
 Transform:
   m_ObjectHideFlags: 0
@@ -18411,6 +18436,7 @@ MonoBehaviour:
   consoleStand: {fileID: 1470197688}
   noGamePadIcon: {fileID: 831775111}
   noConsoleIcon: {fileID: 1830022988}
+  meshes: []
   playerID: 0
   expectedDiscColour: 0
   expectedConsoleName: 
@@ -22021,6 +22047,11 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 071f100b819bc79428a3a10095d8d47a, type: 3}
   m_PrefabInternal: {fileID: 1638923286}
+--- !u!23 &1643519794 stripped
+MeshRenderer:
+  m_PrefabParentObject: {fileID: 23000014032413472, guid: c63dc23ecca86aa4283776b89f3d7bee,
+    type: 2}
+  m_PrefabInternal: {fileID: 868598780}
 --- !u!1001 &1644766432
 Prefab:
   m_ObjectHideFlags: 0
@@ -23145,12 +23176,12 @@ Prefab:
         type: 2}
       propertyPath: micMeshes.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1168819374}
     - target: {fileID: 114000012003239512, guid: 3659b66e6fb2ad347bd532fc2e861cda,
         type: 2}
       propertyPath: micMeshes.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1643519794}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3659b66e6fb2ad347bd532fc2e861cda, type: 2}
   m_IsPrefabParent: 0
