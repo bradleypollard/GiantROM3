@@ -69,25 +69,30 @@ public class DemoStation : MonoBehaviour
 
   void OnTriggerEnter(Collider collider)
   {
-    int playerIndex = collider.GetComponent<PlayerMovement>().playerIndex;
-    playerTransform = collider.transform;
-    Debug.Log("Player " + playerIndex + " entered the gamepad");
-    if (playerIndex == playerID)
-    {
-      Debug.Log("This player is the demoer for this console!");
-      playerCanUseConsole = true;
-    }
-    else
-    {
-      Debug.Log("This player is not on this demo :(");
-    }
-
+		if (collider.GetComponent<PlayerMovement> ())
+		{
+			int playerIndex = collider.GetComponent<PlayerMovement> ().playerIndex;
+			playerTransform = collider.transform;
+			Debug.Log ("Player " + playerIndex + " entered the gamepad");
+			if (playerIndex == playerID)
+			{
+				Debug.Log ("This player is the demoer for this console!");
+				playerCanUseConsole = true;
+			}
+			else
+			{
+				Debug.Log ("This player is not on this demo :(");
+			}
+		}
   }
 
   void OnTriggerExit(Collider collider)
   {
-    Debug.Log("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left the gamepad");
-    playerCanUseConsole = false;
-    playerTransform = null;
+		if (collider.GetComponent<PlayerMovement> ())
+		{
+			Debug.Log ("Player " + collider.GetComponent<PlayerMovement> ().playerIndex + " left the gamepad");
+			playerCanUseConsole = false;
+			playerTransform = null;
+		}
   }
 }

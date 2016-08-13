@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ProgramFeed : MonoBehaviour {
 
@@ -226,6 +228,7 @@ public class ProgramFeed : MonoBehaviour {
       SetUpcomingSpeechToCurrent();
       SetUpcomingDemoToCurrent();
       SetUpcomingNPCToCurrent();
+			TestAll ();
     }
 	}
 
@@ -242,4 +245,129 @@ public class ProgramFeed : MonoBehaviour {
     GUI.Label(new Rect(600, 0, 200, 20), "Current NPC: " + (currentNPC.isMale ? "Male" : "Female"));
     GUI.Label(new Rect(600, 30, 200, 20), "Upcoming NPC: " + (upcomingNPC.isMale ? "Male" : "Female"));
   }
+
+
+
+
+
+
+	[Header("GUI References")]
+	[SerializeField] List<TaskCard> taskCards;
+
+	void
+	TestAll()
+	{
+		RenderCurrentDemoCard ();
+		RenderCurrentSpeechCard();
+		RenderUpcomingSpeech();
+		RenderUpcomingNPCCard();
+		RenderCurrentNPCCard ();
+		RenderUpcomingDemoCard ();
+	}
+
+	void
+	RenderCurrentDemoCard()
+	{
+		TaskCardInfo info = new TaskCardInfo();
+
+		info.playerID = currentDemo.playerID;
+		info.gameID = currentDemo.discColour;
+		info.consoleType = consoleNames [(int)currentDemo.console];
+
+		if (gamePadNames [(int)currentDemo.gamePad] == "VR Gamepad")
+		{
+			info.vr = true;
+		}
+
+		taskCards [0].UpdateGraphics (info);
+	}
+
+	void
+	RenderCurrentSpeechCard()
+	{
+		TaskCardInfo info = new TaskCardInfo ();
+
+		info.playerID = currentSpeech.playerID;
+
+		taskCards [1].UpdateGraphics (info);
+	}
+
+	void
+	RenderCurrentNPCCard()
+	{
+		TaskCardInfo info = new TaskCardInfo ();
+
+		info.type = CardType.NPC;
+		info.isMale = currentNPC.isMale;
+
+		//		int newIndex;
+		//
+		//		if (upcomingNPC.isMale)
+		//		{	
+		//			newIndex = Random.Range (0, boyNames.Count - 1);
+		//			newInfo.npcName = boyNames [newIndex];
+		//			boyNames.Remove (boyNames [newIndex]);
+		//		}
+		//		else
+		//		{
+		//			newIndex = Random.Range (0, girlNames.Count - 1);
+		//			newInfo.npcName = girlNames [newIndex];
+		//			girlNames.Remove (girlNames [newIndex]);
+		//		}
+
+		taskCards[2].UpdateGraphics (info);
+	}
+
+	void
+	RenderUpcomingDemoCard()
+	{
+		TaskCardInfo info = new TaskCardInfo();
+
+		info.playerID = upcomingDemo.playerID;
+		info.gameID = upcomingDemo.discColour;
+		info.consoleType = consoleNames [(int)upcomingDemo.console];
+
+		if (gamePadNames [(int)upcomingDemo.gamePad] == "VR Gamepad")
+		{
+			info.vr = true;
+		}
+
+		taskCards [3].UpdateGraphics (info);
+	}
+
+	void
+	RenderUpcomingSpeech()
+	{
+		TaskCardInfo info = new TaskCardInfo ();
+
+		info.playerID = upcomingSpeech.playerID;
+
+		taskCards [4].UpdateGraphics (info);
+	}
+
+	void
+	RenderUpcomingNPCCard()
+	{
+		TaskCardInfo info = new TaskCardInfo ();
+
+		info.type = CardType.NPC;
+		info.isMale = upcomingNPC.isMale;
+
+//		int newIndex;
+//
+//		if (upcomingNPC.isMale)
+//		{	
+//			newIndex = Random.Range (0, boyNames.Count - 1);
+//			newInfo.npcName = boyNames [newIndex];
+//			boyNames.Remove (boyNames [newIndex]);
+//		}
+//		else
+//		{
+//			newIndex = Random.Range (0, girlNames.Count - 1);
+//			newInfo.npcName = girlNames [newIndex];
+//			girlNames.Remove (girlNames [newIndex]);
+//		}
+
+		taskCards[5].UpdateGraphics (info);
+	}
 }
