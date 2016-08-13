@@ -11344,9 +11344,9 @@ Transform:
   - {fileID: 1918470850}
   - {fileID: 1657487006}
   - {fileID: 366602774}
-  - {fileID: 89204746}
-  - {fileID: 1180716113}
   - {fileID: 79412745}
+  - {fileID: 1180716113}
+  - {fileID: 89204746}
   - {fileID: 136398865}
   - {fileID: 1933581656}
   - {fileID: 1401536424}
@@ -13525,6 +13525,11 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 071f100b819bc79428a3a10095d8d47a, type: 3}
   m_PrefabInternal: {fileID: 1142613695}
+--- !u!23 &1143674498 stripped
+MeshRenderer:
+  m_PrefabParentObject: {fileID: 23000013056702436, guid: c63dc23ecca86aa4283776b89f3d7bee,
+    type: 2}
+  m_PrefabInternal: {fileID: 1935145653}
 --- !u!114 &1144879449 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000014277911546, guid: c63dc23ecca86aa4283776b89f3d7bee,
@@ -20742,12 +20747,12 @@ Prefab:
         type: 2}
       propertyPath: micMeshes.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1143674498}
     - target: {fileID: 114000012003239512, guid: 3659b66e6fb2ad347bd532fc2e861cda,
         type: 2}
       propertyPath: micMeshes.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1939216218}
     - target: {fileID: 114000012003239512, guid: 3659b66e6fb2ad347bd532fc2e861cda,
         type: 2}
       propertyPath: crankMeshes.Array.data[0]
@@ -23694,6 +23699,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c63dc23ecca86aa4283776b89f3d7bee, type: 2}
   m_IsPrefabParent: 0
+--- !u!23 &1939216218 stripped
+MeshRenderer:
+  m_PrefabParentObject: {fileID: 23000011815777154, guid: c63dc23ecca86aa4283776b89f3d7bee,
+    type: 2}
+  m_PrefabInternal: {fileID: 1935145653}
 --- !u!4 &1939975576 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: db86f3e1f052fd245bfed01abdc41617, type: 3}
