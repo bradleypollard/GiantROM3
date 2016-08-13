@@ -28,31 +28,36 @@ public class Microphone : MonoBehaviour
 
   void OnTriggerEnter(Collider collider)
   {
-    int playerIndex;
-    playerIndex = collider.GetComponent<PlayerMovement>().playerIndex;
-    playerTransform = collider.transform;
+		if (collider.GetComponent<PlayerMovement> ())
+		{
+			int playerIndex;
+			playerIndex = collider.GetComponent<PlayerMovement> ().playerIndex;
+			playerTransform = collider.transform;
 
-    //int playerIndex = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
-    //playerTransform = collider.transform.root;
+			//int playerIndex = collider.transform.root.GetComponent<PlayerMovement>().playerIndex;
+			//playerTransform = collider.transform.root;
 
-    Debug.Log("Player " + playerIndex + " entered the microphone");
-    if (playerIndex == speakerID)
-    {
-      Debug.Log("This player is next on stage!");
-      playerCanUseMicrophone = true;
-    }
-    else
-    {
-      Debug.Log("This player should not be on stage :(");
-    }
-
+			Debug.Log ("Player " + playerIndex + " entered the microphone");
+			if (playerIndex == speakerID)
+			{
+				Debug.Log ("This player is next on stage!");
+				playerCanUseMicrophone = true;
+			}
+			else
+			{
+				Debug.Log ("This player should not be on stage :(");
+			}
+		}
   }
 
   void OnTriggerExit(Collider collider)
   {
-    Debug.Log("Player " + collider.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
-    //Debug.Log("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
-    playerCanUseMicrophone = false;
-    playerTransform = null;
+		if (collider.GetComponent<PlayerMovement> ())
+		{
+			Debug.Log ("Player " + collider.GetComponent<PlayerMovement> ().playerIndex + " left the microphone");
+			//Debug.Log("Player " + collider.transform.root.GetComponent<PlayerMovement>().playerIndex + " left the microphone");
+			playerCanUseMicrophone = false;
+			playerTransform = null;
+		}
   }
 }
