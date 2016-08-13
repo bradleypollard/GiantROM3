@@ -25,6 +25,8 @@ public class GamePlayDemo : MonoBehaviour
   ProgramFeed programFeed;
   [SerializeField]
   GameObject litIcon;
+  [SerializeField]
+  Renderer lightMesh;
 
   [Header("Settings")]
   [Range(0, 4)]
@@ -125,10 +127,14 @@ public class GamePlayDemo : MonoBehaviour
     if (playerID == 0)
     {
       litIcon.SetActive(false);
+      // Hide outline if no-one is on stage
+      lightMesh.material.SetFloat("_OutlineTransparency", 0);
     }
     else
     {
       litIcon.SetActive(!isLit);
+      // show outline when not lit
+      lightMesh.material.SetFloat("_OutlineTransparency", isLit ? 0 : 1);
     }
 
     if (isRunning != prevRunning)

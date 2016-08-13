@@ -3900,10 +3900,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1000011291819502, guid: 29d674d1bae185f49a760b88b6fb54b6, type: 2}
-      propertyPath: m_Name
-      value: Spotlight Control Panel (Left Stage)
-      objectReference: {fileID: 0}
     - target: {fileID: 114000013048892434, guid: 29d674d1bae185f49a760b88b6fb54b6,
         type: 2}
       propertyPath: spot
@@ -3914,6 +3910,10 @@ Prefab:
       propertyPath: gameplayDemo
       value: 
       objectReference: {fileID: 443129996}
+    - target: {fileID: 1000011291819502, guid: 29d674d1bae185f49a760b88b6fb54b6, type: 2}
+      propertyPath: m_Name
+      value: Spotlight Control Panel (Left Stage)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29d674d1bae185f49a760b88b6fb54b6, type: 2}
   m_IsPrefabParent: 0
@@ -16634,6 +16634,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000014253968702, guid: 7842efd79f817494abb7c5457a804aae,
     type: 2}
   m_PrefabInternal: {fileID: 1267100895}
+--- !u!23 &1602613055 stripped
+MeshRenderer:
+  m_PrefabParentObject: {fileID: 23000013407128648, guid: 29d674d1bae185f49a760b88b6fb54b6,
+    type: 2}
+  m_PrefabInternal: {fileID: 366602773}
 --- !u!1001 &1615125990
 Prefab:
   m_ObjectHideFlags: 0
@@ -18223,6 +18228,11 @@ Prefab:
       propertyPath: litIcon
       value: 
       objectReference: {fileID: 1599449798}
+    - target: {fileID: 114000012406751628, guid: 3659b66e6fb2ad347bd532fc2e861cda,
+        type: 2}
+      propertyPath: lightMesh
+      value: 
+      objectReference: {fileID: 1602613055}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3659b66e6fb2ad347bd532fc2e861cda, type: 2}
   m_IsPrefabParent: 0
