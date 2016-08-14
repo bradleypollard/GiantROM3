@@ -37,18 +37,27 @@ public class TruckDelivery : MonoBehaviour
 		truckDeliverySequence = DOTween.Sequence ();
 
 
-		truckDeliverySequence.Append (transform.DOMove (deliveryPointForTruck.position, truckAnimationTime).OnComplete (ChuckHardDriveOutBack));
+		truckDeliverySequence.Append (transform.DOMove (deliveryPointForTruck.position, truckAnimationTime).OnStart(PlayReversingNoise).OnComplete (ChuckHardDriveOutBack));
 		truckDeliverySequence.AppendInterval (0.5f);
-		truckDeliverySequence.Append (transform.DOMove (startPos, truckAnimationTime));
+		truckDeliverySequence.Append (transform.DOMove (startPos, truckAnimationTime).OnStart(PlaySquelNoise));
 		truckDeliverySequence.Play ();
-
-    GetComponent<AudioSource>().clip = squeal;
-    GetComponent<AudioSource>().Play();
-
+  
     // TODO: Leaving tyre squeal (different sound effect, pulling away?)
   }
 
-	public void ChuckHardDriveOutBack ()
+  public void PlayReversingNoise()
+  {
+    GetComponent<AudioSource>().clip = reverse;
+    GetComponent<AudioSource>().Play();
+  }
+
+  public void PlaySquelNoise()
+  {
+    GetComponent<AudioSource>().clip = squeal;
+    GetComponent<AudioSource>().Play();
+  }
+
+  public void ChuckHardDriveOutBack ()
 	{
 		GameObject newHD = Instantiate (hardDrivePrefab, spawnPoint.position, Quaternion.identity) as GameObject;
 		int randomNumber = Mathf.RoundToInt (Random.Range (1, 4));
