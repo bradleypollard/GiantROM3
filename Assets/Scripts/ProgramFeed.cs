@@ -281,9 +281,8 @@ public class ProgramFeed : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (Input.GetKeyDown(KeyCode.Q))
+    if (Input.GetKeyDown(KeyCode.Q) && gameManager.debugMode)
     {
-      // TODO: Remove this debug input
       SetUpcomingSpeechToCurrent();
       SetUpcomingDemoToCurrent();
       SetUpcomingNPCToCurrent();

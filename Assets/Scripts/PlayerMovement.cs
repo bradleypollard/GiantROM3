@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
   public float currSpeed = 0f;
   public bool isHoldingNPC;
 
+  private Vector3 lockedPos = Vector3.zero;
+
 
 
   void
@@ -30,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
   {
     if (!lockMovement)
     {
+      lockedPos = Vector3.zero;
+
       Vector3 moveDirection = movementOrientation.TransformDirection(new Vector3(Input.GetAxisRaw("Horizontal_P" + playerIndex.ToString()), 0, Input.GetAxisRaw("Vertical_P" + playerIndex.ToString())));
 
       if (moveDirection != Vector3.zero)
@@ -46,6 +50,14 @@ public class PlayerMovement : MonoBehaviour
       {
         currSpeed = 0f;
       }
+    }
+    else
+    {
+      if (lockedPos == Vector3.zero)
+      {
+        lockedPos = transform.position;
+      }
+      transform.position = lockedPos;
     }
   }
 }
