@@ -24,7 +24,7 @@ public class InputOutputMachine : MonoBehaviour
 
   public float counter;
 
-  public Slider progressSlider;
+  public Canvas progressSlider;
 
   void Start()
   {
@@ -52,7 +52,7 @@ public class InputOutputMachine : MonoBehaviour
         if (counter < machineHoldTime)
         {
           counter += Time.deltaTime;
-          progressSlider.value = counter / machineHoldTime;
+          progressSlider.GetComponentInChildren<Slider>().value = counter / machineHoldTime;
         }
         else
         {
@@ -69,7 +69,7 @@ public class InputOutputMachine : MonoBehaviour
           if (counter < machineTapCount - 1)
           {
             counter += 1;
-            progressSlider.value = counter / machineTapCount;
+            progressSlider.GetComponentInChildren<Slider>().value = counter / machineTapCount;
           }
           else
           {
@@ -91,7 +91,7 @@ public class InputOutputMachine : MonoBehaviour
           acceptedInputItem = gb.GetComponent<Interaction>().objectInHands;
           machineInUse = true;
           acceptedInputItem.SetActive(false);
-          progressSlider.value = 0;
+          progressSlider.GetComponentInChildren<Slider>().value = 0;
           progressSlider.gameObject.SetActive(true);
           playerUsingMachine.GetComponent<PlayerMovement>().enabled = false;
         }

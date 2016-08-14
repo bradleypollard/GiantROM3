@@ -15,7 +15,7 @@ public class ConsoleStand : MonoBehaviour
   [SerializeField]
   DemoStation demoStation;
   [SerializeField]
-  Slider progressSlider;
+  Canvas progressSlider;
   [SerializeField]
   GameObject smoke;
 
@@ -131,7 +131,7 @@ public class ConsoleStand : MonoBehaviour
             {
               // Repair in progress
               repairCompletion += 1;
-              progressSlider.value = repairCompletion / repairTaps;
+              progressSlider.GetComponentInChildren<Slider>().value = repairCompletion / repairTaps;
             }
             else
             {
@@ -139,7 +139,7 @@ public class ConsoleStand : MonoBehaviour
               IDToPlayerMap[id].GetComponent<PlayerMovement>().lockMovement = false;
               gameplayDemo.SetWorking(true);
               repairCompletion = 0;
-              progressSlider.value = repairCompletion;
+              progressSlider.GetComponentInChildren<Slider>().value = repairCompletion;
               progressSlider.gameObject.SetActive(false);
               repairInProgress = false;
             }
@@ -153,7 +153,7 @@ public class ConsoleStand : MonoBehaviour
             IDToPlayerMap[id].GetComponent<PlayerMovement>().lockMovement = true;
             repairCompletion = 0f;
             progressSlider.gameObject.SetActive(true);
-            progressSlider.value = repairCompletion;
+            progressSlider.GetComponentInChildren<Slider>().value = repairCompletion;
             repairInProgress = true;
           }
         }
@@ -166,7 +166,7 @@ public class ConsoleStand : MonoBehaviour
     // Cancel repair
     player.GetComponent<PlayerMovement>().lockMovement = false;
     repairCompletion = 0f;
-    progressSlider.value = repairCompletion;
+    progressSlider.GetComponentInChildren<Slider>().value = repairCompletion;
     progressSlider.gameObject.SetActive(false);
     repairInProgress = false;
   }
