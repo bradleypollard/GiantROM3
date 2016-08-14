@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4150463, g: 0.42361912, b: 0.39926878, a: 1}
+  m_IndirectSpecularColor: {r: 0.41504604, g: 0.4236186, b: 0.3992685, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -23128,6 +23128,31 @@ Prefab:
       propertyPath: speakerAudioSource
       value: 
       objectReference: {fileID: 1935145654}
+    - target: {fileID: 114000012003239512, guid: 3659b66e6fb2ad347bd532fc2e861cda,
+        type: 2}
+      propertyPath: duration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012003239512, guid: 3659b66e6fb2ad347bd532fc2e861cda,
+        type: 2}
+      propertyPath: promptGenerationDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012003239512, guid: 3659b66e6fb2ad347bd532fc2e861cda,
+        type: 2}
+      propertyPath: maxQueueSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012406751628, guid: 3659b66e6fb2ad347bd532fc2e861cda,
+        type: 2}
+      propertyPath: queueSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012406751628, guid: 3659b66e6fb2ad347bd532fc2e861cda,
+        type: 2}
+      propertyPath: promptGenerationTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3659b66e6fb2ad347bd532fc2e861cda, type: 2}
   m_IsPrefabParent: 0
