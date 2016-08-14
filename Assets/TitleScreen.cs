@@ -63,6 +63,14 @@ public class TitleScreen : MonoBehaviour
       gameManager.StartGame(playerCount);
     }
 
+    if (gameManager.debugMode)
+    {
+      gameManager.programFeed.PIDToCIDMap[1] = 1;
+      gameManager.programFeed.PIDToCIDMap[2] = 2;
+      gameManager.programFeed.PIDToCIDMap[3] = 4;
+      gameManager.programFeed.PIDToCIDMap[4] = 5;
+      gameManager.StartGame(4);
+    }
   }
 
 

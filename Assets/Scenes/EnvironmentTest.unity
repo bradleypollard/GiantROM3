@@ -4535,7 +4535,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'P1: Connect a controller to join!'
+  m_Text: 'P1: Press A to join!'
 --- !u!222 &294378788
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11751,7 +11751,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'P3: Connect a controller to join!'
+  m_Text: 'P3: Press A to join!'
 --- !u!222 &882577575
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14340,7 +14340,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'P2: Connect a controller to join!'
+  m_Text: 'P2: Press A to join!'
 --- !u!222 &1082290441
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23521,7 +23521,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'P4: Connect a controller to join!'
+  m_Text: 'P4: Press A to join!'
 --- !u!222 &1743067187
 CanvasRenderer:
   m_ObjectHideFlags: 0
