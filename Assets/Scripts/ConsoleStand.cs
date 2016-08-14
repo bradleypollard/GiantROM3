@@ -1,84 +1,150 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ConsoleStand : MonoBehaviour
 {
 
   [Header("References")]
   [SerializeField]
+  GamePlayDemo gameplayDemo;
+  [SerializeField]
   Transform gamePadPos;
   [SerializeField]
   Transform consolePos;
   [SerializeField]
   DemoStation demoStation;
+  [SerializeField]
+  Slider progressSlider;
+  [SerializeField]
+  GameObject smoke;
+
 
   public GameObject currentHeldConsole = null;
   public GameObject currentHeldGamePad = null;
+  public float repairTime = 3f;
+
 
   private Dictionary<int, GameObject> IDToPlayerMap = new Dictionary<int, GameObject>();
+  private bool repairInProgress = false;
+  private float repairCompletion = 0f;
 
   // Update is called once per frame
   void Update()
   {
+    smoke.SetActive(!gameplayDemo.isWorking);
+
     foreach (int id in IDToPlayerMap.Keys)
     {
-      if (Input.GetButtonDown("A_P" + id))
+      if (gameplayDemo.isWorking)
       {
-        GameObject heldItem = IDToPlayerMap[id].GetComponent<Interaction>().objectInHands;
-        if (heldItem == null)
+        if (Input.GetButtonDown("A_P" + id))
         {
-          // Eject all!
-          if (currentHeldConsole != null && !(demoStation.hasCorrectConsole && demoStation.hasCorrectGamePad))
+          GameObject heldItem = IDToPlayerMap[id].GetComponent<Interaction>().objectInHands;
+          if (heldItem == null)
           {
-            EjectConsole();
+            // Eject all!
+            if (currentHeldConsole != null && !(demoStation.hasCorrectConsole && demoStation.hasCorrectGamePad))
+            {
+              EjectConsole();
+            }
+            if (currentHeldGamePad != null && !(demoStation.hasCorrectConsole && demoStation.hasCorrectGamePad))
+            {
+              EjectGamePad();
+            }
           }
-          if (currentHeldGamePad != null && !(demoStation.hasCorrectConsole && demoStation.hasCorrectGamePad))
+          else if (heldItem.tag == "Console" && currentHeldConsole == null)
           {
-            EjectGamePad();
+            // Insert console!
+            currentHeldConsole = heldItem;
+            IDToPlayerMap[id].GetComponent<Interaction>().ReleaseObject();
+            currentHeldConsole.transform.parent = consolePos;
+            currentHeldConsole.transform.localPosition = Vector3.zero;
+            currentHeldConsole.transform.localRotation = Quaternion.identity;
+            currentHeldConsole.GetComponent<Rigidbody>().isKinematic = true;
+
+            foreach (BoxCollider b in currentHeldConsole.GetComponentsInChildren<BoxCollider>())
+            {
+              b.enabled = false;
+            }
+
+            if (currentHeldConsole.name == demoStation.expectedConsoleName)
+            {
+              GameObject.Find(demoStation.expectedConsoleName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 0);
+            }
+          }
+          else if (heldItem.tag == "GamePad" && currentHeldGamePad == null)
+          {
+            // Insert gamepad!
+            currentHeldGamePad = heldItem;
+            IDToPlayerMap[id].GetComponent<Interaction>().ReleaseObject();
+            currentHeldGamePad.transform.parent = gamePadPos;
+            currentHeldGamePad.transform.localPosition = Vector3.zero;
+            currentHeldGamePad.transform.localRotation = Quaternion.identity;
+            currentHeldGamePad.GetComponent<Rigidbody>().isKinematic = true;
+
+            foreach (BoxCollider b in currentHeldGamePad.GetComponentsInChildren<BoxCollider>())
+            {
+              b.enabled = false;
+            }
+
+            if (currentHeldGamePad.name == demoStation.expectedGamePadName)
+            {
+              GameObject.Find(demoStation.expectedGamePadName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 0);
+            }
           }
         }
-        else if (heldItem.tag == "Console" && currentHeldConsole == null)
+      }
+      else if (id != gameplayDemo.playerID)
+      {
+        if (repairInProgress)
         {
-          // Insert console!
-          currentHeldConsole = heldItem;
-          IDToPlayerMap[id].GetComponent<Interaction>().ReleaseObject();
-          currentHeldConsole.transform.parent = consolePos;
-          currentHeldConsole.transform.localPosition = Vector3.zero;
-          currentHeldConsole.transform.localRotation = Quaternion.identity;
-          currentHeldConsole.GetComponent<Rigidbody>().isKinematic = true;
-
-          foreach (BoxCollider b in currentHeldConsole.GetComponentsInChildren<BoxCollider>())
+          if (Input.GetButtonUp("A_P" + id))
           {
-            b.enabled = false;
+            CancelRepair(IDToPlayerMap[id]);
           }
 
-          if (currentHeldConsole.name == demoStation.expectedConsoleName)
+          if (repairCompletion < repairTime)
           {
-            GameObject.Find(demoStation.expectedConsoleName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 0);
+            // Repair in progress
+            repairCompletion += Time.deltaTime;
+            progressSlider.value = repairCompletion / repairTime;
+          }
+          else
+          {
+            // Repair done
+            IDToPlayerMap[id].GetComponent<PlayerMovement>().lockMovement = false;
+            gameplayDemo.SetWorking(true);
+            repairCompletion = 0;
+            progressSlider.value = repairCompletion;
+            progressSlider.gameObject.SetActive(false);
+            repairInProgress = false;
           }
         }
-        else if (heldItem.tag == "GamePad" && currentHeldGamePad == null)
+        else
         {
-          // Insert gamepad!
-          currentHeldGamePad = heldItem;
-          IDToPlayerMap[id].GetComponent<Interaction>().ReleaseObject();
-          currentHeldGamePad.transform.parent = gamePadPos;
-          currentHeldGamePad.transform.localPosition = Vector3.zero;
-          currentHeldGamePad.transform.localRotation = Quaternion.identity;
-          currentHeldGamePad.GetComponent<Rigidbody>().isKinematic = true;
-
-          foreach (BoxCollider b in currentHeldGamePad.GetComponentsInChildren<BoxCollider>())
+          if (Input.GetButtonDown("A_P" + id))
           {
-            b.enabled = false;
-          }
-
-          if (currentHeldGamePad.name == demoStation.expectedGamePadName)
-          {
-            GameObject.Find(demoStation.expectedGamePadName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 0);
+            // Begin repair process
+            IDToPlayerMap[id].GetComponent<PlayerMovement>().lockMovement = true;
+            repairCompletion = 0f;
+            progressSlider.gameObject.SetActive(true);
+            progressSlider.value = repairCompletion;
+            repairInProgress = true;
           }
         }
       }
     }
+  }
+
+  private void CancelRepair(GameObject player)
+  {
+    // Cancel repair
+    player.GetComponent<PlayerMovement>().lockMovement = false;
+    repairCompletion = 0f;
+    progressSlider.value = repairCompletion;
+    progressSlider.gameObject.SetActive(false);
+    repairInProgress = false;
   }
 
   public void EjectConsole()
@@ -136,6 +202,7 @@ public class ConsoleStand : MonoBehaviour
     if (collider.GetComponent<PlayerMovement>())
     {
       int playerIndex = collider.GetComponent<PlayerMovement>().playerIndex;
+      CancelRepair(collider.gameObject);
       Debug.Log("Player " + playerIndex + " left the console stand");
       IDToPlayerMap.Remove(playerIndex);
     }

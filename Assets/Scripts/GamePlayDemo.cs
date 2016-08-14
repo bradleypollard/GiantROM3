@@ -31,7 +31,7 @@ public class GamePlayDemo : MonoBehaviour
   [Header("Settings")]
   [Range(0, 4)]
   [SerializeField]
-  int playerID = 0;
+  public int playerID = 0;
   [Range(10, 100)]
   [SerializeField]
   int queueSize = 50;
@@ -214,6 +214,13 @@ public class GamePlayDemo : MonoBehaviour
     ButtonPrompt bp = visiblePrompts.Dequeue();
     Destroy(bp.gameObject);
     gameInputs = gameInputs.Substring(1);
+    SetWorking(false);
+    
+  }
+
+  public void SetWorking(bool _isWorking)
+  {
+    isWorking = _isWorking;
   }
 
   // Debug drawing the input string

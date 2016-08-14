@@ -102,10 +102,10 @@ Material:
       second: 1
     - first:
         name: _Outline
-      second: 0.0152
+      second: 0.005
     - first:
         name: _OutlineTransparency
-      second: 0
+      second: 1
     - first:
         name: _Parallax
       second: 0.02
@@ -133,4 +133,4 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _OutlineColor
-      second: {r: 0.94482756, g: 1, b: 0, a: 1}
+      second: {r: 0.047307514, g: 0.9191176, b: 0.810893, a: 1}

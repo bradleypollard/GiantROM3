@@ -2,60 +2,42 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ItemRecipe : MonoBehaviour {
+public class ItemRecipe : MonoBehaviour
+{
 
-    public GameObject ITurnInto;
-    public string IWorkWithThisMachine;
-    public Renderer CopyColourFromHere;
+  public GameObject ITurnInto;
+  public string IWorkWithThisMachine;
+  public Renderer CopyColourFromHere;
 
-    public Shader shaderOutline;
+  [SerializeField]
+  Renderer[] meshes;
 
-    private List<Material> setFloatMats = new List<Material>();
-
-    void Update()
+  void Update()
+  {
+    if (transform.root.name.Contains("Player"))
     {
-        if (transform.root.name.Contains("Player"))
-        {
-            if (IWorkWithThisMachine == "Disk Burner")
-            {
-                GameObject.Find(IWorkWithThisMachine).transform.FindChild("computer/_computer").GetComponent<Renderer>().material.SetFloat("_OutlineTransparency", 1);
-                setFloatMats.Add(GameObject.Find(IWorkWithThisMachine).transform.FindChild("computer/_computer").GetComponent<Renderer>().material);
-            }
-
-            if (IWorkWithThisMachine == "Console")
-            {
-                foreach (GameObject console in GameObject.FindGameObjectsWithTag("Console"))
-                {
-                    console.transform.FindChild("mesh").GetComponent<Renderer>().material.SetFloat("_OutlineTransparency", 1);
-                    setFloatMats.Add(console.transform.FindChild("mesh").GetComponent<Renderer>().material);
-                }
-            }
-
-            if(IWorkWithThisMachine.Contains("Dressing Room"))
-            {
-                GameObject.Find(IWorkWithThisMachine).transform.FindChild("dressing_room_door/_door").GetComponent<Renderer>().material.SetFloat("_OutlineTransparency", 1);
-                setFloatMats.Add(GameObject.Find(IWorkWithThisMachine).transform.FindChild("dressing_room_door/_door").GetComponent<Renderer>().material);
-            }
-        }
-        else
-        {
-            RemoveOutline();
-        }
+      foreach (Renderer r in meshes)
+      {
+        r.material.SetFloat("_OutlineTransparency", 1);
+      }
     }
-
-    private void RemoveOutline()
+    else
     {
-        foreach(Material m in setFloatMats)
-        {
-            m.SetFloat("_OutlineTransparency", 0);
-        }
-
-        setFloatMats.Clear();
+      RemoveOutline();
     }
+  }
 
-    void OnDestroy()
+  private void RemoveOutline()
+  {
+    foreach (Renderer r in meshes)
     {
-        RemoveOutline();
+      r.material.SetFloat("_OutlineTransparency", 0);
     }
+  }
+
+  void OnDestroy()
+  {
+    RemoveOutline();
+  }
 
 }
