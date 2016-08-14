@@ -198,10 +198,12 @@ public class Teleprompter : MonoBehaviour
       }
     }
 
-    // Display icon
-    litIcon.SetActive(!isLit);
-    lightMesh.material.SetFloat("_OutlineTransparency", isLit ? 0 : 1);
-
+    if (speakerID != 0)
+    {
+      // Display icon
+      litIcon.SetActive(!isLit);
+      lightMesh.material.SetFloat("_OutlineTransparency", isLit ? 0 : 1);
+    }
 
     // Finally, if the light is on we should take input from the player
     if (isLit)
