@@ -12667,7 +12667,7 @@ MonoBehaviour:
   titleScreenLogic: {fileID: 2144528296}
   programFeed: {fileID: 329942516}
   gameLength: 300
-  debugMode: 1
+  debugMode: 0
   gameInProgress: 0
   score: 0
   gameFinished: 0
@@ -28380,8 +28380,6 @@ MonoBehaviour:
   p4Prompt: {fileID: 1743067184}
   p4Joined: {fileID: 1703247275}
   gameManager: {fileID: 965124163}
-  playerCount: 0
-  ready: 0
 --- !u!114 &2144528297
 MonoBehaviour:
   m_ObjectHideFlags: 0

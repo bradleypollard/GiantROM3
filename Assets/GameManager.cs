@@ -76,6 +76,11 @@ public class GameManager : MonoBehaviour
     {
       Debug.LogError("PLAYER COUNT INCORRECT: " + playerCount);
     }
+
+    foreach (KeyValuePair<int,int> pair in programFeed.PIDToCIDMap)
+    {
+      playerGbs[pair.Key - 1].GetComponent<PlayerMovement>().playerIndex = pair.Value;
+    }
     
     // Game is ready to start, record player count
     gameInProgress = true;
