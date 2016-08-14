@@ -70,9 +70,18 @@ public class DemoStation : MonoBehaviour
     noGamePadIcon.SetActive(!hasCorrectGamePad);
     noDiscIcon.SetActive(!hasCorrectDisc);
 
+    if (gameplayDemo.playerID != 0)
+    {
+      // Console has broken, highlight for repair
+      foreach (Renderer r in meshes)
+      {
+        r.material.SetFloat("_OutlineTransparency", gameplayDemo.isWorking ? 0 : 1);
+      }
+    }
+
     if (isReady == false && hasCorrectGamePad && hasCorrectConsole && hasCorrectDisc)
     {
-      // Only set transparency of outline to 1 on the frame if both items are ready!
+      // Only activate outline on the frame if all items are ready!
       foreach (Renderer r in meshes)
       {
         r.material.SetFloat("_OutlineTransparency", 1);

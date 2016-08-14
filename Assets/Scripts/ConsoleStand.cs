@@ -23,7 +23,7 @@ public class ConsoleStand : MonoBehaviour
   public GameObject currentHeldConsole = null;
   public GameObject currentHeldGamePad = null;
   public GameObject currentHeldDisc = null;
-  public float repairTime = 3f;
+  public float repairTaps = 10f;
 
 
   private Dictionary<int, GameObject> IDToPlayerMap = new Dictionary<int, GameObject>();
@@ -113,7 +113,7 @@ public class ConsoleStand : MonoBehaviour
               b.enabled = false;
             }
 
-            if (currentHeldDisc.GetComponentInChildren<Renderer>().material.color.Equals(demoStation.discColours[demoStation.expectedDiscColour-1]))
+            if (currentHeldDisc.GetComponentInChildren<Renderer>().material.color.Equals(demoStation.discColours[demoStation.expectedDiscColour - 1]))
             {
               // TODO: Disc highlighting
               //GameObject.Find(demoStation.expectedGamePadName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 0);
@@ -125,26 +125,24 @@ public class ConsoleStand : MonoBehaviour
       {
         if (repairInProgress)
         {
-          if (Input.GetButtonUp("A_P" + id))
+          if (Input.GetButtonDown("A_P" + id))
           {
-            CancelRepair(IDToPlayerMap[id]);
-          }
-
-          if (repairCompletion < repairTime)
-          {
-            // Repair in progress
-            repairCompletion += Time.deltaTime;
-            progressSlider.value = repairCompletion / repairTime;
-          }
-          else
-          {
-            // Repair done
-            IDToPlayerMap[id].GetComponent<PlayerMovement>().lockMovement = false;
-            gameplayDemo.SetWorking(true);
-            repairCompletion = 0;
-            progressSlider.value = repairCompletion;
-            progressSlider.gameObject.SetActive(false);
-            repairInProgress = false;
+            if (repairCompletion < repairTaps - 1)
+            {
+              // Repair in progress
+              repairCompletion += 1;
+              progressSlider.value = repairCompletion / repairTaps;
+            }
+            else
+            {
+              // Repair done
+              IDToPlayerMap[id].GetComponent<PlayerMovement>().lockMovement = false;
+              gameplayDemo.SetWorking(true);
+              repairCompletion = 0;
+              progressSlider.value = repairCompletion;
+              progressSlider.gameObject.SetActive(false);
+              repairInProgress = false;
+            }
           }
         }
         else
@@ -239,7 +237,7 @@ public class ConsoleStand : MonoBehaviour
       currentHeldDisc.GetComponent<Rigidbody>().isKinematic = false;
       currentHeldDisc.transform.parent = null;
 
-      if (currentHeldDisc.GetComponentInChildren<Renderer>().material.color.Equals(demoStation.discColours[demoStation.expectedDiscColour-1]))
+      if (currentHeldDisc.GetComponentInChildren<Renderer>().material.color.Equals(demoStation.discColours[demoStation.expectedDiscColour - 1]))
       {
         currentHeldDisc.GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 1);
       }
