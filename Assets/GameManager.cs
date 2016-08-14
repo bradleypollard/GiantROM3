@@ -10,16 +10,17 @@ public class GameManager : MonoBehaviour {
     private bool gameInProgress;
     private float timer;
     public float gameLength;
+    private float counter;
 
-    public GameObject[] playerGBs;
+    public GameObject[] playerGbs;
 
     void Update()
     {
         if (gameInProgress)
         {
-            if (gameLength > 0)
+            if (counter < gameLength)
             {
-                gameLength -= Time.deltaTime;
+                counter += Time.deltaTime;
             }
             else
             {
@@ -30,12 +31,13 @@ public class GameManager : MonoBehaviour {
 
     public void StartGame()
     {
-        foreach(GameObject gb in playerGBs)
+        foreach(GameObject gb in playerGbs)
         {
             gb.GetComponent<PlayerMovement>().enabled = true;
         }
 
         gameInProgress = true;
+
     }
 
     public void GameFinished()
