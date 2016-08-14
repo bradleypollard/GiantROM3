@@ -20,9 +20,9 @@ public class Interaction : MonoBehaviour
 
   void FixedUpdate()
   {
-    if (objectInHands != null)
+    if (objectInHand != null)
     {
-      if (Input.GetButtonDown("B_P" + playerMovement.playerIndex))
+      if (Input.GetButtonDown("B_P" + playerMovement.playerIndex) && objectInHands != null)
       {
         ThrowObject();
       }
@@ -121,5 +121,6 @@ public class Interaction : MonoBehaviour
     objectInHands.transform.parent = null;
     objectInHands.GetComponent<Rigidbody>().isKinematic = false;
     objectInHands = null;
+    objectInHand = null;
   }
 }
