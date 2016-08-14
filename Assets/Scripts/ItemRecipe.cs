@@ -30,6 +30,12 @@ public class ItemRecipe : MonoBehaviour {
                     setFloatMats.Add(console.transform.FindChild("mesh").GetComponent<Renderer>().material);
                 }
             }
+
+            if(IWorkWithThisMachine.Contains("Dressing Room"))
+            {
+                GameObject.Find(IWorkWithThisMachine).transform.FindChild("dressing_room_door/_door").GetComponent<Renderer>().material.SetFloat("_OutlineTransparency", 1);
+                setFloatMats.Add(GameObject.Find(IWorkWithThisMachine).transform.FindChild("dressing_room_door/_door").GetComponent<Renderer>().material);
+            }
         }
         else
         {

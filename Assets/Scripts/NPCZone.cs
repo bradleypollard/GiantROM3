@@ -48,7 +48,7 @@ public class NPCZone : MonoBehaviour
 	{
 		Debug.Log (collider.name + " Entered");
 
-		if (collider.transform.name.Contains ("NPC") && !npcAccepted) {
+		if (collider.transform.name.Contains ("Dressed") && !npcAccepted) {
 			npcAccepted = collider.gameObject;
 			if (Random.Range (0, 10) > 5) {
 				requireWater = true;
@@ -68,7 +68,7 @@ public class NPCZone : MonoBehaviour
 
 	void OnTriggerExit (Collider collider)
 	{
-		if (collider.transform.name.Contains ("NPC")) {
+		if (collider.transform.name.Contains ("Dressed")) {
 			npcAccepted = null;
 			GetComponent<Renderer> ().material.SetColor ("_Color", notInUseColour);
 			progressBar.gameObject.SetActive (false);
