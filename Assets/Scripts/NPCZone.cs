@@ -36,7 +36,9 @@ public class NPCZone : MonoBehaviour
 					progressBar.value = counter / npcSpeakingTime;
 				} else if (counter > npcSpeakingTime) {
 					GetComponent<Renderer> ().material.SetColor ("_Color", finishedColour);
-				}
+                    Destroy(npcAccepted);
+                    ResetZone();
+                }
 			} else {
 				npcSpeaking = true;
 				GetComponent<Renderer> ().material.SetColor ("_Color", inUseColour);
@@ -69,11 +71,16 @@ public class NPCZone : MonoBehaviour
 	void OnTriggerExit (Collider collider)
 	{
 		if (collider.transform.name.Contains ("Dressed")) {
-			npcAccepted = null;
-			GetComponent<Renderer> ().material.SetColor ("_Color", notInUseColour);
-			progressBar.gameObject.SetActive (false);
-			counter = 0;
-		}
+            ResetZone();
+        }
 	}
+
+    private void ResetZone()
+    {
+        npcAccepted = null;
+        GetComponent<Renderer>().material.SetColor("_Color", notInUseColour);
+        progressBar.gameObject.SetActive(false);
+        counter = 0;
+    }
 
 }
