@@ -175,6 +175,7 @@ GameObject:
   - 54: {fileID: 54000010350375808}
   - 136: {fileID: 136000013121200336}
   - 114: {fileID: 114000011913310190}
+  - 114: {fileID: 114000014033387552}
   m_Layer: 0
   m_Name: NPC_Male_Plain
   m_TagString: Untagged
@@ -1017,6 +1018,17 @@ MonoBehaviour:
   CopyColourFromHere: {fileID: 0}
   meshes:
   - {fileID: 0}
+--- !u!114 &114000014033387552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011935225294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9aa600c718729542bc7ada35330564f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136000013121200336
 CapsuleCollider:
   m_ObjectHideFlags: 1
