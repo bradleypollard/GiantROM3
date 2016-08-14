@@ -80,15 +80,31 @@ public class Interaction : MonoBehaviour
     }
   }
 
+	GameObject objectInHand;
+
+
   public void GrabObject(GameObject gb)
   {
-    objectInHands = gb.transform.parent.gameObject;
-    objectInHands.transform.parent = characterMesh;
-    objectInHands.GetComponent<Rigidbody>().isKinematic = true;
-    objectInHands.transform.position = characterMesh.position + new Vector3(0, 2.3f, 0);
-    objectInHands.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-    Debug.Log("Picking up object");
+
+		objectInHand = gb.transform.parent.gameObject;
+		objectInHand.transform.parent = characterMesh;
+		objectInHand.GetComponent<Rigidbody>().isKinematic = true;
+		objectInHand.transform.position = characterMesh.position + new Vector3(0, 2.3f, 0);
+		objectInHand.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+
+		StartCoroutine(RealGrabObject (gb)); 
   }
+
+
+
+	IEnumerator
+	RealGrabObject(GameObject gb)
+	{
+		yield return new WaitForSeconds (0.5f);
+
+		objectInHands = objectInHand;
+		Debug.Log("Picking up object");
+	}
 
   private void ThrowObject()
   {
