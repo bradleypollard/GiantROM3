@@ -81,7 +81,7 @@ public class InputOutputMachine : MonoBehaviour {
         {
             foreach(GameObject gb in playersInRange)
             {
-                if(Input.GetButtonDown("A_P" + gb.GetComponent<PlayerMovement>().playerIndex))
+                if (Input.GetButtonDown("A_P" + gb.GetComponent<PlayerMovement>().playerIndex) && gb.GetComponent<Interaction>().objectInHands != null)
                 {
                     playerUsingMachine = gb;
                     acceptedInputItem = gb.GetComponent<Interaction>().objectInHands;
@@ -108,11 +108,9 @@ public class InputOutputMachine : MonoBehaviour {
 
     void OnTriggerExit(Collider collider)
     {
-        ItemRecipe itemRecipeCheck = collider.GetComponent<ItemRecipe>();
-
-        if (itemRecipeCheck != null)
+        if (collider.name.Contains("Player") && playersInRange.Contains(collider.gameObject))
         {
-            playersInRange.Remove(collider.transform.parent.parent.gameObject);
+            playersInRange.Remove(collider.gameObject);
         }
     }
 

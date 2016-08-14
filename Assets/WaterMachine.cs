@@ -11,7 +11,7 @@ public class WaterMachine : MonoBehaviour {
     {
         foreach (GameObject player in playersInRange)
         {
-            if (Input.GetButtonDown("A_P" + player.GetComponent<PlayerMovement>().playerIndex))
+            if (Input.GetButtonDown("A_P" + player.GetComponent<PlayerMovement>().playerIndex) && player.GetComponent<Interaction>().objectInHands == null)
             {
                 GameObject newGB = Instantiate(waterCupPrefab, transform) as GameObject;
                 newGB.transform.parent = null;
