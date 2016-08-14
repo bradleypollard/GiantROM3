@@ -92,11 +92,11 @@ public class DemoStation : MonoBehaviour
     }
   }
 
-  public void EjectAll()
+  public void EjectAll(bool consumeDisc)
   {
     consoleStand.EjectConsole();
     consoleStand.EjectGamePad();
-    consoleStand.EjectDisc();
+    consoleStand.EjectDisc(consumeDisc);
   }
 
   void OnTriggerEnter(Collider collider)

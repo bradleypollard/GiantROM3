@@ -55,7 +55,7 @@ public class ConsoleStand : MonoBehaviour
             }
             if (currentHeldDisc != null && !(demoStation.hasCorrectConsole && demoStation.hasCorrectGamePad && demoStation.hasCorrectDisc))
             {
-              EjectDisc();
+              EjectDisc(false);
             }
           }
           else if (heldItem.tag == "Console" && currentHeldConsole == null)
@@ -223,27 +223,34 @@ public class ConsoleStand : MonoBehaviour
     currentHeldGamePad = null;
   }
 
-  public void EjectDisc()
+  public void EjectDisc(bool consumeDisc)
   {
-    // Reset
-    foreach (BoxCollider b in currentHeldDisc.GetComponentsInChildren<BoxCollider>())
+    if (consumeDisc)
     {
-      b.enabled = true;
+      Destroy(currentHeldDisc);
     }
-    currentHeldDisc.GetComponent<Rigidbody>().isKinematic = false;
-    currentHeldDisc.transform.parent = null;
-
-    if (currentHeldDisc.GetComponentInChildren<Renderer>().material.color.Equals(demoStation.discColours[demoStation.expectedDiscColour-1]))
+    else
     {
-      currentHeldDisc.GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 1);
-    }
+      // Reset
+      foreach (BoxCollider b in currentHeldDisc.GetComponentsInChildren<BoxCollider>())
+      {
+        b.enabled = true;
+      }
+      currentHeldDisc.GetComponent<Rigidbody>().isKinematic = false;
+      currentHeldDisc.transform.parent = null;
 
-    // Fling
-    Vector3 fwd = gameObject.transform.parent.TransformDirection(Vector3.right);
-    Vector3 up = gameObject.transform.parent.TransformDirection(Vector3.up);
-    currentHeldDisc.transform.position = currentHeldDisc.transform.position + fwd + up;
-    currentHeldDisc.GetComponent<Rigidbody>().AddForce(fwd * 200 + new Vector3(0, 200, 0));
-    Debug.Log("Ejecting " + currentHeldDisc.GetComponentInChildren<Renderer>().material.color.ToString());
+      if (currentHeldDisc.GetComponentInChildren<Renderer>().material.color.Equals(demoStation.discColours[demoStation.expectedDiscColour-1]))
+      {
+        currentHeldDisc.GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 1);
+      }
+
+      // Fling
+      Vector3 fwd = gameObject.transform.parent.TransformDirection(Vector3.right);
+      Vector3 up = gameObject.transform.parent.TransformDirection(Vector3.up);
+      currentHeldDisc.transform.position = currentHeldDisc.transform.position + fwd + up;
+      currentHeldDisc.GetComponent<Rigidbody>().AddForce(fwd * 200 + new Vector3(0, 200, 0));
+      Debug.Log("Ejecting " + currentHeldDisc.GetComponentInChildren<Renderer>().material.color.ToString());
+    }
 
     currentHeldDisc = null;
   }
