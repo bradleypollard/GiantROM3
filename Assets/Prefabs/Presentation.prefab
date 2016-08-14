@@ -228,7 +228,7 @@ MonoBehaviour:
   applauseAudioSource: {fileID: 82000011252048570}
   playerID: 0
   queueSize: 15
-  promptGenerationTime: 0.5
+  promptGenerationTime: 1
   promptTTL: 5
   isLit: 0
   isWorking: 1

@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
   [SerializeField]
   GameObject titleScreen;
   [SerializeField]
+  GameObject endScreen;
+  [SerializeField]
+  Text scoreEndText;
+  [SerializeField]
   TitleScreen titleScreenLogic;
   [SerializeField]
   public ProgramFeed programFeed;
@@ -50,7 +54,7 @@ public class GameManager : MonoBehaviour
       }
 
       scoreText.text = "Score: " + score;
-      timeText.text = "Time Left: " + (gameLength - counter);
+      timeText.text = "Time Left: " + Mathf.RoundToInt((gameLength - counter));
     }
     else if (!gameFinished)
     {
@@ -124,6 +128,9 @@ public class GameManager : MonoBehaviour
     scoreText.enabled = false;
     timeText.enabled = false;
     gameFinished = true;
+    endScreen.SetActive(true);
+
+    scoreEndText.text = "You scored:\n " + score;
   }
 
   public void IncreaseScore(int points)
