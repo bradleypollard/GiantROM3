@@ -223,30 +223,37 @@ public class ProgramFeed : MonoBehaviour
     }
 
     SetUpcomingNPCToCurrent();
-
-    // Highlight chosen NPC
-    if (currentNPC.isMale)
-    {
-      foreach (Renderer r in maleInstance.GetComponentsInChildren<Renderer>())
-      {
-        r.material.SetFloat("_OutlineTransparency", 1);
-      }
-    }
-    else
-    {
-      foreach (Renderer r in femaleInstance.GetComponentsInChildren<Renderer>())
-      {
-        r.material.SetFloat("_OutlineTransparency", 1);
-      }
-    }
   }
 
   private void SetUpcomingNPCToCurrent()
   {
     currentNPC = upcomingNPC;
     npcZone.gender = currentNPC.isMale ? "Male" : "Female";
-    GenerateNPC();
     
+    // Highlight chosen NPC
+    if (currentNPC.isMale)
+    {
+      foreach (Renderer r in maleInstance.GetComponentInChildren<MeshSaver>().meshes)
+      {
+        foreach (Material m in r.materials)
+        {
+          m.SetFloat("_OutlineTransparency", 1);
+        }
+      }
+    }
+    else
+    {
+      foreach (Renderer r in femaleInstance.GetComponentInChildren<MeshSaver>().meshes)
+      {
+        foreach (Material m in r.materials)
+        {
+          m.SetFloat("_OutlineTransparency", 1);
+        }
+      }
+    }
+
+    GenerateNPC();
+
     RenderUpcomingNPCCard();
     RenderCurrentNPCCard();
   }

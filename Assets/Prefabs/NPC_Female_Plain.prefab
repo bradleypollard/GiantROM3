@@ -255,6 +255,7 @@ GameObject:
   - 54: {fileID: 54000011316316876}
   - 136: {fileID: 136000011837508546}
   - 114: {fileID: 114000011721172036}
+  - 114: {fileID: 114000011021751358}
   m_Layer: 0
   m_Name: NPC_Female_Plain
   m_TagString: Untagged
@@ -930,7 +931,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 4, z: 1.5}
+  m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &95000010113893172
 Animator:
@@ -949,6 +950,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000011021751358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013691332208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78153ae6f05faca4487bf0f9a5b54cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshes:
+  - {fileID: 23000012373393624}
 --- !u!114 &114000011721172036
 MonoBehaviour:
   m_ObjectHideFlags: 1

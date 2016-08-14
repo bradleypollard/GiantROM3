@@ -18,6 +18,8 @@ public class NPCZone : MonoBehaviour
   Renderer lightMesh;
   [SerializeField]
   ProgramFeed programFeed;
+  [SerializeField]
+  GameObject ring;
 
   [Header("Settings")]
   [SerializeField]
@@ -43,6 +45,7 @@ public class NPCZone : MonoBehaviour
   {
     if (npcAccepted && npcAccepted.transform.parent == null)
     {
+      ring.SetActive(false);
       if (npcSpeaking)
       {
         progressBar.gameObject.SetActive(true);
@@ -77,6 +80,7 @@ public class NPCZone : MonoBehaviour
     }
     else
     {
+      ring.SetActive(true);
       // Display lit icon
       litIcon.SetActive(false);
       // Outline light station
