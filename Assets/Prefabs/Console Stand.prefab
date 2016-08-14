@@ -198,7 +198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012020357352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,6 +1123,7 @@ MonoBehaviour:
   smoke: {fileID: 1000011580757562}
   currentHeldConsole: {fileID: 0}
   currentHeldGamePad: {fileID: 0}
+  currentHeldDisc: {fileID: 0}
   repairTime: 3
 --- !u!114 &114000012774680412
 MonoBehaviour:
@@ -1139,15 +1140,21 @@ MonoBehaviour:
   consoleStand: {fileID: 114000012588272878}
   noGamePadIcon: {fileID: 1000010845074198}
   noConsoleIcon: {fileID: 1000011237560482}
+  noDiscIcon: {fileID: 1000012046731120}
   meshes:
   - {fileID: 23000014162036072}
   - {fileID: 23000012688140142}
   playerID: 0
   expectedDiscColour: 0
+  discColours:
+  - {r: 0, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   expectedConsoleName: 
   expectedGamePadName: 
   hasCorrectConsole: 0
   hasCorrectGamePad: 0
+  hasCorrectDisc: 0
 --- !u!114 &114000013191615068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2974,8 +2981,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 224000010945702412}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 2.474977, y: 0}
   m_SizeDelta: {x: 4.95, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

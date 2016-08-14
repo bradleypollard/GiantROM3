@@ -202,8 +202,8 @@ public class ProgramFeed : MonoBehaviour {
 
   public void OnDemoFinished()
   {
-    demoStation.EjectAll();
     SetUpcomingDemoToCurrent();
+    demoStation.EjectAll();
   }
 
   private void SetUpcomingDemoToCurrent()

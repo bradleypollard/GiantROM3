@@ -43,7 +43,7 @@ GameObject:
   - 114: {fileID: 114000010206832770}
   m_Layer: 2
   m_Name: Disk
-  m_TagString: Untagged
+  m_TagString: Disc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,6 +222,7 @@ MonoBehaviour:
   ITurnInto: {fileID: 0}
   IWorkWithThisMachine: Console
   CopyColourFromHere: {fileID: 23000013635927776}
+  meshes: []
 --- !u!114 &114000011799584872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,3 +237,4 @@ MonoBehaviour:
   ITurnInto: {fileID: 0}
   IWorkWithThisMachine: Console
   CopyColourFromHere: {fileID: 23000013635927776}
+  meshes: []
