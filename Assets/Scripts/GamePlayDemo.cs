@@ -222,12 +222,4 @@ public class GamePlayDemo : MonoBehaviour
   {
     isWorking = _isWorking;
   }
-
-  // Debug drawing the input string
-  void OnGUI()
-  {
-    GUI.Label(new Rect(0, 0, 500, 20), gameInputs);
-    GUI.Label(new Rect(0, 30, 500, 20), hit, hitStyle);
-    GUI.Label(new Rect(0, 60, 500, 20), miss, missStyle);
-  }
 }

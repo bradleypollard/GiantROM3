@@ -536,6 +536,8 @@ MonoBehaviour:
   lightMesh: {fileID: 0}
   programFeed: {fileID: 0}
   ring: {fileID: 1000013408443168}
+  waterCooler:
+  - {fileID: 0}
   npcSpeaking: 0
   npcSpeakingTime: 8
   notInUseColour: {r: 1, g: 0.4705882, b: 0.4705882, a: 0.478}

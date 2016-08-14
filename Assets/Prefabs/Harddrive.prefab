@@ -37,6 +37,7 @@ GameObject:
   - 54: {fileID: 54000012140820818}
   - 65: {fileID: 65000011084087928}
   - 114: {fileID: 114000012359315766}
+  - 114: {fileID: 114000010342485492}
   m_Layer: 0
   m_Name: Harddrive
   m_TagString: Untagged
@@ -357,6 +358,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000010342485492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010504441080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ab60908a2b2ae4aa316d6c72a37376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000012359315766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -371,3 +383,4 @@ MonoBehaviour:
   ITurnInto: {fileID: 1000012391200508, guid: ef69317ae465ede4b972c80a45096cde, type: 2}
   IWorkWithThisMachine: Disk Burner
   CopyColourFromHere: {fileID: 23000013208523162}
+  meshes: []

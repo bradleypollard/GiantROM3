@@ -10,7 +10,7 @@ public class ItemRecipe : MonoBehaviour
   public Renderer CopyColourFromHere;
 
   [SerializeField]
-  Renderer[] meshes;
+  public Renderer[] meshes;
 
   void Update()
   {

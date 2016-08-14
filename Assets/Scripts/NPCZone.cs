@@ -20,6 +20,8 @@ public class NPCZone : MonoBehaviour
   ProgramFeed programFeed;
   [SerializeField]
   GameObject ring;
+  [SerializeField]
+  Renderer[] waterCooler;
 
   [Header("Settings")]
   [SerializeField]
@@ -58,6 +60,10 @@ public class NPCZone : MonoBehaviour
         {
           waitingWater = true;
           requireWaterIcon.SetActive(true);
+          foreach (Renderer r in waterCooler)
+          {
+            r.material.SetFloat("_OutlineTransparency", 1);
+          }
         }
         else if (counter < npcSpeakingTime && !waitingWater && isLit)
         {
@@ -112,6 +118,10 @@ public class NPCZone : MonoBehaviour
       waitingWater = false;
       requireWater = false;
       requireWaterIcon.SetActive(false);
+      foreach (Renderer r in waterCooler)
+      {
+        r.material.SetFloat("_OutlineTransparency", 0);
+      }
     }
   }
 

@@ -240,3 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf291569a21474546a07b78b2c433819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterCupPrefab: {fileID: 1000010673150898, guid: 54e217c39041dfe46b329ec8514f5ca9,
+    type: 2}
+  playersInRange: []
