@@ -9308,7 +9308,7 @@ Transform:
   m_PrefabInternal: {fileID: 684098138}
 --- !u!1 &684663058 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1000013652525914, guid: c63dc23ecca86aa4283776b89f3d7bee,
+  m_PrefabParentObject: {fileID: 1000013878357132, guid: c63dc23ecca86aa4283776b89f3d7bee,
     type: 2}
   m_PrefabInternal: {fileID: 1935145653}
 --- !u!1001 &686582259
@@ -11493,6 +11493,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b095cc4095c17994f8cc8c3eea00a7c8, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &867922016 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013652525914, guid: c63dc23ecca86aa4283776b89f3d7bee,
+    type: 2}
+  m_PrefabInternal: {fileID: 1935145653}
 --- !u!1 &868111419
 GameObject:
   m_ObjectHideFlags: 0
@@ -23065,19 +23070,14 @@ Prefab:
       objectReference: {fileID: 5900652}
     - target: {fileID: 114000012003239512, guid: 3659b66e6fb2ad347bd532fc2e861cda,
         type: 2}
+      propertyPath: crankIcon
+      value: 
+      objectReference: {fileID: 867922016}
+    - target: {fileID: 114000012003239512, guid: 3659b66e6fb2ad347bd532fc2e861cda,
+        type: 2}
       propertyPath: speakerAudioSource
       value: 
       objectReference: {fileID: 1935145654}
-    - target: {fileID: 82000011252048570, guid: 3659b66e6fb2ad347bd532fc2e861cda,
-        type: 2}
-      propertyPath: spreadCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82000011252048570, guid: 3659b66e6fb2ad347bd532fc2e861cda,
-        type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3659b66e6fb2ad347bd532fc2e861cda, type: 2}
   m_IsPrefabParent: 0
@@ -25964,6 +25964,11 @@ Prefab:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114000011688079910, guid: c63dc23ecca86aa4283776b89f3d7bee,
+        type: 2}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1034790242}
+    - target: {fileID: 114000010815609948, guid: c63dc23ecca86aa4283776b89f3d7bee,
         type: 2}
       propertyPath: camera
       value: 

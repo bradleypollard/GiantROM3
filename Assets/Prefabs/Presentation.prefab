@@ -133,7 +133,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -177,6 +177,7 @@ MonoBehaviour:
   crankMeshes:
   - {fileID: 0}
   - {fileID: 0}
+  crankIcon: {fileID: 0}
   simlish:
   - {fileID: 8300000, guid: 2712f71641f3f504f94bb00f91fa7e4c, type: 3}
   - {fileID: 8300000, guid: 222e370a78a76cf40835e1acfb4ae643, type: 3}

@@ -30,6 +30,8 @@ public class Teleprompter : MonoBehaviour
   [SerializeField]
   Renderer[] crankMeshes;
   [SerializeField]
+  GameObject crankIcon;
+  [SerializeField]
   AudioClip[] simlish;
   [SerializeField]
   AudioSource speakerAudioSource;
@@ -57,7 +59,6 @@ public class Teleprompter : MonoBehaviour
   private ButtonPrompt visiblePrompt;
   private Queue<string> upcomingPrompts;
   private float timeTillNextPrompt = 0f;
-  private bool prevIsLit = true;
   private int currentDuration = 0;
 
   // Use this for initialization
@@ -137,6 +138,7 @@ public class Teleprompter : MonoBehaviour
       // No GUI should show if no-one is on the mic
       litIcon.SetActive(false);
       lightMesh.material.SetFloat("_OutlineTransparency", 0);
+      crankIcon.SetActive(false);
       foreach (Renderer r in crankMeshes)
       {
         r.material.SetFloat("_OutlineTransparency", 0);
@@ -145,6 +147,7 @@ public class Teleprompter : MonoBehaviour
     else if (currentDuration < duration && upcomingPrompts.Count == 0 && visiblePrompt == null)
     {
       // If the prompts have run out, highlight the crank
+      crankIcon.SetActive(true);
       foreach (Renderer r in crankMeshes)
       {
         r.material.SetFloat("_OutlineTransparency", 1);
@@ -153,6 +156,7 @@ public class Teleprompter : MonoBehaviour
     else
     {
       // Otherwise, make sure crank is not highlighted
+      crankIcon.SetActive(false);
       foreach (Renderer r in crankMeshes)
       {
         r.material.SetFloat("_OutlineTransparency", 0);
@@ -182,7 +186,7 @@ public class Teleprompter : MonoBehaviour
     }
 
     // If the light has turned on or off this frame we need to change the shader now
-    if (isLit != prevIsLit && visiblePrompt != null)
+    if (visiblePrompt != null)
     {
       if (isLit)
       {
@@ -192,14 +196,11 @@ public class Teleprompter : MonoBehaviour
       {
         visiblePrompt.gameObject.GetComponent<Renderer>().material.shader = greyscaleButtonShader;
       }
-
-      // Display icon
-      litIcon.SetActive(!isLit);
-      lightMesh.material.SetFloat("_OutlineTransparency", isLit ? 0 : 1);
-
-      // Update prevLit state for next frame
-      prevIsLit = isLit;
     }
+
+    // Display icon
+    litIcon.SetActive(!isLit);
+    lightMesh.material.SetFloat("_OutlineTransparency", isLit ? 0 : 1);
 
 
     // Finally, if the light is on we should take input from the player
