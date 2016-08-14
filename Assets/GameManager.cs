@@ -23,6 +23,12 @@ public class GameManager : MonoBehaviour
   TitleScreen titleScreenLogic;
   [SerializeField]
   public ProgramFeed programFeed;
+  [SerializeField]
+  AudioSource musicPlayer;
+  [SerializeField]
+  AudioClip inGameMusic;
+  [SerializeField]
+  AudioClip endGameMusic;
 
   [Header("Settings")]
   [SerializeField]
@@ -112,6 +118,11 @@ public class GameManager : MonoBehaviour
     scoreText.enabled = true;
     timeText.enabled = true;
 
+    // Play end game music
+    musicPlayer.Stop();
+    musicPlayer.clip = inGameMusic;
+    musicPlayer.Play();
+
     // Run first time initialisation of program feed
     programFeed.Init();
   }
@@ -137,6 +148,11 @@ public class GameManager : MonoBehaviour
     endScreen.SetActive(true);
 
     scoreEndText.text = "You scored:\n " + score;
+
+    // Play end game music
+    musicPlayer.Stop();
+    musicPlayer.clip = endGameMusic;
+    musicPlayer.Play();
   }
 
   public void IncreaseScore(int points)

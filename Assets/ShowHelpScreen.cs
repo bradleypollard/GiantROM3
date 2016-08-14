@@ -6,6 +6,12 @@ public class ShowHelpScreen : MonoBehaviour {
   public GameObject helpScreen;
   public GameManager gameManager;
 
+  void Start()
+  {
+    helpScreen.SetActive(true);
+    gameManager.SetPauseState(true);
+  }
+
 	void Update () 
   {
 
