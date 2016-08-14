@@ -40,7 +40,7 @@ public class InputOutputMachine : MonoBehaviour
       {
         if (Input.GetButtonUp("A_P" + playerUsingMachine.GetComponent<PlayerMovement>().playerIndex))
         {
-          playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+          playerUsingMachine.GetComponent<PlayerMovement>().lockMovement = false;
           acceptedInputItem.SetActive(true);
           acceptedInputItem = null;
           counter = 0;
@@ -58,7 +58,7 @@ public class InputOutputMachine : MonoBehaviour
         {
           Debug.Log("Machine finished, reseting and giving item to player");
           SwapObject(acceptedInputItem);
-          playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+          playerUsingMachine.GetComponent<PlayerMovement>().lockMovement = false;
           MachineFinished(playerUsingMachine);
           AudioSource source = GetComponent<AudioSource>();
           if (source != null)
@@ -80,7 +80,7 @@ public class InputOutputMachine : MonoBehaviour
           {
             Debug.Log("Machine finished, reseting and giving item to player");
             SwapObject(acceptedInputItem);
-            playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
+            playerUsingMachine.GetComponent<PlayerMovement>().lockMovement = false;
             MachineFinished(playerUsingMachine);
             AudioSource source = GetComponent<AudioSource>();
             if (source != null)
@@ -103,7 +103,7 @@ public class InputOutputMachine : MonoBehaviour
           acceptedInputItem.SetActive(false);
           progressSlider.GetComponentInChildren<Slider>().value = 0;
           progressSlider.gameObject.SetActive(true);
-          playerUsingMachine.GetComponent<PlayerMovement>().enabled = false;
+          playerUsingMachine.GetComponent<PlayerMovement>().lockMovement = true;
           AudioSource source = GetComponent<AudioSource>();
           if (source != null)
           {

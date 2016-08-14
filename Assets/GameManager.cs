@@ -58,7 +58,9 @@ public class GameManager : MonoBehaviour
       }
 
       scoreText.text = "Score: " + score;
-      timeText.text = "Time Left: " + Mathf.RoundToInt((gameLength - counter));
+      System.TimeSpan t = System.TimeSpan.FromSeconds(Mathf.RoundToInt((gameLength - counter)));
+      string timeRemaining = string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
+      timeText.text = "Time Left: " + timeRemaining;
     }
     else if (!gameFinished)
     {
