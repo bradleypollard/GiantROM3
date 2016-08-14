@@ -237,7 +237,7 @@ public class ProgramFeed : MonoBehaviour
     npcZone.gender = currentNPC.isMale ? "Male" : "Female";
     
     // Highlight chosen NPC
-    if (currentNPC.isMale)
+    if (currentNPC.isMale && maleInstance != null)
     {
       foreach (Renderer r in maleInstance.GetComponentInChildren<MeshSaver>().meshes)
       {
@@ -247,7 +247,7 @@ public class ProgramFeed : MonoBehaviour
         }
       }
     }
-    else
+    else if (femaleInstance != null)
     {
       foreach (Renderer r in femaleInstance.GetComponentInChildren<MeshSaver>().meshes)
       {
