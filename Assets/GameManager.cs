@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
   public bool gameInProgress = false;
   public int score = 0;
   public bool gameFinished = false;
+  public bool gamePaused = false;
 
   private float timer;
   private float counter;
@@ -46,7 +47,10 @@ public class GameManager : MonoBehaviour
       titleScreen.SetActive(false);
       if (counter < gameLength)
       {
-        counter += Time.deltaTime;
+        if (!gamePaused)
+        {
+          counter += Time.deltaTime;
+        }
       }
       else
       {
@@ -141,6 +145,17 @@ public class GameManager : MonoBehaviour
   public void RestartGame()
   {
     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+  }
+
+  public void SetPauseState(bool state)
+  {
+    if(state) {
+      SetPlayerControllerState(false);
+      gamePaused = true;
+    } else {
+      SetPlayerControllerState(true);
+      gamePaused = false;
+    }
   }
 
 }
