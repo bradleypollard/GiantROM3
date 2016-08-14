@@ -6,8 +6,9 @@ public class LoadingBayDoor : MonoBehaviour
 {
 	[Header ("REFERENCES")]
 	[SerializeField] Transform door;
+	[SerializeField] AudioClip open;
 
-	[Header ("SETTINGS")]
+  [Header ("SETTINGS")]
 	[SerializeField] float animationDuration;
 
 	//public bool vanPresent;
@@ -52,7 +53,9 @@ public class LoadingBayDoor : MonoBehaviour
 	{
 		if (other.name == "Truck") {
 			StartCoroutine (DoorOpen (true));
-		}
+      GetComponent<AudioSource>().clip = open;
+      GetComponent<AudioSource>().Play();
+    }
 	}
 
 	void
@@ -60,6 +63,6 @@ public class LoadingBayDoor : MonoBehaviour
 	{
 		if (other.name == "Truck") {
 			StartCoroutine (DoorOpen (false));
-		}
+    }
 	}
 }

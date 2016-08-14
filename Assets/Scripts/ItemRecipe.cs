@@ -31,7 +31,10 @@ public class ItemRecipe : MonoBehaviour
   {
     foreach (Renderer r in meshes)
     {
-      r.material.SetFloat("_OutlineTransparency", 0);
+      if (r != null)
+      {
+        r.material.SetFloat("_OutlineTransparency", 0);
+      }
     }
   }
 

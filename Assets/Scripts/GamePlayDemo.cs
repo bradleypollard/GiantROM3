@@ -27,6 +27,14 @@ public class GamePlayDemo : MonoBehaviour
   GameObject litIcon;
   [SerializeField]
   Renderer lightMesh;
+  [SerializeField]
+  AudioClip[] arcadeGood;
+  [SerializeField]
+  AudioClip[] arcadeBad;
+  [SerializeField]
+  AudioSource playerAudioSource;
+  [SerializeField]
+  AudioSource applauseAudioSource;
 
   [Header("Settings")]
   [Range(0, 4)]
@@ -103,6 +111,8 @@ public class GamePlayDemo : MonoBehaviour
     hit = "";
     miss = "";
     gameInputs = "";
+
+    applauseAudioSource.Play();
   }
 
   // Called when the player arrives
@@ -205,6 +215,9 @@ public class GamePlayDemo : MonoBehaviour
     ButtonPrompt bp = visiblePrompts.Dequeue();
     Destroy(bp.gameObject);
     gameInputs = gameInputs.Substring(1);
+
+    playerAudioSource.clip = arcadeGood[Random.Range(0, arcadeGood.Length)];
+    playerAudioSource.Play();
   }
 
   // Called when a player hits the wrong button, or doesn't hit any button in time
@@ -215,7 +228,9 @@ public class GamePlayDemo : MonoBehaviour
     Destroy(bp.gameObject);
     gameInputs = gameInputs.Substring(1);
     SetWorking(false);
-    
+
+    playerAudioSource.clip = arcadeBad[Random.Range(0, arcadeBad.Length)];
+    playerAudioSource.Play();
   }
 
   public void SetWorking(bool _isWorking)

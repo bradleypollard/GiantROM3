@@ -188,10 +188,10 @@ MonoBehaviour:
   speakerAudioSource: {fileID: 0}
   applauseAudioSource: {fileID: 82000011252048570}
   speakerID: 0
-  maxQueueSize: 20
-  duration: 50
-  promptGenerationDelay: 1.2
-  isLit: 1
+  maxQueueSize: 10
+  duration: 20
+  promptGenerationDelay: 0.5
+  isLit: 0
 --- !u!114 &114000012406751628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -219,10 +219,17 @@ MonoBehaviour:
   programFeed: {fileID: 0}
   litIcon: {fileID: 0}
   lightMesh: {fileID: 0}
+  arcadeGood:
+  - {fileID: 8300000, guid: d349a351795cd394c8042e561b694bf1, type: 3}
+  - {fileID: 8300000, guid: edbded6ea3170784f8f2927493509297, type: 3}
+  arcadeBad:
+  - {fileID: 8300000, guid: b9c27ae0de8fe564caf1e70289053372, type: 3}
+  playerAudioSource: {fileID: 0}
+  applauseAudioSource: {fileID: 82000011252048570}
   playerID: 0
-  queueSize: 30
-  promptGenerationTime: 1
+  queueSize: 15
+  promptGenerationTime: 0.5
   promptTTL: 5
-  isLit: 1
+  isLit: 0
   isWorking: 1
-  isRunning: 1
+  isRunning: 0

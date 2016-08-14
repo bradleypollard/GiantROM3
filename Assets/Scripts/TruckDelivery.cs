@@ -4,7 +4,9 @@ using DG.Tweening;
 
 public class TruckDelivery : MonoBehaviour
 {
-
+  public AudioClip reverse;
+  public AudioClip squeal;
+  
 	public GameObject hardDrivePrefab;
 	public string childNameForColour;
 	public Transform spawnPoint;
@@ -39,7 +41,12 @@ public class TruckDelivery : MonoBehaviour
 		truckDeliverySequence.AppendInterval (0.5f);
 		truckDeliverySequence.Append (transform.DOMove (startPos, truckAnimationTime));
 		truckDeliverySequence.Play ();
-	}
+
+    GetComponent<AudioSource>().clip = squeal;
+    GetComponent<AudioSource>().Play();
+
+    // TODO: Leaving tyre squeal (different sound effect, pulling away?)
+  }
 
 	public void ChuckHardDriveOutBack ()
 	{

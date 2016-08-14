@@ -60,6 +60,11 @@ public class InputOutputMachine : MonoBehaviour
           SwapObject(acceptedInputItem);
           playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
           MachineFinished(playerUsingMachine);
+          AudioSource source = GetComponent<AudioSource>();
+          if (source != null)
+          {
+            source.Stop();
+          }
         }
       }
       else if (selectedInputType == InputType.Tap)
@@ -77,6 +82,11 @@ public class InputOutputMachine : MonoBehaviour
             SwapObject(acceptedInputItem);
             playerUsingMachine.GetComponent<PlayerMovement>().enabled = true;
             MachineFinished(playerUsingMachine);
+            AudioSource source = GetComponent<AudioSource>();
+            if (source != null)
+            {
+              source.Stop();
+            }
           }
         }
       }
@@ -94,6 +104,11 @@ public class InputOutputMachine : MonoBehaviour
           progressSlider.GetComponentInChildren<Slider>().value = 0;
           progressSlider.gameObject.SetActive(true);
           playerUsingMachine.GetComponent<PlayerMovement>().enabled = false;
+          AudioSource source = GetComponent<AudioSource>();
+          if (source != null)
+          {
+            source.Play();
+          }
         }
       }
     }
