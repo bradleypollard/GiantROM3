@@ -1001,7 +1001,8 @@ MonoBehaviour:
   ITurnInto: {fileID: 1000011675465114, guid: 08ac1c543307d9a449ecb9fcf0d14764, type: 2}
   IWorkWithThisMachine: Dressing Room Door Male
   CopyColourFromHere: {fileID: 0}
-  shaderOutline: {fileID: 4800000, guid: 87756ce3ee8b2b04eaedaf3e587602d4, type: 3}
+  meshes:
+  - {fileID: 0}
 --- !u!136 &136000013121200336
 CapsuleCollider:
   m_ObjectHideFlags: 1

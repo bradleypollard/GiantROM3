@@ -3,41 +3,29 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ProgramFeed : MonoBehaviour {
-
-  [Header("Players")]
+public class ProgramFeed : MonoBehaviour
+{
+  [Header("NPCs")]
   [SerializeField]
-  GameObject player1;
+  GameObject malePrefab;
   [SerializeField]
-  GameObject player2;
+  GameObject femalePrefab;
   [SerializeField]
-  GameObject player3;
+  GameObject maleInstance;
   [SerializeField]
-  GameObject player4;
-
-  [Header("Consoles")]
+  GameObject femaleInstance;
   [SerializeField]
-  GameObject playstation;
+  Transform maleSpawn;
   [SerializeField]
-  GameObject nintendo;
-  [SerializeField]
-  GameObject xbox;
-
-  [Header("GamePads")]
-  [SerializeField]
-  GameObject playstationGamePad;
-  [SerializeField]
-  GameObject nintendoGamePad;
-  [SerializeField]
-  GameObject xboxGamePad;
-  [SerializeField]
-  GameObject VRGamePad;
+  Transform femaleSpawn;
 
   [Header("Logic")]
   [SerializeField]
   DemoStation demoStation;
   [SerializeField]
   Microphone microphone;
+  [SerializeField]
+  NPCZone npcZone;
 
   [Header("Settings")]
   [SerializeField]
@@ -47,8 +35,8 @@ public class ProgramFeed : MonoBehaviour {
   [Range(2, 4)]
   public int numberOfPlayers = 4;
 
-  private string[] consoleNames = {"Playstation", "WiiU", "Xbox"};
-  private string[] gamePadNames = {"Playstation GamePad", "WiiU GamePad", "Xbox GamePad", "VR GamePad"};
+  private string[] consoleNames = { "Playstation", "WiiU", "Xbox" };
+  private string[] gamePadNames = { "Playstation GamePad", "WiiU GamePad", "Xbox GamePad", "VR GamePad" };
   private GameObject[] consolePrefabs;
   private GameObject[] gamePadPrefabs;
 
@@ -77,14 +65,14 @@ public class ProgramFeed : MonoBehaviour {
       console = _console;
       gamePad = _gamePad;
       discColour = _discColour;
-		gameTitle = _gameTitle;
+      gameTitle = _gameTitle;
     }
 
     public int playerID;
     public ConsoleType console;
     public GamePadType gamePad;
     public int discColour;
-	public string gameTitle;
+    public string gameTitle;
   }
 
   private struct SpeechData
@@ -102,11 +90,11 @@ public class ProgramFeed : MonoBehaviour {
     public NPCData(bool _isMale, string _npcName)
     {
       isMale = _isMale;
-	  npcName = _npcName;
+      npcName = _npcName;
     }
-    
+
     public bool isMale;
-	public string npcName;
+    public string npcName;
   }
 
   private NPCData currentNPC;
@@ -117,7 +105,8 @@ public class ProgramFeed : MonoBehaviour {
   private SpeechData upcomingSpeech;
 
   // Use this for initialization
-  void Start () {
+  void Start()
+  {
     GenerateSpeech();
     SetUpcomingSpeechToCurrent();
 
@@ -126,7 +115,7 @@ public class ProgramFeed : MonoBehaviour {
 
     GenerateNPC();
     SetUpcomingNPCToCurrent();
-	}
+  }
 
   private void GenerateSpeech()
   {
@@ -169,20 +158,20 @@ public class ProgramFeed : MonoBehaviour {
     // Randomly select disc colour
     int colour = Random.Range(1, 4);
 
-    if (Random.Range(0f,1f) < VRProbability)
+    if (Random.Range(0f, 1f) < VRProbability)
     {
       upcomingGamePad = GamePadType.VR;
     }
 
     // Assign upcoming demo
-	upcomingDemo = new DemoData(upcomingPlayer, upcomingConsole, upcomingGamePad, colour, CreateNewGameTitle());
+    upcomingDemo = new DemoData(upcomingPlayer, upcomingConsole, upcomingGamePad, colour, CreateNewGameTitle());
 
   }
 
   private void GenerateNPC()
   {
-		int randomNumber = Random.Range (0, 2);
-		upcomingNPC = new NPCData(randomNumber == 0, CreateNewNPCName(randomNumber));
+    int randomNumber = Random.Range(0, 2);
+    upcomingNPC = new NPCData(randomNumber == 0, CreateNewNPCName(randomNumber));
   }
 
   public void OnSpeechFinished()
@@ -196,8 +185,8 @@ public class ProgramFeed : MonoBehaviour {
     microphone.speakerID = currentSpeech.playerID;
     GenerateSpeech();
 
-	RenderCurrentSpeechCard();
-	RenderUpcomingSpeech();
+    RenderCurrentSpeechCard();
+    RenderUpcomingSpeech();
   }
 
   public void OnDemoFinished()
@@ -217,225 +206,253 @@ public class ProgramFeed : MonoBehaviour {
     GameObject.Find(demoStation.expectedGamePadName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 1);
     GenerateDemo();
 
-	RenderCurrentDemoCard ();
-	RenderUpcomingDemoCard ();
+    RenderCurrentDemoCard();
+    RenderUpcomingDemoCard();
   }
 
   public void OnNPCFinished()
   {
+    // Spawn new NPC
+    if (currentNPC.isMale)
+    {
+      maleInstance = (GameObject)Instantiate(malePrefab, maleSpawn.position, Quaternion.identity);
+    }
+    else
+    {
+      femaleInstance = (GameObject)Instantiate(femalePrefab, femaleSpawn.position, Quaternion.identity);
+    }
+
     SetUpcomingNPCToCurrent();
+
+    // Highlight chosen NPC
+    if (currentNPC.isMale)
+    {
+      foreach (Renderer r in maleInstance.GetComponentsInChildren<Renderer>())
+      {
+        r.material.SetFloat("_OutlineTransparency", 1);
+      }
+    }
+    else
+    {
+      foreach (Renderer r in femaleInstance.GetComponentsInChildren<Renderer>())
+      {
+        r.material.SetFloat("_OutlineTransparency", 1);
+      }
+    }
   }
 
   private void SetUpcomingNPCToCurrent()
   {
     currentNPC = upcomingNPC;
-    // TODO: Set NPC dropoff variables
+    npcZone.gender = currentNPC.isMale ? "Male" : "Female";
     GenerateNPC();
-
-	RenderUpcomingNPCCard();
-	RenderCurrentNPCCard ();
+    
+    RenderUpcomingNPCCard();
+    RenderCurrentNPCCard();
   }
 
   // Update is called once per frame
-  void Update () {
-	  if (Input.GetKeyDown(KeyCode.Q))
+  void Update()
+  {
+    if (Input.GetKeyDown(KeyCode.Q))
     {
       // TODO: Remove this debug input
       SetUpcomingSpeechToCurrent();
       SetUpcomingDemoToCurrent();
       SetUpcomingNPCToCurrent();
-			TestAll ();
+      TestAll();
     }
-	}
+  }
 
-//  void OnGUI()
-//  {
-//    GUI.Label(new Rect(0, 0, 200, 20), "Current speaker: " + currentSpeech.playerID);
-//    GUI.Label(new Rect(0, 30, 200, 20), "Upcoming speaker: " + upcomingSpeech.playerID);
-//
-//    GUI.Label(new Rect(200, 0, 400, 20), "Current demoer: " + currentDemo.playerID 
-//      + ". Game " + currentDemo.discColour + " on " + consoleNames[(int)currentDemo.console] + " with " + gamePadNames[(int)currentDemo.gamePad]);
-//    GUI.Label(new Rect(200, 30, 400, 20), "Upcoming demoer: " + upcomingDemo.playerID 
-//      + ". Game " + currentDemo.discColour + " on " + consoleNames[(int)upcomingDemo.console] + " with " + gamePadNames[(int)upcomingDemo.gamePad]);
-//
-//    GUI.Label(new Rect(600, 0, 200, 20), "Current NPC: " + (currentNPC.isMale ? "Male" : "Female"));
-//    GUI.Label(new Rect(600, 30, 200, 20), "Upcoming NPC: " + (upcomingNPC.isMale ? "Male" : "Female"));
-//  }
-		
-
-
-	[Header("GUI STUFF")]
-	[SerializeField] List<TaskCard> taskCards;
-	List<string> maleDevNames = new List<string>();
-	List<string> femaleDevNames = new List<string>();
-	List<string> gameNames = new List<string>();
-
-	void
-	TestAll()
-	{
-		RenderCurrentDemoCard ();
-		RenderCurrentSpeechCard();
-		RenderUpcomingSpeech();
-		RenderUpcomingNPCCard();
-		RenderCurrentNPCCard ();
-		RenderUpcomingDemoCard ();
-	}
-
-	void
-	RenderCurrentDemoCard()
-	{
-		TaskCardInfo info = new TaskCardInfo();
-
-		info.playerID = currentDemo.playerID;
-		info.gameID = currentDemo.discColour;
-		info.consoleType = consoleNames [(int)currentDemo.console];
-		info.gameName = currentDemo.gameTitle;
-		if (currentDemo.gamePad == GamePadType.VR)
-			info.vr = true;
-		else
-			info.vr = false;
-
-		if (gamePadNames [(int)currentDemo.gamePad] == "VR Gamepad")
-		{
-			info.vr = true;
-		}
-
-		taskCards [0].UpdateGraphics (info);
-	}
-
-	void
-	RenderCurrentSpeechCard()
-	{
-		TaskCardInfo info = new TaskCardInfo ();
-
-		info.playerID = currentSpeech.playerID;
-
-		taskCards [1].UpdateGraphics (info);
-	}
-
-	void
-	RenderCurrentNPCCard()
-	{
-		TaskCardInfo info = new TaskCardInfo ();
-
-		info.type = CardType.NPC;
-		info.isMale = currentNPC.isMale;
-		info.npcName = currentNPC.npcName;
-
-		taskCards[2].UpdateGraphics (info);
-	}
-
-	void
-	RenderUpcomingDemoCard()
-	{
-		TaskCardInfo info = new TaskCardInfo();
-
-		info.playerID = upcomingDemo.playerID;
-		info.gameID = upcomingDemo.discColour;
-		info.consoleType = consoleNames [(int)upcomingDemo.console];
-		info.gameName = upcomingDemo.gameTitle;
-
-		if (currentDemo.gamePad == GamePadType.VR)
-			info.vr = true;
-		else
-			info.vr = false;
-
-		taskCards [3].UpdateGraphics (info);
-	}
-
-	void
-	RenderUpcomingSpeech()
-	{
-		TaskCardInfo info = new TaskCardInfo ();
-
-		info.playerID = upcomingSpeech.playerID;
-
-		taskCards [4].UpdateGraphics (info);
-	}
-
-	void
-	RenderUpcomingNPCCard()
-	{
-		TaskCardInfo info = new TaskCardInfo ();
-
-		info.type = CardType.NPC;
-		info.isMale = upcomingNPC.isMale;
-		info.npcName = upcomingNPC.npcName;
-
-		taskCards[5].UpdateGraphics (info);
-	}
+  //  void OnGUI()
+  //  {
+  //    GUI.Label(new Rect(0, 0, 200, 20), "Current speaker: " + currentSpeech.playerID);
+  //    GUI.Label(new Rect(0, 30, 200, 20), "Upcoming speaker: " + upcomingSpeech.playerID);
+  //
+  //    GUI.Label(new Rect(200, 0, 400, 20), "Current demoer: " + currentDemo.playerID 
+  //      + ". Game " + currentDemo.discColour + " on " + consoleNames[(int)currentDemo.console] + " with " + gamePadNames[(int)currentDemo.gamePad]);
+  //    GUI.Label(new Rect(200, 30, 400, 20), "Upcoming demoer: " + upcomingDemo.playerID 
+  //      + ". Game " + currentDemo.discColour + " on " + consoleNames[(int)upcomingDemo.console] + " with " + gamePadNames[(int)upcomingDemo.gamePad]);
+  //
+  //    GUI.Label(new Rect(600, 0, 200, 20), "Current NPC: " + (currentNPC.isMale ? "Male" : "Female"));
+  //    GUI.Label(new Rect(600, 30, 200, 20), "Upcoming NPC: " + (upcomingNPC.isMale ? "Male" : "Female"));
+  //  }
 
 
 
-	string CreateNewGameTitle()
-	{
-		if (gameNames.Count == 0)
-			PushGameNames ();
-		string newName = gameNames [0];
+  [Header("GUI STUFF")]
+  [SerializeField]
+  List<TaskCard> taskCards;
+  List<string> maleDevNames = new List<string>();
+  List<string> femaleDevNames = new List<string>();
+  List<string> gameNames = new List<string>();
 
-		gameNames.Remove (gameNames[0]);
+  void
+  TestAll()
+  {
+    RenderCurrentDemoCard();
+    RenderCurrentSpeechCard();
+    RenderUpcomingSpeech();
+    RenderUpcomingNPCCard();
+    RenderCurrentNPCCard();
+    RenderUpcomingDemoCard();
+  }
 
-		return newName;
-	}
+  void
+  RenderCurrentDemoCard()
+  {
+    TaskCardInfo info = new TaskCardInfo();
 
-	string CreateNewNPCName(int randomNumber)
-	{
-		string newName = "";
+    info.playerID = currentDemo.playerID;
+    info.gameID = currentDemo.discColour;
+    info.consoleType = consoleNames[(int)currentDemo.console];
+    info.gameName = currentDemo.gameTitle;
+    if (currentDemo.gamePad == GamePadType.VR)
+      info.vr = true;
+    else
+      info.vr = false;
 
-		if (randomNumber == 1)
-		{
-			if (femaleDevNames.Count == 0)
-				PushFemaleNames ();
-			newName = femaleDevNames [0];
-			femaleDevNames.Remove (femaleDevNames [0]);
-		}
-		else
-		{
-			if (maleDevNames.Count == 0)
-				PushMaleNames ();
-			newName = maleDevNames [0];
-			maleDevNames.Remove (maleDevNames [0]);
-		}
+    if (gamePadNames[(int)currentDemo.gamePad] == "VR Gamepad")
+    {
+      info.vr = true;
+    }
 
-		return newName;
-	}
+    taskCards[0].UpdateGraphics(info);
+  }
 
-	void
-	OnValidate()
-	{
-		PushGameNames ();
-		PushFemaleNames ();
-		PushMaleNames ();
-	}
+  void
+  RenderCurrentSpeechCard()
+  {
+    TaskCardInfo info = new TaskCardInfo();
 
-	void
-	PushGameNames()
-	{
-		gameNames.Add ("dark_souls");
-		gameNames.Add ("doom");
-		gameNames.Add ("fallout");
-		gameNames.Add ("fifa");
-		gameNames.Add ("halflife");
-		gameNames.Add("inside");
-		gameNames.Add("xcom");
-		gameNames.Add("zelda");
-	}
+    info.playerID = currentSpeech.playerID;
 
-	void
-	PushFemaleNames()
-	{
-		femaleDevNames.Add ("Amy Hennig");
-		femaleDevNames.Add ("Jennifer Hale");
-		femaleDevNames.Add ("Kellee Santiago");
-	}
+    taskCards[1].UpdateGraphics(info);
+  }
 
-	void
-	PushMaleNames()
-	{
-		maleDevNames.Add ("John Carmack");
-		maleDevNames.Add ("Sean Murray");
-		maleDevNames.Add ("Hideo Kojima");
-		maleDevNames.Add ("Josh Sawyer");
+  void
+  RenderCurrentNPCCard()
+  {
+    TaskCardInfo info = new TaskCardInfo();
 
-	}
+    info.type = CardType.NPC;
+    info.isMale = currentNPC.isMale;
+    info.npcName = currentNPC.npcName;
+
+    taskCards[2].UpdateGraphics(info);
+  }
+
+  void
+  RenderUpcomingDemoCard()
+  {
+    TaskCardInfo info = new TaskCardInfo();
+
+    info.playerID = upcomingDemo.playerID;
+    info.gameID = upcomingDemo.discColour;
+    info.consoleType = consoleNames[(int)upcomingDemo.console];
+    info.gameName = upcomingDemo.gameTitle;
+
+    if (currentDemo.gamePad == GamePadType.VR)
+      info.vr = true;
+    else
+      info.vr = false;
+
+    taskCards[3].UpdateGraphics(info);
+  }
+
+  void
+  RenderUpcomingSpeech()
+  {
+    TaskCardInfo info = new TaskCardInfo();
+
+    info.playerID = upcomingSpeech.playerID;
+
+    taskCards[4].UpdateGraphics(info);
+  }
+
+  void
+  RenderUpcomingNPCCard()
+  {
+    TaskCardInfo info = new TaskCardInfo();
+
+    info.type = CardType.NPC;
+    info.isMale = upcomingNPC.isMale;
+    info.npcName = upcomingNPC.npcName;
+
+    taskCards[5].UpdateGraphics(info);
+  }
+
+
+
+  string CreateNewGameTitle()
+  {
+    if (gameNames.Count == 0)
+      PushGameNames();
+    string newName = gameNames[0];
+
+    gameNames.Remove(gameNames[0]);
+
+    return newName;
+  }
+
+  string CreateNewNPCName(int randomNumber)
+  {
+    string newName = "";
+
+    if (randomNumber == 1)
+    {
+      if (femaleDevNames.Count == 0)
+        PushFemaleNames();
+      newName = femaleDevNames[0];
+      femaleDevNames.Remove(femaleDevNames[0]);
+    }
+    else
+    {
+      if (maleDevNames.Count == 0)
+        PushMaleNames();
+      newName = maleDevNames[0];
+      maleDevNames.Remove(maleDevNames[0]);
+    }
+
+    return newName;
+  }
+
+  void
+  OnValidate()
+  {
+    PushGameNames();
+    PushFemaleNames();
+    PushMaleNames();
+  }
+
+  void
+  PushGameNames()
+  {
+    gameNames.Add("dark_souls");
+    gameNames.Add("doom");
+    gameNames.Add("fallout");
+    gameNames.Add("fifa");
+    gameNames.Add("halflife");
+    gameNames.Add("inside");
+    gameNames.Add("xcom");
+    gameNames.Add("zelda");
+  }
+
+  void
+  PushFemaleNames()
+  {
+    femaleDevNames.Add("Amy Hennig");
+    femaleDevNames.Add("Jennifer Hale");
+    femaleDevNames.Add("Kellee Santiago");
+  }
+
+  void
+  PushMaleNames()
+  {
+    maleDevNames.Add("John Carmack");
+    maleDevNames.Add("Sean Murray");
+    maleDevNames.Add("Hideo Kojima");
+    maleDevNames.Add("Josh Sawyer");
+
+  }
 }

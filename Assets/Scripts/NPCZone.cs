@@ -16,6 +16,8 @@ public class NPCZone : MonoBehaviour
   GameObject litIcon;
   [SerializeField]
   Renderer lightMesh;
+  [SerializeField]
+  ProgramFeed programFeed;
 
   [Header("Settings")]
   [SerializeField]
@@ -33,6 +35,7 @@ public class NPCZone : MonoBehaviour
   public bool waitingWater;
   [SerializeField]
   public bool isLit = false;
+  public string gender = "Undefined";
 
   private float counter;
 
@@ -62,6 +65,7 @@ public class NPCZone : MonoBehaviour
         {
           GetComponent<Renderer>().material.SetColor("_Color", finishedColour);
           Destroy(npcAccepted);
+          programFeed.OnNPCFinished();
           ResetZone();
         }
       }
@@ -84,7 +88,7 @@ public class NPCZone : MonoBehaviour
   {
     Debug.Log(collider.name + " Entered");
 
-    if (collider.transform.name.Contains("Dressed") && !npcAccepted)
+    if (collider.transform.name.Contains("Dressed") && collider.transform.name.Contains(gender) && !npcAccepted)
     {
       npcAccepted = collider.gameObject;
       if (Random.Range(0, 10) > 5)
@@ -119,8 +123,9 @@ public class NPCZone : MonoBehaviour
   {
     npcAccepted = null;
     GetComponent<Renderer>().material.SetColor("_Color", notInUseColour);
-    progressBar.gameObject.SetActive(false);
     counter = 0;
+    progressBar.value = counter;
+    progressBar.gameObject.SetActive(false);
   }
 
 }

@@ -960,10 +960,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6708d79abd84fe4e86f4e61c5c619c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ITurnInto: {fileID: 0}
+  ITurnInto: {fileID: 1000012672151896, guid: bdb503a8b063d7f4e89d707004515052, type: 2}
   IWorkWithThisMachine: Dressing Room Door Female
   CopyColourFromHere: {fileID: 0}
-  shaderOutline: {fileID: 0}
+  meshes:
+  - {fileID: 0}
 --- !u!136 &136000011837508546
 CapsuleCollider:
   m_ObjectHideFlags: 1
