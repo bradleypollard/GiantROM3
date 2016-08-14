@@ -34,6 +34,7 @@ public class ProgramFeed : MonoBehaviour
   [SerializeField]
   [Range(2, 4)]
   public int numberOfPlayers = 4;
+  public Dictionary<int, int> PIDToCIDMap;
 
   private string[] consoleNames = { "Playstation", "WiiU", "Xbox" };
   private string[] gamePadNames = { "Playstation GamePad", "WiiU GamePad", "Xbox GamePad", "VR GamePad" };
@@ -104,8 +105,13 @@ public class ProgramFeed : MonoBehaviour
   private SpeechData currentSpeech;
   private SpeechData upcomingSpeech;
 
-  // Use this for initialization
   void Start()
+  {
+    PIDToCIDMap = new Dictionary<int, int>();
+  }
+
+  // Use this for initialization
+  public void Init()
   {
     GenerateSpeech();
     SetUpcomingSpeechToCurrent();
@@ -123,7 +129,7 @@ public class ProgramFeed : MonoBehaviour
     int currSpeaker = 0;
     if (!Equals(currentSpeech, default(SpeechData)))
     {
-      currSpeaker = currentSpeech.playerID;
+      currSpeaker = PIDToCIDMap[currentSpeech.playerID];
     }
 
     int upcomingSpeaker = currSpeaker;
@@ -182,7 +188,7 @@ public class ProgramFeed : MonoBehaviour
   private void SetUpcomingSpeechToCurrent()
   {
     currentSpeech = upcomingSpeech;
-    microphone.speakerID = currentSpeech.playerID;
+    microphone.speakerID = PIDToCIDMap[currentSpeech.playerID];
     GenerateSpeech();
 
     RenderCurrentSpeechCard();
@@ -198,7 +204,7 @@ public class ProgramFeed : MonoBehaviour
   private void SetUpcomingDemoToCurrent()
   {
     currentDemo = upcomingDemo;
-    demoStation.playerID = currentDemo.playerID;
+    demoStation.playerID = PIDToCIDMap[currentDemo.playerID];
     demoStation.expectedConsoleName = consoleNames[(int)currentDemo.console];
     demoStation.expectedGamePadName = gamePadNames[(int)currentDemo.gamePad];
     demoStation.expectedDiscColour = currentDemo.discColour;

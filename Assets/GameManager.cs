@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
   [SerializeField]
   TitleScreen titleScreenLogic;
   [SerializeField]
-  ProgramFeed programFeed;
+  public ProgramFeed programFeed;
 
   [Header("Settings")]
   [SerializeField]
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
   {
     if (gameInProgress)
     {
+      // Game is running, update score and timer
       titleScreen.SetActive(false);
       if (counter < gameLength)
       {
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
       }
       else
       {
-        GameFinished();
+        GameFinished(); // Time up
       }
 
       scoreText.text = "Score: " + score;
@@ -55,24 +56,6 @@ public class GameManager : MonoBehaviour
     {
       // Game hasn't started yet, display title logic
       titleScreen.SetActive(true);
-      if (titleScreenLogic.ready)
-      {
-        // Game is ready to start, record player count
-        gameInProgress = true;
-        if (debugMode)
-        {
-          programFeed.numberOfPlayers = 2;
-        }
-        else
-        {
-          programFeed.numberOfPlayers = titleScreenLogic.playerCount;
-          for (int i = programFeed.numberOfPlayers; i < 4; ++i)
-          {
-            Destroy(playerGbs[i]);
-            playerGbs[i] = null;
-          }
-        }
-      }
     }
     else
     {
@@ -87,12 +70,35 @@ public class GameManager : MonoBehaviour
     }
   }
 
-  public void StartGame()
+  public void StartGame(int playerCount)
   {
+    if (playerCount < 1 || playerCount > 4)
+    {
+      Debug.LogError("PLAYER COUNT INCORRECT: " + playerCount);
+    }
+    
+    // Game is ready to start, record player count
+    gameInProgress = true;
+    if (debugMode)
+    {
+      programFeed.numberOfPlayers = 2;
+    }
+    else
+    {
+      programFeed.numberOfPlayers = playerCount;
+      for (int i = programFeed.numberOfPlayers; i < 4; ++i)
+      {
+        Destroy(playerGbs[i]);
+        playerGbs[i] = null;
+      }
+    }
     SetPlayerControllerState(true);
     gameInProgress = true;
     scoreText.enabled = true;
     timeText.enabled = true;
+
+    // Run first time initialisation of program feed
+    programFeed.Init();
   }
 
   public void SetPlayerControllerState(bool state)
