@@ -7,6 +7,7 @@ public class Interaction : MonoBehaviour
   public Transform characterMesh;
 
   public GameObject objectInHands;
+	public GameObject tempObjectinHands;
 
   public PlayerMovement playerMovement;
 
@@ -20,7 +21,7 @@ public class Interaction : MonoBehaviour
 
   void FixedUpdate()
   {
-    if (objectInHand != null)
+    if (tempObjectinHands != null)
     {
       if (Input.GetButtonDown("B_P" + playerMovement.playerIndex) && objectInHands != null)
       {
@@ -80,17 +81,16 @@ public class Interaction : MonoBehaviour
     }
   }
 
-	GameObject objectInHand;
 
 
   public void GrabObject(GameObject gb)
   {
 
-		objectInHand = gb.transform.parent.gameObject;
-		objectInHand.transform.parent = characterMesh;
-		objectInHand.GetComponent<Rigidbody>().isKinematic = true;
-		objectInHand.transform.position = characterMesh.position + new Vector3(0, 2.3f, 0);
-		objectInHand.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+		tempObjectinHands = gb.transform.parent.gameObject;
+		tempObjectinHands.transform.parent = characterMesh;
+		tempObjectinHands.GetComponent<Rigidbody>().isKinematic = true;
+		tempObjectinHands.transform.position = characterMesh.position + new Vector3(0, 2.3f, 0);
+		tempObjectinHands.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
 		StartCoroutine(RealGrabObject (gb)); 
   }
@@ -102,7 +102,7 @@ public class Interaction : MonoBehaviour
 	{
 		yield return new WaitForSeconds (0.5f);
 
-		objectInHands = objectInHand;
+		objectInHands = tempObjectinHands;
 		Debug.Log("Picking up object");
 	}
 
@@ -121,6 +121,6 @@ public class Interaction : MonoBehaviour
     objectInHands.transform.parent = null;
     objectInHands.GetComponent<Rigidbody>().isKinematic = false;
     objectInHands = null;
-    objectInHand = null;
+    tempObjectinHands = null;
   }
 }
