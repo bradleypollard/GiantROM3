@@ -22,6 +22,7 @@ public class ConsoleStand : MonoBehaviour
 
   public GameObject currentHeldConsole = null;
   public GameObject currentHeldGamePad = null;
+  public GameObject currentHeldDisc = null;
   public float repairTime = 3f;
 
 
@@ -44,13 +45,17 @@ public class ConsoleStand : MonoBehaviour
           if (heldItem == null)
           {
             // Eject all!
-            if (currentHeldConsole != null && !(demoStation.hasCorrectConsole && demoStation.hasCorrectGamePad))
+            if (currentHeldConsole != null && !(demoStation.hasCorrectConsole && demoStation.hasCorrectGamePad && demoStation.hasCorrectDisc))
             {
               EjectConsole();
             }
-            if (currentHeldGamePad != null && !(demoStation.hasCorrectConsole && demoStation.hasCorrectGamePad))
+            if (currentHeldGamePad != null && !(demoStation.hasCorrectConsole && demoStation.hasCorrectGamePad && demoStation.hasCorrectDisc))
             {
               EjectGamePad();
+            }
+            if (currentHeldDisc != null && !(demoStation.hasCorrectConsole && demoStation.hasCorrectGamePad && demoStation.hasCorrectDisc))
+            {
+              EjectDisc();
             }
           }
           else if (heldItem.tag == "Console" && currentHeldConsole == null)
@@ -70,7 +75,7 @@ public class ConsoleStand : MonoBehaviour
 
             if (currentHeldConsole.name == demoStation.expectedConsoleName)
             {
-              GameObject.Find(demoStation.expectedConsoleName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 0);
+              currentHeldConsole.GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 0);
             }
           }
           else if (heldItem.tag == "GamePad" && currentHeldGamePad == null)
@@ -90,7 +95,28 @@ public class ConsoleStand : MonoBehaviour
 
             if (currentHeldGamePad.name == demoStation.expectedGamePadName)
             {
-              GameObject.Find(demoStation.expectedGamePadName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 0);
+              currentHeldGamePad.GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 0);
+            }
+          }
+          else if (heldItem.tag == "Disc" && currentHeldDisc == null)
+          {
+            // Insert disc!
+            currentHeldDisc = heldItem;
+            IDToPlayerMap[id].GetComponent<Interaction>().ReleaseObject();
+            currentHeldDisc.transform.parent = consolePos;
+            currentHeldDisc.transform.localPosition = Vector3.zero;
+            currentHeldDisc.transform.localRotation = Quaternion.identity;
+            currentHeldDisc.GetComponent<Rigidbody>().isKinematic = true;
+
+            foreach (BoxCollider b in currentHeldDisc.GetComponentsInChildren<BoxCollider>())
+            {
+              b.enabled = false;
+            }
+
+            if (currentHeldDisc.GetComponentInChildren<Renderer>().material.color.Equals(demoStation.discColours[demoStation.expectedDiscColour-1]))
+            {
+              // TODO: Disc highlighting
+              //GameObject.Find(demoStation.expectedGamePadName).GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 0);
             }
           }
         }
@@ -157,6 +183,11 @@ public class ConsoleStand : MonoBehaviour
     currentHeldConsole.GetComponent<Rigidbody>().isKinematic = false;
     currentHeldConsole.transform.parent = null;
 
+    if (currentHeldConsole.name == demoStation.expectedConsoleName)
+    {
+      currentHeldConsole.GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 1);
+    }
+
     // Fling
     Vector3 fwd = gameObject.transform.parent.TransformDirection(Vector3.right);
     Vector3 up = gameObject.transform.parent.TransformDirection(Vector3.up);
@@ -177,6 +208,11 @@ public class ConsoleStand : MonoBehaviour
     currentHeldGamePad.GetComponent<Rigidbody>().isKinematic = false;
     currentHeldGamePad.transform.parent = null;
 
+    if (currentHeldGamePad.name == demoStation.expectedGamePadName)
+    {
+      currentHeldGamePad.GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 1);
+    }
+
     // Fling
     Vector3 fwd = gameObject.transform.parent.TransformDirection(Vector3.right);
     Vector3 up = gameObject.transform.parent.TransformDirection(Vector3.up);
@@ -185,6 +221,31 @@ public class ConsoleStand : MonoBehaviour
     Debug.Log("Ejecting " + currentHeldGamePad.name);
 
     currentHeldGamePad = null;
+  }
+
+  public void EjectDisc()
+  {
+    // Reset
+    foreach (BoxCollider b in currentHeldDisc.GetComponentsInChildren<BoxCollider>())
+    {
+      b.enabled = true;
+    }
+    currentHeldDisc.GetComponent<Rigidbody>().isKinematic = false;
+    currentHeldDisc.transform.parent = null;
+
+    if (currentHeldDisc.GetComponentInChildren<Renderer>().material.color.Equals(demoStation.discColours[demoStation.expectedDiscColour-1]))
+    {
+      currentHeldDisc.GetComponentInChildren<Renderer>().material.SetFloat("_OutlineTransparency", 1);
+    }
+
+    // Fling
+    Vector3 fwd = gameObject.transform.parent.TransformDirection(Vector3.right);
+    Vector3 up = gameObject.transform.parent.TransformDirection(Vector3.up);
+    currentHeldDisc.transform.position = currentHeldDisc.transform.position + fwd + up;
+    currentHeldDisc.GetComponent<Rigidbody>().AddForce(fwd * 200 + new Vector3(0, 200, 0));
+    Debug.Log("Ejecting " + currentHeldDisc.GetComponentInChildren<Renderer>().material.color.ToString());
+
+    currentHeldDisc = null;
   }
 
   void OnTriggerEnter(Collider collider)

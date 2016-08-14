@@ -13,6 +13,8 @@ public class DemoStation : MonoBehaviour
   [SerializeField]
   GameObject noConsoleIcon;
   [SerializeField]
+  GameObject noDiscIcon;
+  [SerializeField]
   Renderer[] meshes;
   [Header("Settings")]
   [Range(0, 4)]
@@ -20,12 +22,14 @@ public class DemoStation : MonoBehaviour
   public int playerID = 0;
 
   public int expectedDiscColour = 0;
+  public Color[] discColours = { Color.cyan, Color.magenta, Color.yellow };
 
   public string expectedConsoleName = "";
   public string expectedGamePadName = "";
 
   public bool hasCorrectConsole = false;
   public bool hasCorrectGamePad = false;
+  public bool hasCorrectDisc = false;
   private bool isReady = false;
 
   private bool playerCanUseConsole = false;
@@ -52,19 +56,29 @@ public class DemoStation : MonoBehaviour
     {
       hasCorrectGamePad = false;
     }
+    // Update disc status
+    if (consoleStand.currentHeldDisc != null)
+    {
+      hasCorrectDisc = consoleStand.currentHeldDisc.GetComponentInChildren<Renderer>().material.color.Equals(discColours[expectedDiscColour-1]);
+    }
+    else
+    {
+      hasCorrectDisc = false;
+    }
 
     noConsoleIcon.SetActive(!hasCorrectConsole);
     noGamePadIcon.SetActive(!hasCorrectGamePad);
+    noDiscIcon.SetActive(!hasCorrectDisc);
 
-    if (isReady == false && hasCorrectGamePad && hasCorrectConsole)
+    if (isReady == false && hasCorrectGamePad && hasCorrectConsole && hasCorrectDisc)
     {
-      // Only set transparency of outline to 1 on the frame both items are ready!
+      // Only set transparency of outline to 1 on the frame if both items are ready!
       foreach (Renderer r in meshes)
       {
         r.material.SetFloat("_OutlineTransparency", 1);
       }
     }
-    isReady = hasCorrectConsole && hasCorrectGamePad;
+    isReady = hasCorrectConsole && hasCorrectGamePad && hasCorrectDisc;
 
     // Handle input
     if (playerCanUseConsole && isReady && Input.GetButton("A_P" + playerID))
@@ -82,6 +96,7 @@ public class DemoStation : MonoBehaviour
   {
     consoleStand.EjectConsole();
     consoleStand.EjectGamePad();
+    consoleStand.EjectDisc();
   }
 
   void OnTriggerEnter(Collider collider)
