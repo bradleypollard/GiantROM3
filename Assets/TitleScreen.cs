@@ -42,23 +42,23 @@ public class TitleScreen : MonoBehaviour
     }
     if (Input.GetButtonDown("A_P2") && !p2Ready)
     {
-      gameManager.programFeed.PIDToCIDMap[++playerCount] = 1;
+      gameManager.programFeed.PIDToCIDMap[++playerCount] = 2;
       p2Ready = true;
     }
     if (Input.GetButtonDown("A_P3") && !p3Ready)
     {
-      gameManager.programFeed.PIDToCIDMap[++playerCount] = 1;
+      gameManager.programFeed.PIDToCIDMap[++playerCount] = 3;
       p3Ready = true;
     }
     if (Input.GetButtonDown("A_P4") && !p4Ready)
     {
-      gameManager.programFeed.PIDToCIDMap[++playerCount] = 1;
+      gameManager.programFeed.PIDToCIDMap[++playerCount] = 4;
       p4Ready = true;
     }
 
     UpdatePlayerGUI();
 
-    if (playerCount > 1 || gameManager.debugMode)
+    if (playerCount > 1 && Input.GetButtonDown("A_P" + gameManager.programFeed.PIDToCIDMap[1]))
     {
       gameManager.StartGame(playerCount);
     }
