@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class NPCZone : MonoBehaviour
@@ -42,6 +42,12 @@ public class NPCZone : MonoBehaviour
   public string gender = "Undefined";
 
   private float counter;
+  private List<GameObject> cups;
+
+  void Start()
+  {
+    cups = new List<GameObject>();
+  }
 
   void Update()
   {
@@ -122,6 +128,12 @@ public class NPCZone : MonoBehaviour
       {
         r.material.SetFloat("_OutlineTransparency", 0);
       }
+      foreach (BoxCollider b in collider.gameObject.GetComponentsInChildren<BoxCollider>())
+      {
+        // We should no longer be able to pick this cup up
+        b.gameObject.layer = 0;
+      }
+      cups.Add(collider.gameObject);
     }
   }
 
@@ -140,6 +152,11 @@ public class NPCZone : MonoBehaviour
     counter = 0;
     progressBar.value = counter;
     progressBar.gameObject.SetActive(false);
+    foreach (GameObject c in cups)
+    {
+      Destroy(c);
+    }
+    cups = new List<GameObject>();
   }
 
 }
