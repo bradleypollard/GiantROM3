@@ -21,12 +21,6 @@ public class TaskCard : MonoBehaviour
 
 	[SerializeField] CardType type;
 
-	void
-	Start()
-	{
-		//Invoke ("RenderNewTask", 3);
-	}
-
 
 	public void
 	UpdateGraphics(TaskCardInfo thisCard)
@@ -55,7 +49,12 @@ public class TaskCard : MonoBehaviour
 		if (thisCard.npcName != null)
 		{
 			characterName.text = thisCard.npcName;
+			if (thisCard.isMale)
+				characterAvatar.sprite = Resources.Load ("task_character_male", (typeof(Sprite))) as Sprite;
+			else if(!thisCard.isMale)
+				characterAvatar.sprite = Resources.Load ("task_character_female", (typeof(Sprite))) as Sprite;
 		}
+
 		
 		if (thisCard.gameID == 1)
 			discIcon.sprite = Resources.Load ("task_disc_cyan", (typeof(Sprite))) as Sprite;
@@ -72,6 +71,10 @@ public class TaskCard : MonoBehaviour
 			consoleName.sprite = Resources.Load ("task_console_xbox", (typeof(Sprite))) as Sprite;
 
 		gameTitle.sprite = Resources.Load ("task_game_" + thisCard.gameName, (typeof(Sprite))) as Sprite;
+
+		if(thisCard.vr != null && vrIcon != null)
+		vrIcon.gameObject.SetActive (thisCard.vr);
+
 	}
 }
 

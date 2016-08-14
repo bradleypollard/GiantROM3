@@ -248,19 +248,19 @@ public class ProgramFeed : MonoBehaviour {
     }
 	}
 
-  void OnGUI()
-  {
-    GUI.Label(new Rect(0, 0, 200, 20), "Current speaker: " + currentSpeech.playerID);
-    GUI.Label(new Rect(0, 30, 200, 20), "Upcoming speaker: " + upcomingSpeech.playerID);
-
-    GUI.Label(new Rect(200, 0, 400, 20), "Current demoer: " + currentDemo.playerID 
-      + ". Game " + currentDemo.discColour + " on " + consoleNames[(int)currentDemo.console] + " with " + gamePadNames[(int)currentDemo.gamePad]);
-    GUI.Label(new Rect(200, 30, 400, 20), "Upcoming demoer: " + upcomingDemo.playerID 
-      + ". Game " + currentDemo.discColour + " on " + consoleNames[(int)upcomingDemo.console] + " with " + gamePadNames[(int)upcomingDemo.gamePad]);
-
-    GUI.Label(new Rect(600, 0, 200, 20), "Current NPC: " + (currentNPC.isMale ? "Male" : "Female"));
-    GUI.Label(new Rect(600, 30, 200, 20), "Upcoming NPC: " + (upcomingNPC.isMale ? "Male" : "Female"));
-  }
+//  void OnGUI()
+//  {
+//    GUI.Label(new Rect(0, 0, 200, 20), "Current speaker: " + currentSpeech.playerID);
+//    GUI.Label(new Rect(0, 30, 200, 20), "Upcoming speaker: " + upcomingSpeech.playerID);
+//
+//    GUI.Label(new Rect(200, 0, 400, 20), "Current demoer: " + currentDemo.playerID 
+//      + ". Game " + currentDemo.discColour + " on " + consoleNames[(int)currentDemo.console] + " with " + gamePadNames[(int)currentDemo.gamePad]);
+//    GUI.Label(new Rect(200, 30, 400, 20), "Upcoming demoer: " + upcomingDemo.playerID 
+//      + ". Game " + currentDemo.discColour + " on " + consoleNames[(int)upcomingDemo.console] + " with " + gamePadNames[(int)upcomingDemo.gamePad]);
+//
+//    GUI.Label(new Rect(600, 0, 200, 20), "Current NPC: " + (currentNPC.isMale ? "Male" : "Female"));
+//    GUI.Label(new Rect(600, 30, 200, 20), "Upcoming NPC: " + (upcomingNPC.isMale ? "Male" : "Female"));
+//  }
 		
 
 
@@ -290,6 +290,10 @@ public class ProgramFeed : MonoBehaviour {
 		info.gameID = currentDemo.discColour;
 		info.consoleType = consoleNames [(int)currentDemo.console];
 		info.gameName = currentDemo.gameTitle;
+		if (currentDemo.gamePad == GamePadType.VR)
+			info.vr = true;
+		else
+			info.vr = false;
 
 		if (gamePadNames [(int)currentDemo.gamePad] == "VR Gamepad")
 		{
@@ -331,10 +335,10 @@ public class ProgramFeed : MonoBehaviour {
 		info.consoleType = consoleNames [(int)upcomingDemo.console];
 		info.gameName = upcomingDemo.gameTitle;
 
-		if (gamePadNames [(int)upcomingDemo.gamePad] == "VR Gamepad")
-		{
+		if (currentDemo.gamePad == GamePadType.VR)
 			info.vr = true;
-		}
+		else
+			info.vr = false;
 
 		taskCards [3].UpdateGraphics (info);
 	}
