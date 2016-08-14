@@ -1374,7 +1374,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31.3, y: -174.8}
+  m_AnchoredPosition: {x: 30, y: -174.8}
   m_SizeDelta: {x: 1116.3, y: 802}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &60342602
@@ -1409,7 +1409,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start Game!
+  m_Text: Player 1 Press       To Start!
 --- !u!222 &60342603
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12611,9 +12611,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e857c358ee78ede4b9abb33631d5c8ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
-  gameInProgress: 0
-  gameLength: 300
   playerGbs:
   - {fileID: 1997480337}
   - {fileID: 1168493182}
@@ -12621,6 +12618,14 @@ MonoBehaviour:
   - {fileID: 984061410}
   scoreText: {fileID: 1991882749}
   timeText: {fileID: 42531864}
+  titleScreen: {fileID: 2144528295}
+  titleScreenLogic: {fileID: 2144528296}
+  programFeed: {fileID: 329942516}
+  gameLength: 300
+  debugMode: 1
+  gameInProgress: 0
+  score: 0
+  gameFinished: 0
 --- !u!1 &969528704
 GameObject:
   m_ObjectHideFlags: 0
@@ -13033,6 +13038,16 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011144605096, guid: 3654a00fd7f054984847a3d9e001ca38,
+        type: 2}
+      propertyPath: requireWater
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011144605096, guid: 3654a00fd7f054984847a3d9e001ca38,
+        type: 2}
+      propertyPath: waitingWater
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3654a00fd7f054984847a3d9e001ca38, type: 2}
@@ -18150,7 +18165,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200.58, y: -174.8}
+  m_AnchoredPosition: {x: 113, y: -174.8}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346473993
@@ -26460,7 +26475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1984118336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28489,6 +28504,9 @@ MonoBehaviour:
   p3Joined: {fileID: 868111419}
   p4Prompt: {fileID: 1743067184}
   p4Joined: {fileID: 1703247275}
+  gameManager: {fileID: 965124163}
+  playerCount: 0
+  ready: 0
 --- !u!114 &2144528297
 MonoBehaviour:
   m_ObjectHideFlags: 0

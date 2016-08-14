@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class TitleScreen : MonoBehaviour
 {
-	[SerializeField] GameObject startGame;
-
+  [Header("References")]
+  [SerializeField] GameObject startGame;
 	[SerializeField] GameObject p1Prompt;
 	[SerializeField] GameObject p1Joined;
 	[SerializeField] GameObject p2Prompt;
@@ -14,21 +14,27 @@ public class TitleScreen : MonoBehaviour
 	[SerializeField] GameObject p3Joined;
 	[SerializeField] GameObject p4Prompt;
 	[SerializeField] GameObject p4Joined;
+	[SerializeField] GameManager gameManager;
 
-	List<int> activePlayers = new List<int> ();
+  [Header("State")]
+  public int playerCount = 0;
+  public bool ready = false;
 
-	void
+  void
 	Update()
 	{
 		CheckActiveControllers ();
-	}
+    if (Input.GetButtonDown("A_P1") && (playerCount > 1 || gameManager.debugMode))
+    {
+      ready = true;
+    }
+  }
 
-	int playerCount;
 
 	void
 	CheckActiveControllers()
 	{
-		playerCount = Input.GetJoystickNames ().Length;
+		playerCount = Mathf.Clamp(Input.GetJoystickNames ().Length, 0, 4);
 
 		if (playerCount > 0)
 		{

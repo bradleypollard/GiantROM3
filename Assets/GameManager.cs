@@ -4,70 +4,125 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+  [Header("References")]
+  [SerializeField]
+  GameObject[] playerGbs;
+  [SerializeField]
+  Text scoreText;
+  [SerializeField]
+  Text timeText;
+  [SerializeField]
+  GameObject titleScreen;
+  [SerializeField]
+  TitleScreen titleScreenLogic;
+  [SerializeField]
+  ProgramFeed programFeed;
 
-    public int score;
+  [Header("Settings")]
+  [SerializeField]
+  public float gameLength;
+  [SerializeField]
+  public bool debugMode = false;
 
-    public bool gameInProgress;
-    private float timer;
-    public float gameLength;
-    private float counter;
+  [Header("State")]
+  public bool gameInProgress = false;
+  public int score = 0;
+  public bool gameFinished = false;
 
-    public GameObject[] playerGbs;
+  private float timer;
+  private float counter;
 
-    public Text scoreText;
-    public Text timeText;
-
-    void Update()
+  void Update()
+  {
+    if (gameInProgress)
     {
-        if (gameInProgress)
-        {
-            if (counter < gameLength)
-            {
-                counter += Time.deltaTime;
-            }
-            else
-            {
-                GameFinished();
-            }
+      titleScreen.SetActive(false);
+      if (counter < gameLength)
+      {
+        counter += Time.deltaTime;
+      }
+      else
+      {
+        GameFinished();
+      }
 
-            scoreText.text = "Score: " + score;
-            timeText.text = "Time Left: " + (gameLength - counter);
-        }
+      scoreText.text = "Score: " + score;
+      timeText.text = "Time Left: " + (gameLength - counter);
     }
-
-    public void StartGame()
+    else if (!gameFinished)
     {
-        SetPlayerControllerState(true);
+      // Game hasn't started yet, display title logic
+      titleScreen.SetActive(true);
+      if (titleScreenLogic.ready)
+      {
+        // Game is ready to start, record player count
         gameInProgress = true;
-        scoreText.enabled = true;
-        timeText.enabled = true;
-    }
-
-    public void SetPlayerControllerState(bool state)
-    {
-        foreach (GameObject gb in playerGbs)
+        if (debugMode)
         {
-            gb.GetComponent<PlayerMovement>().enabled = state;
+          programFeed.numberOfPlayers = 2;
         }
+        else
+        {
+          programFeed.numberOfPlayers = titleScreenLogic.playerCount;
+          for (int i = programFeed.numberOfPlayers; i < 4; ++i)
+          {
+            Destroy(playerGbs[i]);
+            playerGbs[i] = null;
+          }
+        }
+      }
     }
+    else
+    {
+      // Game is now over
 
-    public void GameFinished()
-    {
-        SetPlayerControllerState(false);
-        gameInProgress = false;
-        scoreText.enabled = false;
-        timeText.enabled = false;
-    }
+      // TODO: Show score rating (out of three stars)
 
-    public void IncreaseScore(int points)
-    {
-        score += points;
+      if (Input.GetButtonDown("A_P1"))
+      {
+        RestartGame();
+      }
     }
-    
-    public void RestartGame()
+  }
+
+  public void StartGame()
+  {
+    SetPlayerControllerState(true);
+    gameInProgress = true;
+    scoreText.enabled = true;
+    timeText.enabled = true;
+  }
+
+  public void SetPlayerControllerState(bool state)
+  {
+    foreach (GameObject gb in playerGbs)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+      if (gb != null)
+      {
+        gb.GetComponent<PlayerMovement>().enabled = state;
+      }
     }
+  }
+
+  public void GameFinished()
+  {
+    SetPlayerControllerState(false);
+    gameInProgress = false;
+    scoreText.enabled = false;
+    timeText.enabled = false;
+    gameFinished = true;
+  }
+
+  public void IncreaseScore(int points)
+  {
+    score += points;
+  }
+
+  public void RestartGame()
+  {
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+  }
 
 }

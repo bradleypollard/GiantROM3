@@ -45,7 +45,7 @@ public class ProgramFeed : MonoBehaviour {
   float VRProbability;
   [SerializeField]
   [Range(2, 4)]
-  int numberOfPlayers = 4;
+  public int numberOfPlayers = 4;
 
   private string[] consoleNames = {"Playstation", "WiiU", "Xbox"};
   private string[] gamePadNames = {"Playstation GamePad", "WiiU GamePad", "Xbox GamePad", "VR GamePad"};
