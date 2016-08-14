@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.41504622, g: 0.42361894, b: 0.39926875, a: 1}
+  m_IndirectSpecularColor: {r: 0.41504604, g: 0.4236186, b: 0.3992685, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1231,6 +1231,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 071f100b819bc79428a3a10095d8d47a, type: 3}
   m_PrefabInternal: {fileID: 53139508}
+--- !u!1 &57887828 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100012, guid: bcb2d656275db39438e44911b12d6f3f, type: 3}
+  m_PrefabInternal: {fileID: 1830927608}
 --- !u!1 &58613368
 GameObject:
   m_ObjectHideFlags: 0
@@ -6830,6 +6834,8 @@ MonoBehaviour:
   characterMesh: {fileID: 668105983}
   objectInHands: {fileID: 0}
   playerMovement: {fileID: 1997480342}
+  LeftHand: {fileID: 873436606}
+  RightHand: {fileID: 872580313}
   rayLength: 5
   grabDistance: 1.5
 --- !u!1001 &514835813
@@ -7917,6 +7923,10 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224000011517392636, guid: f58aea27afe36c54b9ad8f738bb036e5,
     type: 2}
   m_PrefabInternal: {fileID: 1693764122}
+--- !u!1 &592065148 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100026, guid: bcb2d656275db39438e44911b12d6f3f, type: 3}
+  m_PrefabInternal: {fileID: 1830927608}
 --- !u!4 &596566338 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: db86f3e1f052fd245bfed01abdc41617, type: 3}
@@ -10073,6 +10083,10 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 701073268}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &702333621 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100008, guid: e9dcdae097f49864ca5ab497e37ba51f, type: 3}
+  m_PrefabInternal: {fileID: 2059746757}
 --- !u!1001 &703837148
 Prefab:
   m_ObjectHideFlags: 0
@@ -10490,6 +10504,10 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: db86f3e1f052fd245bfed01abdc41617, type: 3}
   m_PrefabInternal: {fileID: 484292705}
+--- !u!1 &737111206 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100010, guid: e9dcdae097f49864ca5ab497e37ba51f, type: 3}
+  m_PrefabInternal: {fileID: 2059746757}
 --- !u!23 &738449334 stripped
 MeshRenderer:
   m_PrefabParentObject: {fileID: 23000013407128648, guid: 29d674d1bae185f49a760b88b6fb54b6,
@@ -11873,6 +11891,14 @@ RectTransform:
   m_AnchoredPosition: {x: 967.9, y: 0.000061035156}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &872580313 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100018, guid: 08ce51c8dea821b41a5aa75909b48e16, type: 3}
+  m_PrefabInternal: {fileID: 919762654}
+--- !u!1 &873436606 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100016, guid: 08ce51c8dea821b41a5aa75909b48e16, type: 3}
+  m_PrefabInternal: {fileID: 919762654}
 --- !u!1001 &873664030
 Prefab:
   m_ObjectHideFlags: 0
@@ -13462,6 +13488,8 @@ MonoBehaviour:
   characterMesh: {fileID: 893248849}
   objectInHands: {fileID: 0}
   playerMovement: {fileID: 1997480342}
+  LeftHand: {fileID: 2026424907}
+  RightHand: {fileID: 1469772541}
   rayLength: 5
   grabDistance: 1.5
 --- !u!1001 &985315562
@@ -16241,6 +16269,8 @@ MonoBehaviour:
   characterMesh: {fileID: 2075430703}
   objectInHands: {fileID: 0}
   playerMovement: {fileID: 1997480342}
+  LeftHand: {fileID: 702333621}
+  RightHand: {fileID: 737111206}
   rayLength: 5
   grabDistance: 1.5
 --- !u!4 &1169132807 stripped
@@ -20026,6 +20056,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1396817739}
   m_RootOrder: 3
+--- !u!1 &1469772541 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100008, guid: f2bd09a309f1e2248a9b9f8834a6e187, type: 3}
+  m_PrefabInternal: {fileID: 1789531407}
 --- !u!1 &1470428573
 GameObject:
   m_ObjectHideFlags: 0
@@ -27362,6 +27396,8 @@ MonoBehaviour:
   characterMesh: {fileID: 413001201}
   objectInHands: {fileID: 0}
   playerMovement: {fileID: 0}
+  LeftHand: {fileID: 57887828}
+  RightHand: {fileID: 592065148}
   rayLength: 5
   grabDistance: 1.5
 --- !u!1 &2003123137
@@ -27704,6 +27740,10 @@ Transform:
   m_PrefabParentObject: {fileID: 4000011854353520, guid: 30fe31edb2b2cd34faf2c896ee717c59,
     type: 2}
   m_PrefabInternal: {fileID: 1842504400}
+--- !u!1 &2026424907 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100006, guid: f2bd09a309f1e2248a9b9f8834a6e187, type: 3}
+  m_PrefabInternal: {fileID: 1789531407}
 --- !u!1001 &2028939895
 Prefab:
   m_ObjectHideFlags: 0
