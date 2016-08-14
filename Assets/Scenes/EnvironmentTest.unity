@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.41504604, g: 0.4236186, b: 0.3992685, a: 1}
+  m_IndirectSpecularColor: {r: 0.41504622, g: 0.42361894, b: 0.39926875, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -4835,8 +4835,12 @@ MonoBehaviour:
   demoStation: {fileID: 1332792036}
   microphone: {fileID: 1144879449}
   npcZone: {fileID: 323250731}
+  gameManager: {fileID: 965124163}
   VRProbability: 0.25
   numberOfPlayers: 2
+  npcScore: 50
+  speechScore: 75
+  demoScore: 100
   taskCards:
   - {fileID: 644997323}
   - {fileID: 1060763191}

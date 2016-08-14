@@ -26,6 +26,8 @@ public class ProgramFeed : MonoBehaviour
   Microphone microphone;
   [SerializeField]
   NPCZone npcZone;
+  [SerializeField]
+  GameManager gameManager;
 
   [Header("Settings")]
   [SerializeField]
@@ -34,6 +36,15 @@ public class ProgramFeed : MonoBehaviour
   [SerializeField]
   [Range(2, 4)]
   public int numberOfPlayers = 4;
+  [SerializeField]
+  [Range(0, 200)]
+  public int npcScore = 50;
+  [SerializeField]
+  [Range(0, 200)]
+  public int speechScore = 75;
+  [SerializeField]
+  [Range(0, 200)]
+  public int demoScore = 100;
   public Dictionary<int, int> PIDToCIDMap;
 
   private string[] consoleNames = { "Playstation", "WiiU", "Xbox" };
@@ -183,6 +194,7 @@ public class ProgramFeed : MonoBehaviour
   public void OnSpeechFinished()
   {
     SetUpcomingSpeechToCurrent();
+    gameManager.score += speechScore;
   }
 
   private void SetUpcomingSpeechToCurrent()
@@ -199,6 +211,7 @@ public class ProgramFeed : MonoBehaviour
   {
     SetUpcomingDemoToCurrent();
     demoStation.EjectAll(true);
+    gameManager.score += demoScore;
   }
 
   private void SetUpcomingDemoToCurrent()
@@ -229,6 +242,7 @@ public class ProgramFeed : MonoBehaviour
     }
 
     SetUpcomingNPCToCurrent();
+    gameManager.score += npcScore;
   }
 
   private void SetUpcomingNPCToCurrent()
