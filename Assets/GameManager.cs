@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour {
         {
             gb.GetComponent<PlayerMovement>().enabled = true;
         }
+
+        gameInProgress = true;
     }
 
     public void GameFinished()
