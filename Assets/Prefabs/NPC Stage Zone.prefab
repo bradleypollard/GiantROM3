@@ -78,7 +78,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012344531666
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,16 +316,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcAccepted: {fileID: 0}
+  progressBar: {fileID: 114000010063202534}
+  requireWaterIcon: {fileID: 1000010029744088}
+  litIcon: {fileID: 0}
+  lightMesh: {fileID: 0}
   npcSpeaking: 0
   npcSpeakingTime: 8
-  progressBar: {fileID: 114000010063202534}
   notInUseColour: {r: 1, g: 0.4705882, b: 0.4705882, a: 0.478}
   inUseColour: {r: 0.4852941, g: 0.55273825, b: 1, a: 0.491}
   finishedColour: {r: 0.4852941, g: 1, b: 0.53144014, a: 0.472}
   requireWater: 0
-  requireWaterIcon: {fileID: 1000010029744088}
   timeTilWater: 0
   waitingWater: 0
+  isLit: 1
 --- !u!114 &114000012264845746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -476,8 +479,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 224000012234190398}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 2.474977, y: 0}
   m_SizeDelta: {x: 4.95, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

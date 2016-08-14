@@ -12,6 +12,8 @@ public class Spotlight : MonoBehaviour
   GamePlayDemo gameplayDemo;
   [SerializeField]
   Teleprompter teleprompter;
+  [SerializeField]
+  NPCZone npcZone;
 
   [Header("Settings")]
   [Range(1, 30)]
@@ -35,6 +37,10 @@ public class Spotlight : MonoBehaviour
     {
       gameplayDemo.isLit = true;
     }
+    if (npcZone != null)
+    {
+      npcZone.isLit = true;
+    }
   }
 
   private void TurnOff()
@@ -47,6 +53,10 @@ public class Spotlight : MonoBehaviour
     if (gameplayDemo != null)
     {
       gameplayDemo.isLit = false;
+    }
+    if (npcZone != null)
+    {
+      npcZone.isLit = false;
     }
   }
 
