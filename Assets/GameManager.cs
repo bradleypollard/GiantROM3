@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
   AudioClip inGameMusic;
   [SerializeField]
   AudioClip endGameMusic;
+  [SerializeField]
+  GameObject[] starRatings;
 
   [Header("Settings")]
   [SerializeField]
@@ -149,6 +151,12 @@ public class GameManager : MonoBehaviour
 
     scoreEndText.text = "You scored:\n " + score;
 
+    if(Mathf.RoundToInt(score / 250) > 5) {
+      starRatings[5].SetActive(true);
+    } else {
+      starRatings[Mathf.RoundToInt(score / 250)].SetActive(true);
+    }
+    
     // Play end game music
     musicPlayer.Stop();
     musicPlayer.clip = endGameMusic;

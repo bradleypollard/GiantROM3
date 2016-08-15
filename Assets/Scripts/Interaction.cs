@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using DG.Tweening;
+using System.Collections.Generic;
 
 public class Interaction : MonoBehaviour
 {
@@ -96,9 +97,6 @@ public class Interaction : MonoBehaviour
 		tempObjectinHands.transform.position = characterMesh.position + new Vector3(0, 2.3f, 0);
 		tempObjectinHands.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
-    LeftHand.transform.Rotate (-180, 0, 0);
-    RightHand.transform.Rotate(-180, 0, 0);
-
     StartCoroutine(RealGrabObject (gb)); 
   }
 
@@ -115,8 +113,6 @@ public class Interaction : MonoBehaviour
 
   private void ThrowObject()
   {
-    LeftHand.transform.Rotate(180, 0, 0);
-    RightHand.transform.Rotate(180, 0, 0);
     GameObject thrownItem = objectInHands;
     ReleaseObject();
     Debug.Log("Dropping " + thrownItem.transform.name);
