@@ -26925,12 +26925,12 @@ Prefab:
     - target: {fileID: 82000010798287006, guid: 29d674d1bae185f49a760b88b6fb54b6,
         type: 2}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
+      value: 0.645
       objectReference: {fileID: 0}
     - target: {fileID: 82000010798287006, guid: 29d674d1bae185f49a760b88b6fb54b6,
         type: 2}
       propertyPath: m_Volume
-      value: 0.603
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29d674d1bae185f49a760b88b6fb54b6, type: 2}
