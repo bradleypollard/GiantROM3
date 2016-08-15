@@ -47,6 +47,11 @@ public class GameManager : MonoBehaviour
   private float timer;
   private float counter;
 
+  void Start()
+  {
+    Cursor.visible = false;
+  }
+
   void Update()
   {
     if (gameInProgress)
