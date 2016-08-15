@@ -85,7 +85,7 @@ public class DemoStation : MonoBehaviour
       }
     }
 
-    if (hasCorrectGamePad && hasCorrectConsole && hasCorrectDisc)
+    if (playerID != gameplayDemo.playerID && hasCorrectGamePad && hasCorrectConsole && hasCorrectDisc)
     {
       // Only activate outline on the frame if all items are ready!
       foreach (Renderer r in meshes)
@@ -95,7 +95,7 @@ public class DemoStation : MonoBehaviour
     }
     isReady = hasCorrectConsole && hasCorrectGamePad && hasCorrectDisc;
 
-    if ((programFeed.numberOfPlayers == 2 && microphone.speakerID == microphone.teleprompter.speakerID))
+    if (programFeed.numberOfPlayers == 2 && microphone.speakerID == microphone.teleprompter.speakerID)
     {
       // In the rare case that we are in 2 player mode and someone is on the other station, this cant be used
       foreach (Renderer r in meshes)

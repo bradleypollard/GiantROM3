@@ -34,10 +34,13 @@ public class Microphone : MonoBehaviour
     }
     else
     {
-      // Turn highlighting back on always
-      foreach (Renderer r in meshes)
+      if (speakerID != teleprompter.speakerID)
       {
-        r.material.SetFloat("_OutlineTransparency", 1);
+        // Turn highlighting back on as long as no-one is speaking
+        foreach (Renderer r in meshes)
+        {
+          r.material.SetFloat("_OutlineTransparency", 1);
+        }
       }
       // Handle input
       if (playerCanUseMicrophone && Input.GetButton("A_P" + speakerID))
