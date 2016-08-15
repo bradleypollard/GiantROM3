@@ -3,11 +3,16 @@ using System.Collections;
 
 public class Microphone : MonoBehaviour
 {
+  [Header("Two Player Reference")]
+  [SerializeField]
+  DemoStation demoStation;
   [Header("References")]
   [SerializeField]
-  Teleprompter teleprompter;
+  public Teleprompter teleprompter;
   [SerializeField]
   ProgramFeed programFeed;
+  [SerializeField]
+  Renderer[] meshes;
   [Header("Settings")]
   [Range(0, 4)]
   [SerializeField]
@@ -19,10 +24,27 @@ public class Microphone : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (playerCanUseMicrophone && Input.GetButton("A_P" + speakerID))
+    if ((programFeed.numberOfPlayers == 2 && demoStation.playerID == demoStation.gameplayDemo.playerID))
     {
-      teleprompter.SetSpeakerID(speakerID, playerTransform);
-      playerCanUseMicrophone = false;
+      // In the rare case that we are in 2 player mode and someone is on the other station, this cant be used
+      foreach (Renderer r in meshes)
+      {
+        r.material.SetFloat("_OutlineTransparency", 0);
+      }
+    }
+    else
+    {
+      // Turn highlighting back on always
+      foreach (Renderer r in meshes)
+      {
+        r.material.SetFloat("_OutlineTransparency", 1);
+      }
+      // Handle input
+      if (playerCanUseMicrophone && Input.GetButton("A_P" + speakerID))
+      {
+        teleprompter.SetSpeakerID(speakerID, playerTransform);
+        playerCanUseMicrophone = false;
+      }
     }
   }
 

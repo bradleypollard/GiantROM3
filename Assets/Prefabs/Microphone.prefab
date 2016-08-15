@@ -523,6 +523,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558b3deec85ad894583510fd12596b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  demoStation: {fileID: 0}
   teleprompter: {fileID: 0}
   programFeed: {fileID: 0}
+  meshes:
+  - {fileID: 23000013056702436}
+  - {fileID: 23000011815777154}
   speakerID: 0

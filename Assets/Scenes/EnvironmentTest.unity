@@ -18697,6 +18697,16 @@ Prefab:
       objectReference: {fileID: 1034790242}
     - target: {fileID: 114000012774680412, guid: 7842efd79f817494abb7c5457a804aae,
         type: 2}
+      propertyPath: microphone
+      value: 
+      objectReference: {fileID: 1144879449}
+    - target: {fileID: 114000012774680412, guid: 7842efd79f817494abb7c5457a804aae,
+        type: 2}
+      propertyPath: programFeed
+      value: 
+      objectReference: {fileID: 329942516}
+    - target: {fileID: 114000012774680412, guid: 7842efd79f817494abb7c5457a804aae,
+        type: 2}
       propertyPath: gameplayDemo
       value: 
       objectReference: {fileID: 443129996}
@@ -25541,7 +25551,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000010412219890, guid: 3c9e6e2eb8e1aac4783a6b6772936bfd,
     type: 2}
   m_PrefabInternal: {fileID: 399151269}
---- !u!65 &1828151907
+--- !u!65 &1828151910
 BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -27191,12 +27201,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011688079910, guid: c63dc23ecca86aa4283776b89f3d7bee,
+    - target: {fileID: 114000010815609948, guid: c63dc23ecca86aa4283776b89f3d7bee,
         type: 2}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1034790242}
-    - target: {fileID: 114000010815609948, guid: c63dc23ecca86aa4283776b89f3d7bee,
+    - target: {fileID: 114000011688079910, guid: c63dc23ecca86aa4283776b89f3d7bee,
         type: 2}
       propertyPath: camera
       value: 
@@ -27205,6 +27215,11 @@ Prefab:
       propertyPath: m_Name
       value: Microphone (Centre Stage)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000014277911546, guid: c63dc23ecca86aa4283776b89f3d7bee,
+        type: 2}
+      propertyPath: demoStation
+      value: 
+      objectReference: {fileID: 1332792036}
     - target: {fileID: 114000014277911546, guid: c63dc23ecca86aa4283776b89f3d7bee,
         type: 2}
       propertyPath: teleprompter

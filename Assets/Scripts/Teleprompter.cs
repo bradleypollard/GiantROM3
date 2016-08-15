@@ -41,7 +41,7 @@ public class Teleprompter : MonoBehaviour
   [Header("Settings")]
   [Range(0, 4)]
   [SerializeField]
-  int speakerID = 0;
+  public int speakerID = 0;
   [Range(10, 100)]
   [SerializeField]
   int maxQueueSize = 20;

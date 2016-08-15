@@ -1337,6 +1337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e687022b8283dd4b89e42650807ad89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  microphone: {fileID: 0}
+  programFeed: {fileID: 0}
   gameplayDemo: {fileID: 0}
   consoleStand: {fileID: 114000012588272878}
   noGamePadIcon: {fileID: 1000010845074198}

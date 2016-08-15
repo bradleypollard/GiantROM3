@@ -3,9 +3,14 @@ using System.Collections;
 
 public class DemoStation : MonoBehaviour
 {
+  [Header("Two Player Reference")]
+  [SerializeField]
+  Microphone microphone;
+  [SerializeField]
+  ProgramFeed programFeed;
   [Header("References")]
   [SerializeField]
-  GamePlayDemo gameplayDemo;
+  public GamePlayDemo gameplayDemo;
   [SerializeField]
   ConsoleStand consoleStand;
   [SerializeField]
@@ -16,6 +21,7 @@ public class DemoStation : MonoBehaviour
   GameObject noDiscIcon;
   [SerializeField]
   Renderer[] meshes;
+  
   [Header("Settings")]
   [Range(0, 4)]
   [SerializeField]
@@ -79,7 +85,7 @@ public class DemoStation : MonoBehaviour
       }
     }
 
-    if (isReady == false && hasCorrectGamePad && hasCorrectConsole && hasCorrectDisc)
+    if (hasCorrectGamePad && hasCorrectConsole && hasCorrectDisc)
     {
       // Only activate outline on the frame if all items are ready!
       foreach (Renderer r in meshes)
@@ -89,15 +95,26 @@ public class DemoStation : MonoBehaviour
     }
     isReady = hasCorrectConsole && hasCorrectGamePad && hasCorrectDisc;
 
-    // Handle input
-    if (playerCanUseConsole && isReady && Input.GetButton("A_P" + playerID))
+    if ((programFeed.numberOfPlayers == 2 && microphone.speakerID == microphone.teleprompter.speakerID))
     {
-      gameplayDemo.SetPlayerID(playerID, playerTransform);
+      // In the rare case that we are in 2 player mode and someone is on the other station, this cant be used
       foreach (Renderer r in meshes)
       {
         r.material.SetFloat("_OutlineTransparency", 0);
       }
-      playerCanUseConsole = false;
+    }
+    else
+    {
+      // Handle input
+      if (playerCanUseConsole && isReady && Input.GetButton("A_P" + playerID))
+      {
+        gameplayDemo.SetPlayerID(playerID, playerTransform);
+        foreach (Renderer r in meshes)
+        {
+          r.material.SetFloat("_OutlineTransparency", 0);
+        }
+        playerCanUseConsole = false;
+      }
     }
   }
 
