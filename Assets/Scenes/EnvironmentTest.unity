@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.41504604, g: 0.4236186, b: 0.3992685, a: 1}
+  m_IndirectSpecularColor: {r: 0.41504622, g: 0.42361894, b: 0.39926875, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -6833,6 +6833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterMesh: {fileID: 668105983}
   objectInHands: {fileID: 0}
+  tempObjectinHands: {fileID: 0}
   playerMovement: {fileID: 1997480342}
   LeftHand: {fileID: 873436606}
   RightHand: {fileID: 872580313}
@@ -13487,6 +13488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterMesh: {fileID: 893248849}
   objectInHands: {fileID: 0}
+  tempObjectinHands: {fileID: 0}
   playerMovement: {fileID: 1997480342}
   LeftHand: {fileID: 2026424907}
   RightHand: {fileID: 1469772541}
@@ -16268,6 +16270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterMesh: {fileID: 2075430703}
   objectInHands: {fileID: 0}
+  tempObjectinHands: {fileID: 0}
   playerMovement: {fileID: 1997480342}
   LeftHand: {fileID: 702333621}
   RightHand: {fileID: 737111206}
@@ -18479,6 +18482,11 @@ Prefab:
       propertyPath: gameplayDemo
       value: 
       objectReference: {fileID: 443129996}
+    - target: {fileID: 82000011556215590, guid: 7842efd79f817494abb7c5457a804aae,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 26371392e6165164eae70166925520b2, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7842efd79f817494abb7c5457a804aae, type: 2}
   m_IsPrefabParent: 0
@@ -27395,6 +27403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterMesh: {fileID: 413001201}
   objectInHands: {fileID: 0}
+  tempObjectinHands: {fileID: 0}
   playerMovement: {fileID: 0}
   LeftHand: {fileID: 57887828}
   RightHand: {fileID: 592065148}
