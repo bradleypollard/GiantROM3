@@ -928,6 +928,16 @@ Prefab:
       propertyPath: teleprompter
       value: 
       objectReference: {fileID: 443129997}
+    - target: {fileID: 82000012851695894, guid: 7869cdcc946044d4b8ac31de7688b79f,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.764
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000012851695894, guid: 7869cdcc946044d4b8ac31de7688b79f,
+        type: 2}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7869cdcc946044d4b8ac31de7688b79f, type: 2}
   m_IsPrefabParent: 0
@@ -2049,7 +2059,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0
+      value: 0.655
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2616,6 +2626,11 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9a74634c51d204549891f8be18ecf30e, type: 2}
+    - target: {fileID: 82000010798287006, guid: 29d674d1bae185f49a760b88b6fb54b6,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.645
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29d674d1bae185f49a760b88b6fb54b6, type: 2}
   m_IsPrefabParent: 0
@@ -3684,6 +3699,21 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: -2.11
       objectReference: {fileID: 0}
+    - target: {fileID: 82000012832593200, guid: 5cbeb8b326c86e148abb09cd41bf1d7e,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000012832593200, guid: 5cbeb8b326c86e148abb09cd41bf1d7e,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000012832593200, guid: 5cbeb8b326c86e148abb09cd41bf1d7e,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.707
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5cbeb8b326c86e148abb09cd41bf1d7e, type: 2}
   m_IsPrefabParent: 0
@@ -4223,6 +4253,16 @@ Prefab:
     - target: {fileID: 4000010227151568, guid: af9750665c365c64c9c0b1a1bd361f51, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000011006397082, guid: af9750665c365c64c9c0b1a1bd361f51,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000011006397082, guid: af9750665c365c64c9c0b1a1bd361f51,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.806
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af9750665c365c64c9c0b1a1bd361f51, type: 2}
@@ -5250,6 +5290,11 @@ Prefab:
     - target: {fileID: 1000011291819502, guid: 29d674d1bae185f49a760b88b6fb54b6, type: 2}
       propertyPath: m_Name
       value: Spotlight Control Panel (Left Stage)
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010798287006, guid: 29d674d1bae185f49a760b88b6fb54b6,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.645
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29d674d1bae185f49a760b88b6fb54b6, type: 2}
@@ -14695,7 +14740,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d14526e9857134841b46d10adb92b7cd, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.172
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -14746,7 +14791,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -15744,6 +15789,16 @@ Prefab:
     - target: {fileID: 114000013816389180, guid: b55d9b83b5de2574ba7a16a72e2a0926,
         type: 2}
       propertyPath: vanPresent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013383930432, guid: b55d9b83b5de2574ba7a16a72e2a0926,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013383930432, guid: b55d9b83b5de2574ba7a16a72e2a0926,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -18710,6 +18765,21 @@ Prefab:
       propertyPath: gameplayDemo
       value: 
       objectReference: {fileID: 443129996}
+    - target: {fileID: 82000011556215590, guid: 7842efd79f817494abb7c5457a804aae,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.778
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010267923378, guid: 7842efd79f817494abb7c5457a804aae,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010267923378, guid: 7842efd79f817494abb7c5457a804aae,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7842efd79f817494abb7c5457a804aae, type: 2}
   m_IsPrefabParent: 0
@@ -26852,6 +26922,16 @@ Prefab:
       propertyPath: npcZone
       value: 
       objectReference: {fileID: 323250731}
+    - target: {fileID: 82000010798287006, guid: 29d674d1bae185f49a760b88b6fb54b6,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010798287006, guid: 29d674d1bae185f49a760b88b6fb54b6,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.603
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29d674d1bae185f49a760b88b6fb54b6, type: 2}
   m_IsPrefabParent: 0
@@ -27230,6 +27310,21 @@ Prefab:
       propertyPath: programFeed
       value: 
       objectReference: {fileID: 329942516}
+    - target: {fileID: 82000013494437556, guid: c63dc23ecca86aa4283776b89f3d7bee,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013494437556, guid: c63dc23ecca86aa4283776b89f3d7bee,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.891
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013494437556, guid: c63dc23ecca86aa4283776b89f3d7bee,
+        type: 2}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c63dc23ecca86aa4283776b89f3d7bee, type: 2}
   m_IsPrefabParent: 0
