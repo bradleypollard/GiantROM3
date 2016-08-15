@@ -13224,7 +13224,7 @@ MonoBehaviour:
   - {fileID: 474093940}
   - {fileID: 1386194034}
   - {fileID: 1416061548}
-  gameLength: 5
+  gameLength: 300
   debugMode: 0
   gameInProgress: 0
   score: 0
